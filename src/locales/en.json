@@ -1,0 +1,153 @@
+{
+  "meta": {
+    "title": "The Climate Journey",
+    "description": "A scroll-driven documentary about our climate future"
+  },
+  "header": {
+    "languageToggle": "Language",
+    "skipToContent": "Skip to main content"
+  },
+  "acts": {
+    "act1": {
+      "id": "diagnosis",
+      "title": "Diagnosis",
+      "subtitle": "Understanding where we are",
+      "narratives": [
+        {
+          "id": "intro",
+          "heading": "The Earth is warming",
+          "body": "Over the past century, our planet has experienced unprecedented changes in temperature patterns."
+        },
+        {
+          "id": "data",
+          "heading": "The numbers tell the story",
+          "body": "Global temperatures have risen by approximately 1.1°C since pre-industrial times."
+        },
+        {
+          "id": "impact",
+          "heading": "Visible consequences",
+          "body": "From melting ice caps to rising sea levels, the effects are becoming increasingly apparent."
+        }
+      ]
+    },
+    "act2": {
+      "id": "causes",
+      "title": "Causes",
+      "subtitle": "How we got here",
+      "narratives": [
+        {
+          "id": "emissions",
+          "heading": "The carbon footprint",
+          "body": "Human activities have released billions of tons of greenhouse gases into the atmosphere."
+        },
+        {
+          "id": "sectors",
+          "heading": "Where emissions come from",
+          "body": "Energy production, transportation, and industry are the largest contributors."
+        },
+        {
+          "id": "systems",
+          "heading": "Interconnected systems",
+          "body": "Our economic and social systems have evolved around fossil fuel dependency."
+        }
+      ]
+    },
+    "act3": {
+      "id": "solutions",
+      "title": "Solutions",
+      "subtitle": "What we can do",
+      "narratives": [
+        {
+          "id": "renewable",
+          "heading": "Clean energy transition",
+          "body": "Solar, wind, and other renewable sources offer a path to decarbonization."
+        },
+        {
+          "id": "efficiency",
+          "heading": "Efficiency gains",
+          "body": "Smarter buildings, vehicles, and processes can dramatically reduce energy consumption."
+        },
+        {
+          "id": "nature",
+          "heading": "Nature-based solutions",
+          "body": "Forests, oceans, and ecosystems play a crucial role in absorbing carbon."
+        }
+      ]
+    },
+    "act4": {
+      "id": "path-forward",
+      "title": "Path Forward",
+      "subtitle": "Our collective journey",
+      "narratives": [
+        {
+          "id": "goals",
+          "heading": "Global commitments",
+          "body": "Nations have pledged to limit warming to 1.5°C through the Paris Agreement."
+        },
+        {
+          "id": "action",
+          "heading": "Individual and collective action",
+          "body": "Every choice matters, from personal habits to policy advocacy."
+        },
+        {
+          "id": "hope",
+          "heading": "A hopeful future",
+          "body": "With determination and collaboration, a sustainable future is within reach."
+        }
+      ]
+    }
+  },
+  "components": {
+    "compareToggle": {
+      "before": "Before",
+      "after": "After",
+      "label": "Compare scenarios"
+    },
+    "solutionCard": {
+      "learnMore": "Learn more",
+      "impact": "Potential impact"
+    },
+    "impactSandbox": {
+      "title": "Explore the impact",
+      "instruction": "Adjust the parameters to see potential outcomes"
+    },
+    "video": {
+      "play": "Play video",
+      "pause": "Pause video",
+      "mute": "Mute",
+      "unmute": "Unmute",
+      "loading": "Loading video..."
+    }
+  },
+  "dataviz": {
+    "climateStripes": {
+      "title": "Climate Stripes",
+      "alt": "Visualization showing temperature changes over time as colored stripes"
+    },
+    "temperatureGauge": {
+      "title": "Global Temperature",
+      "unit": "°C above pre-industrial",
+      "alt": "Gauge showing current global temperature increase"
+    },
+    "sankey": {
+      "title": "Emission Flows",
+      "alt": "Diagram showing the flow of emissions from sources to sectors"
+    },
+    "goalTracker": {
+      "title": "Progress to Goals",
+      "alt": "Chart tracking progress toward climate goals"
+    }
+  },
+  "footer": {
+    "sources": "Sources",
+    "sourcesNote": "Data sources and methodology will be listed here",
+    "accessibility": "Accessibility",
+    "copyright": "© 2024 The Climate Journey"
+  },
+  "accessibility": {
+    "scrollProgress": "Scroll progress",
+    "sectionStart": "Entering section",
+    "sectionEnd": "Leaving section",
+    "reducedMotion": "Animations reduced for accessibility"
+  }
+}

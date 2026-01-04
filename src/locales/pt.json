@@ -1,0 +1,153 @@
+{
+  "meta": {
+    "title": "A Jornada do Clima",
+    "description": "Uma experiência documental sobre o nosso futuro climático"
+  },
+  "header": {
+    "languageToggle": "Idioma",
+    "skipToContent": "Pular para o conteúdo principal"
+  },
+  "acts": {
+    "act1": {
+      "id": "diagnostico",
+      "title": "Diagnóstico",
+      "subtitle": "Entendendo onde estamos",
+      "narratives": [
+        {
+          "id": "intro",
+          "heading": "A Terra está aquecendo",
+          "body": "No último século, nosso planeta experimentou mudanças sem precedentes nos padrões de temperatura."
+        },
+        {
+          "id": "data",
+          "heading": "Os números contam a história",
+          "body": "As temperaturas globais aumentaram aproximadamente 1,1°C desde os tempos pré-industriais."
+        },
+        {
+          "id": "impact",
+          "heading": "Consequências visíveis",
+          "body": "De calotas de gelo derretendo a níveis do mar subindo, os efeitos estão se tornando cada vez mais aparentes."
+        }
+      ]
+    },
+    "act2": {
+      "id": "causas",
+      "title": "Causas",
+      "subtitle": "Como chegamos aqui",
+      "narratives": [
+        {
+          "id": "emissions",
+          "heading": "A pegada de carbono",
+          "body": "Atividades humanas liberaram bilhões de toneladas de gases de efeito estufa na atmosfera."
+        },
+        {
+          "id": "sectors",
+          "heading": "De onde vêm as emissões",
+          "body": "Produção de energia, transporte e indústria são os maiores contribuintes."
+        },
+        {
+          "id": "systems",
+          "heading": "Sistemas interconectados",
+          "body": "Nossos sistemas econômicos e sociais evoluíram em torno da dependência de combustíveis fósseis."
+        }
+      ]
+    },
+    "act3": {
+      "id": "solucoes",
+      "title": "Soluções",
+      "subtitle": "O que podemos fazer",
+      "narratives": [
+        {
+          "id": "renewable",
+          "heading": "Transição para energia limpa",
+          "body": "Solar, eólica e outras fontes renováveis oferecem um caminho para a descarbonização."
+        },
+        {
+          "id": "efficiency",
+          "heading": "Ganhos de eficiência",
+          "body": "Edifícios, veículos e processos mais inteligentes podem reduzir drasticamente o consumo de energia."
+        },
+        {
+          "id": "nature",
+          "heading": "Soluções baseadas na natureza",
+          "body": "Florestas, oceanos e ecossistemas desempenham um papel crucial na absorção de carbono."
+        }
+      ]
+    },
+    "act4": {
+      "id": "caminho-adiante",
+      "title": "Caminho Adiante",
+      "subtitle": "Nossa jornada coletiva",
+      "narratives": [
+        {
+          "id": "goals",
+          "heading": "Compromissos globais",
+          "body": "Nações se comprometeram a limitar o aquecimento a 1,5°C através do Acordo de Paris."
+        },
+        {
+          "id": "action",
+          "heading": "Ação individual e coletiva",
+          "body": "Cada escolha importa, desde hábitos pessoais até advocacia por políticas públicas."
+        },
+        {
+          "id": "hope",
+          "heading": "Um futuro esperançoso",
+          "body": "Com determinação e colaboração, um futuro sustentável está ao alcance."
+        }
+      ]
+    }
+  },
+  "components": {
+    "compareToggle": {
+      "before": "Antes",
+      "after": "Depois",
+      "label": "Comparar cenários"
+    },
+    "solutionCard": {
+      "learnMore": "Saiba mais",
+      "impact": "Impacto potencial"
+    },
+    "impactSandbox": {
+      "title": "Explore o impacto",
+      "instruction": "Ajuste os parâmetros para ver os resultados potenciais"
+    },
+    "video": {
+      "play": "Reproduzir vídeo",
+      "pause": "Pausar vídeo",
+      "mute": "Silenciar",
+      "unmute": "Ativar som",
+      "loading": "Carregando vídeo..."
+    }
+  },
+  "dataviz": {
+    "climateStripes": {
+      "title": "Listras Climáticas",
+      "alt": "Visualização mostrando mudanças de temperatura ao longo do tempo como listras coloridas"
+    },
+    "temperatureGauge": {
+      "title": "Temperatura Global",
+      "unit": "°C acima do pré-industrial",
+      "alt": "Medidor mostrando o aumento atual da temperatura global"
+    },
+    "sankey": {
+      "title": "Fluxos de Emissão",
+      "alt": "Diagrama mostrando o fluxo de emissões das fontes para os setores"
+    },
+    "goalTracker": {
+      "title": "Progresso das Metas",
+      "alt": "Gráfico acompanhando o progresso em direção às metas climáticas"
+    }
+  },
+  "footer": {
+    "sources": "Fontes",
+    "sourcesNote": "Fontes de dados e metodologia serão listadas aqui",
+    "accessibility": "Acessibilidade",
+    "copyright": "© 2024 A Jornada do Clima"
+  },
+  "accessibility": {
+    "scrollProgress": "Progresso da rolagem",
+    "sectionStart": "Entrando na seção",
+    "sectionEnd": "Saindo da seção",
+    "reducedMotion": "Animações reduzidas para acessibilidade"
+  }
+}
