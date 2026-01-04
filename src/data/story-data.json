@@ -1,0 +1,200 @@
+{
+  "story": {
+    "id": "climate-journey",
+    "version": "1.0.0",
+    "acts": [
+      {
+        "id": "act1",
+        "key": "diagnosis",
+        "theme": "dark",
+        "sections": [
+          {
+            "id": "section-1-1",
+            "type": "narrative",
+            "narrativeKey": "intro",
+            "visual": {
+              "type": "image",
+              "src": "/assets/demo/earth-warming.png",
+              "animation": "fade"
+            }
+          },
+          {
+            "id": "section-1-2",
+            "type": "dataviz",
+            "narrativeKey": "data",
+            "visual": {
+              "type": "climate-stripes",
+              "data": {
+                "startYear": 1850,
+                "endYear": 2024
+              }
+            }
+          },
+          {
+            "id": "section-1-3",
+            "type": "narrative",
+            "narrativeKey": "impact",
+            "visual": {
+              "type": "image",
+              "src": "/assets/demo/ice-melting.png",
+              "animation": "slide-left"
+            }
+          }
+        ]
+      },
+      {
+        "id": "act2",
+        "key": "causes",
+        "theme": "dark",
+        "sections": [
+          {
+            "id": "section-2-1",
+            "type": "narrative",
+            "narrativeKey": "emissions",
+            "visual": {
+              "type": "image",
+              "src": "/assets/demo/carbon-footprint.png",
+              "animation": "fade"
+            }
+          },
+          {
+            "id": "section-2-2",
+            "type": "dataviz",
+            "narrativeKey": "sectors",
+            "visual": {
+              "type": "sankey",
+              "data": {
+                "sources": ["Energy", "Transport", "Industry", "Agriculture"],
+                "values": [40, 25, 20, 15]
+              }
+            }
+          },
+          {
+            "id": "section-2-3",
+            "type": "video",
+            "narrativeKey": "systems",
+            "visual": {
+              "type": "autoplay-video",
+              "src": "/assets/demo/systems-video.mp4",
+              "poster": "/assets/demo/systems-poster.png"
+            }
+          }
+        ]
+      },
+      {
+        "id": "act3",
+        "key": "solutions",
+        "theme": "light",
+        "sections": [
+          {
+            "id": "section-3-1",
+            "type": "narrative",
+            "narrativeKey": "renewable",
+            "visual": {
+              "type": "image",
+              "src": "/assets/demo/solar-panels.png",
+              "animation": "slide-right"
+            }
+          },
+          {
+            "id": "section-3-2",
+            "type": "interaction",
+            "narrativeKey": "efficiency",
+            "visual": {
+              "type": "compare-toggle",
+              "before": "/assets/demo/before-efficiency.png",
+              "after": "/assets/demo/after-efficiency.png"
+            }
+          },
+          {
+            "id": "section-3-3",
+            "type": "cards",
+            "narrativeKey": "nature",
+            "visual": {
+              "type": "solution-cards",
+              "cards": [
+                {
+                  "id": "forests",
+                  "icon": "tree",
+                  "impactValue": 30
+                },
+                {
+                  "id": "oceans",
+                  "icon": "waves",
+                  "impactValue": 25
+                },
+                {
+                  "id": "wetlands",
+                  "icon": "droplet",
+                  "impactValue": 15
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "id": "act4",
+        "key": "path-forward",
+        "theme": "neutral",
+        "sections": [
+          {
+            "id": "section-4-1",
+            "type": "dataviz",
+            "narrativeKey": "goals",
+            "visual": {
+              "type": "goal-tracker",
+              "data": {
+                "target": 1.5,
+                "current": 1.1,
+                "projected": 2.7
+              }
+            }
+          },
+          {
+            "id": "section-4-2",
+            "type": "interaction",
+            "narrativeKey": "action",
+            "visual": {
+              "type": "impact-sandbox",
+              "parameters": ["energy", "transport", "diet", "consumption"]
+            }
+          },
+          {
+            "id": "section-4-3",
+            "type": "video",
+            "narrativeKey": "hope",
+            "visual": {
+              "type": "scrub-video",
+              "src": "/assets/demo/hope-video.mp4",
+              "poster": "/assets/demo/hope-poster.png",
+              "frames": 120
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "metrics": {
+    "temperatureRise": {
+      "value": 1.1,
+      "unit": "°C",
+      "baseline": "pre-industrial"
+    },
+    "co2Concentration": {
+      "value": 421,
+      "unit": "ppm",
+      "year": 2024
+    },
+    "seaLevelRise": {
+      "value": 3.7,
+      "unit": "mm/year",
+      "period": "2006-2018"
+    },
+    "arcticIceLoss": {
+      "value": 13,
+      "unit": "%/decade",
+      "period": "1979-2024"
+    }
+  }
+}
