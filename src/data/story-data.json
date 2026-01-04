@@ -1,200 +1,892 @@
 {
-  "story": {
-    "id": "climate-journey",
-    "version": "1.0.0",
-    "acts": [
-      {
-        "id": "act1",
-        "key": "diagnosis",
-        "theme": "dark",
-        "sections": [
-          {
-            "id": "section-1-1",
-            "type": "narrative",
-            "narrativeKey": "intro",
-            "visual": {
-              "type": "image",
-              "src": "/assets/demo/earth-warming.png",
-              "animation": "fade"
+    "meta": {
+        "topic": "Mudan\u00e7a Clim\u00e1tica: Causas, Solu\u00e7\u00f5es e Cen\u00e1rio Brasileiro",
+        "last_updated": "2026-01-04",
+        "description": "Dados estruturados para narrativa interativa (scrollytelling) sobre realidade clim\u00e1tica, causas, consequ\u00eancias e solu\u00e7\u00f5es (sem foco em cr\u00e9ditos de carbono), com comparativos Global vs Brasil.",
+        "data_source_summary": "Compila\u00e7\u00e3o de fontes diversas (WRI, ICCT, IRENA, Gov BR, Observat\u00f3rio do Clima, Wikipedia e outras). Alguns n\u00fameros podem precisar de atualiza\u00e7\u00e3o anual; este JSON separa n\u00fameros do contexto para facilitar updates.",
+        "schema_version": "2.1",
+        "intended_use": [
+            "scrollytelling",
+            "data_visualization",
+            "interactive_simulation",
+            "comparisons_global_vs_brazil",
+            "yearly_updates"
+        ],
+        "localization": {
+            "default_language": "pt-BR",
+            "supported_languages": [
+                "pt-BR",
+                "en"
+            ]
+        }
+    },
+    "sources": {
+        "1": {
+            "name": "Jornal Unifal-MG",
+            "ref": "Entrevista climatologista Paulo Henrique",
+            "trust_level": "unknown",
+            "type": "media",
+            "url": null
+        },
+        "2": {
+            "name": "Wikipedia",
+            "ref": "Causas do aquecimento global",
+            "trust_level": "medium",
+            "type": "media",
+            "url": null
+        },
+        "3": {
+            "name": "WRI Brasil",
+            "ref": "4 gr\u00e1ficos para entender emiss\u00f5es",
+            "trust_level": "high",
+            "type": "ngo",
+            "url": "https://www.wribrasil.org.br/noticias/4-graficos-para-entender-emissoes-de-gases-de-efeito-estufa-por-pais-e-por-setor"
+        },
+        "4": {
+            "name": "Wikipedia",
+            "ref": "Gases do efeito estufa",
+            "trust_level": "medium",
+            "type": "media",
+            "url": null
+        },
+        "5": {
+            "name": "WayCarbon",
+            "ref": "5 Fontes De Gases De Efeito Estufa",
+            "trust_level": "unknown",
+            "type": "media",
+            "url": null
+        },
+        "7": {
+            "name": "WRI Brasil",
+            "ref": "Conserva\u00e7\u00e3o de florestas",
+            "trust_level": "high",
+            "type": "ngo",
+            "url": null
+        },
+        "12": {
+            "name": "Dados Clim\u00e1ticos Globais",
+            "ref": "Relat\u00f3rios de Temperatura 2024",
+            "trust_level": "unknown",
+            "type": "media",
+            "url": null
+        },
+        "13": {
+            "name": "Copernicus Climate Change Service (C3S)",
+            "ref": "2024 first year exceed 1.5\u00b0C / Global climate highlights",
+            "trust_level": "very_high",
+            "type": "intergovernmental",
+            "url": "https://climate.copernicus.eu/copernicus-2024-first-year-exceed-15degc-above-pre-industrial-level"
+        },
+        "14": {
+            "name": "WMO",
+            "ref": "WMO confirms 2024 warmest year",
+            "trust_level": "very_high",
+            "type": "intergovernmental",
+            "url": "https://wmo.int/news/media-centre/wmo-confirms-2024-warmest-year-record-about-155degc-above-pre-industrial-level"
+        },
+        "15": {
+            "name": "Relat\u00f3rios Governamentais BR",
+            "ref": "Impactos Econ\u00f4micos Desastres",
+            "trust_level": "unknown",
+            "type": "government",
+            "url": null
+        },
+        "17": {
+            "name": "IRENA/Ag\u00eancias de Energia",
+            "ref": "Custos Renov\u00e1veis 2024",
+            "trust_level": "high",
+            "type": "intergovernmental",
+            "url": null
+        },
+        "20": {
+            "name": "Estudos Econ\u00f4micos",
+            "ref": "Empregos Verdes",
+            "trust_level": "unknown",
+            "type": "academic",
+            "url": null
+        },
+        "23": {
+            "name": "Embrapa/Estudos Agr\u00edcolas",
+            "ref": "Pecu\u00e1ria de Baixo Carbono",
+            "trust_level": "high",
+            "type": "academic",
+            "url": null
+        },
+        "25": {
+            "name": "CNI/EPE",
+            "ref": "Efici\u00eancia Energ\u00e9tica Industrial",
+            "trust_level": "high",
+            "type": "government",
+            "url": null
+        },
+        "31": {
+            "name": "ICCT",
+            "ref": "Emiss\u00f5es Ve\u00edculos El\u00e9tricos vs Combust\u00e3o",
+            "trust_level": "high",
+            "type": "ngo",
+            "url": null
+        },
+        "43": {
+            "name": "Governo Brasileiro (MMA)",
+            "ref": "Nova NDC Brasileira (COP29)",
+            "trust_level": "very_high",
+            "type": "government",
+            "url": "https://www.gov.br/mma/pt-br/assuntos/noticias/nova-ndc-do-brasil-representa-paradigma-para-o-desenvolvimento-do-pais-diz-marina-na-cop29"
+        },
+        "44": {
+            "name": "Observat\u00f3rio do Clima",
+            "ref": "Proposta de NDCs",
+            "trust_level": "high",
+            "type": "ngo",
+            "url": null
+        },
+        "noaa_co2_trends": {
+            "name": "NOAA GML",
+            "ref": "Trends in CO2 (Mauna Loa monthly averages)",
+            "trust_level": "very_high",
+            "type": "government",
+            "url": "https://gml.noaa.gov/ccgg/trends/"
+        },
+        "noaa_climate_gov_co2_2024": {
+            "name": "NOAA Climate.gov",
+            "ref": "Global average atmospheric CO2 in 2024",
+            "trust_level": "very_high",
+            "type": "government",
+            "url": "https://www.climate.gov/news-features/understanding-climate/climate-change-atmospheric-carbon-dioxide"
+        }
+    },
+    "metrics_registry": {
+        "fossil_fuels": {
+            "id": "fossil_fuels",
+            "label": "Queima de Combust\u00edveis F\u00f3sseis",
+            "value": {
+                "number": 73.0,
+                "unit": "%",
+                "precision": 0.1
+            },
+            "description": "Respons\u00e1vel pela maior parte das emiss\u00f5es globais de GEE.",
+            "geography": "global",
+            "type": "current_state",
+            "year_reference": 2024,
+            "sources": [
+                "3",
+                "1",
+                "2"
+            ],
+            "update": {
+                "frequency": "annual",
+                "status": "ok"
             }
-          },
-          {
-            "id": "section-1-2",
-            "type": "dataviz",
-            "narrativeKey": "data",
-            "visual": {
-              "type": "climate-stripes",
-              "data": {
-                "startYear": 1850,
-                "endYear": 2024
-              }
+        },
+        "deforestation_co2": {
+            "id": "deforestation_co2",
+            "label": "Desmatamento e Uso da Terra",
+            "value": {
+                "number": 18.0,
+                "unit": "%",
+                "precision": 0.1
+            },
+            "notes": [
+                "Aprox. 7% refere-se especificamente a emiss\u00f5es diretas de CO2, mas o impacto total no uso da terra \u00e9 maior."
+            ],
+            "geography": "global",
+            "type": "current_state",
+            "year_reference": 2024,
+            "sources": [
+                "3",
+                "7"
+            ],
+            "update": {
+                "frequency": "annual",
+                "status": "needs_better_source"
             }
-          },
-          {
-            "id": "section-1-3",
-            "type": "narrative",
-            "narrativeKey": "impact",
-            "visual": {
-              "type": "image",
-              "src": "/assets/demo/ice-melting.png",
-              "animation": "slide-left"
+        },
+        "nitrous_oxide": {
+            "id": "nitrous_oxide",
+            "label": "\u00d3xido Nitroso (Fertilizantes/Agro)",
+            "value": {
+                "number": 6.2,
+                "unit": "%",
+                "precision": 0.1
+            },
+            "geography": "global",
+            "type": "current_state",
+            "year_reference": 2024,
+            "sources": [
+                "3"
+            ],
+            "update": {
+                "frequency": "annual",
+                "status": "needs_better_source"
             }
-          }
-        ]
-      },
-      {
-        "id": "act2",
-        "key": "causes",
-        "theme": "dark",
-        "sections": [
-          {
-            "id": "section-2-1",
-            "type": "narrative",
-            "narrativeKey": "emissions",
-            "visual": {
-              "type": "image",
-              "src": "/assets/demo/carbon-footprint.png",
-              "animation": "fade"
+        },
+        "electricity_heat": {
+            "id": "electricity_heat",
+            "label": "Gera\u00e7\u00e3o de Eletricidade e Calor",
+            "value": {
+                "number": 30.0,
+                "unit": "%",
+                "precision": 0.1
+            },
+            "geography": "global",
+            "type": "current_state",
+            "year_reference": 2024,
+            "sources": [
+                "3"
+            ],
+            "update": {
+                "frequency": "annual",
+                "status": "needs_better_source"
             }
-          },
-          {
-            "id": "section-2-2",
-            "type": "dataviz",
-            "narrativeKey": "sectors",
-            "visual": {
-              "type": "sankey",
-              "data": {
-                "sources": ["Energy", "Transport", "Industry", "Agriculture"],
-                "values": [40, 25, 20, 15]
-              }
-            }
-          },
-          {
-            "id": "section-2-3",
-            "type": "video",
-            "narrativeKey": "systems",
-            "visual": {
-              "type": "autoplay-video",
-              "src": "/assets/demo/systems-video.mp4",
-              "poster": "/assets/demo/systems-poster.png"
-            }
-          }
-        ]
-      },
-      {
-        "id": "act3",
-        "key": "solutions",
-        "theme": "light",
-        "sections": [
-          {
-            "id": "section-3-1",
-            "type": "narrative",
-            "narrativeKey": "renewable",
-            "visual": {
-              "type": "image",
-              "src": "/assets/demo/solar-panels.png",
-              "animation": "slide-right"
-            }
-          },
-          {
-            "id": "section-3-2",
-            "type": "interaction",
-            "narrativeKey": "efficiency",
-            "visual": {
-              "type": "compare-toggle",
-              "before": "/assets/demo/before-efficiency.png",
-              "after": "/assets/demo/after-efficiency.png"
-            }
-          },
-          {
-            "id": "section-3-3",
-            "type": "cards",
-            "narrativeKey": "nature",
-            "visual": {
-              "type": "solution-cards",
-              "cards": [
-                {
-                  "id": "forests",
-                  "icon": "tree",
-                  "impactValue": 30
-                },
-                {
-                  "id": "oceans",
-                  "icon": "waves",
-                  "impactValue": 25
-                },
-                {
-                  "id": "wetlands",
-                  "icon": "droplet",
-                  "impactValue": 15
+        },
+        "transport": {
+            "id": "transport",
+            "label": "Transporte",
+            "value": {
+                "number": 15.0,
+                "unit": "%",
+                "precision": 0.1
+            },
+            "trend": {
+                "direction": "up",
+                "description": "Aumento de 71% desde 1990",
+                "value": {
+                    "number": 71.0,
+                    "unit": "%",
+                    "precision": 1
                 }
-              ]
+            },
+            "geography": "global",
+            "type": "trend",
+            "year_reference": 2024,
+            "sources": [
+                "3"
+            ],
+            "update": {
+                "frequency": "annual",
+                "status": "needs_better_source"
             }
-          }
+        },
+        "manufacturing_construction": {
+            "id": "manufacturing_construction",
+            "label": "Fabrica\u00e7\u00e3o e Constru\u00e7\u00e3o",
+            "value": {
+                "number": 12.0,
+                "unit": "%",
+                "precision": 0.1
+            },
+            "geography": "global",
+            "type": "current_state",
+            "year_reference": 2024,
+            "sources": [
+                "3"
+            ],
+            "update": {
+                "frequency": "annual",
+                "status": "needs_better_source"
+            }
+        },
+        "global_warming_2024": {
+            "id": "global_warming_2024",
+            "label": "Aquecimento Global (vs Pr\u00e9-industrial)",
+            "value": {
+                "number": 1.6,
+                "unit": "\u00b0C",
+                "precision": 0.01
+            },
+            "year_reference": 2024,
+            "geography": "global",
+            "type": "current_state",
+            "status": "critical",
+            "description": "Recorde atingido em 2024 (primeiro ano-calend\u00e1rio acima de 1,5\u00b0C em alguns conjuntos de dados).",
+            "sources": [
+                "13",
+                "14",
+                "12"
+            ],
+            "update": {
+                "frequency": "annual",
+                "status": "ok"
+            }
+        },
+        "atmospheric_co2": {
+            "id": "atmospheric_co2",
+            "label": "Concentra\u00e7\u00e3o de CO2 Atmosf\u00e9rico",
+            "value": {
+                "number": 419,
+                "unit": "ppm",
+                "precision": 1
+            },
+            "context": {
+                "preindustrial": {
+                    "number": 280,
+                    "unit": "ppm",
+                    "precision": 1
+                }
+            },
+            "description": "Valor no JSON original; para atualiza\u00e7\u00e3o, recomenda-se usar s\u00e9ries oficiais (NOAA).",
+            "geography": "global",
+            "type": "current_state",
+            "year_reference": 2024,
+            "sources": [
+                "4"
+            ],
+            "update_candidates": [
+                {
+                    "label": "NOAA Climate.gov (m\u00e9dia global 2024)",
+                    "value": {
+                        "number": 422.8,
+                        "unit": "ppm",
+                        "precision": 0.1
+                    },
+                    "year_reference": 2024,
+                    "source": "noaa_climate_gov_co2_2024"
+                },
+                {
+                    "label": "NOAA GML (Mauna Loa monthly avg Nov/2024)",
+                    "value": {
+                        "number": 423.85,
+                        "unit": "ppm",
+                        "precision": 0.01
+                    },
+                    "year_reference": 2024,
+                    "source": "noaa_co2_trends"
+                }
+            ],
+            "update": {
+                "frequency": "monthly_or_annual",
+                "status": "needs_update"
+            }
+        },
+        "brazil_regional_warming_max": {
+            "id": "brazil_regional_warming_max",
+            "label": "Aquecimento Regional Brasil (M\u00e1x)",
+            "value": {
+                "number": 2.2,
+                "unit": "\u00b0C",
+                "precision": 0.1
+            },
+            "year_reference": 2024,
+            "geography": "Brazil",
+            "type": "current_state",
+            "description": "Aquecimento acima da m\u00e9dia registrado em regi\u00f5es espec\u00edficas do Brasil em 2024 (valor no JSON original).",
+            "sources": [
+                "15"
+            ],
+            "update": {
+                "frequency": "annual",
+                "status": "needs_better_source"
+            }
+        },
+        "forest_conservation": {
+            "id": "forest_conservation",
+            "category": "Florestas",
+            "label": "Conserva\u00e7\u00e3o Florestal",
+            "impact": {
+                "number": 7.0,
+                "unit": "bilh\u00f5es de toneladas CO2/ano",
+                "precision": 0.1
+            },
+            "comparison": {
+                "text": "Equivalente a remover 1.5 bilh\u00e3o de carros.",
+                "value": {
+                    "number": 1.5,
+                    "unit": "bilh\u00f5es de carros",
+                    "precision": 0.1
+                }
+            },
+            "geography": "global",
+            "type": "projection",
+            "year_reference": 2024,
+            "sources": [
+                "7"
+            ],
+            "update": {
+                "frequency": "occasional",
+                "status": "needs_better_source"
+            }
+        },
+        "energy_efficiency": {
+            "id": "energy_efficiency",
+            "category": "Energia",
+            "label": "Efici\u00eancia Energ\u00e9tica",
+            "impact": {
+                "number": 20.0,
+                "unit": "% redu\u00e7\u00e3o global",
+                "precision": 0.1
+            },
+            "description": "Potencial de redu\u00e7\u00e3o de emiss\u00f5es totais.",
+            "geography": "global",
+            "type": "projection",
+            "year_reference": 2024,
+            "sources": [
+                "25"
+            ],
+            "update": {
+                "frequency": "occasional",
+                "status": "needs_better_source"
+            }
+        },
+        "electric_vehicles": {
+            "id": "electric_vehicles",
+            "category": "Transporte",
+            "label": "Ve\u00edculos El\u00e9tricos",
+            "impact": {
+                "number": 68.0,
+                "unit": "% menos polui\u00e7\u00e3o",
+                "precision": 0.1
+            },
+            "description": "Comparado a ve\u00edculos a combust\u00e3o (ciclo de vida completo).",
+            "geography": "global",
+            "type": "current_state",
+            "year_reference": 2024,
+            "sources": [
+                "31"
+            ],
+            "update": {
+                "frequency": "occasional",
+                "status": "needs_better_source"
+            }
+        },
+        "sustainable_livestock": {
+            "id": "sustainable_livestock",
+            "category": "Agricultura",
+            "label": "Pecu\u00e1ria Sustent\u00e1vel",
+            "impact": {
+                "number": 50.0,
+                "unit": "% redu\u00e7\u00e3o no setor",
+                "precision": 0.1
+            },
+            "description": "Redu\u00e7\u00e3o potencial nas emiss\u00f5es da pecu\u00e1ria de corte at\u00e9 2050.",
+            "geography": "Brazil",
+            "type": "projection",
+            "year_reference": 2050,
+            "sources": [
+                "23"
+            ],
+            "update": {
+                "frequency": "occasional",
+                "status": "needs_better_source"
+            }
+        },
+        "brazil_ndc_2035_reduction_range": {
+            "id": "brazil_ndc_2035_reduction_range",
+            "label": "Meta de Redu\u00e7\u00e3o (NDC 2035)",
+            "value": {
+                "number": 63.0,
+                "unit": "%",
+                "precision": 0.1
+            },
+            "target_range": {
+                "min": {
+                    "number": 59.0,
+                    "unit": "%",
+                    "precision": 0.1
+                },
+                "max": {
+                    "number": 67.0,
+                    "unit": "%",
+                    "precision": 0.1
+                }
+            },
+            "baseline_year": 2005,
+            "description": "Redu\u00e7\u00e3o proposta em rela\u00e7\u00e3o aos n\u00edveis de 2005.",
+            "geography": "Brazil",
+            "type": "target",
+            "year_reference": 2035,
+            "sources": [
+                "43"
+            ],
+            "update": {
+                "frequency": "policy_change",
+                "status": "ok"
+            },
+            "notes": [
+                "Valor em 'value' \u00e9 o ponto m\u00e9dio da faixa para facilitar gr\u00e1ficos; usar 'target_range' como refer\u00eancia principal."
+            ],
+            "derived": {
+                "absolute_range": {
+                    "min": {
+                        "number": 850,
+                        "unit": "milh\u00f5es tCO2e",
+                        "precision": 1
+                    },
+                    "max": {
+                        "number": 1050,
+                        "unit": "milh\u00f5es tCO2e",
+                        "precision": 1
+                    }
+                },
+                "derived_from_source": [
+                    "43"
+                ]
+            }
+        },
+        "brazil_ndc_ideal_observatorio": {
+            "id": "brazil_ndc_ideal_observatorio",
+            "label": "Meta Ideal (Observat\u00f3rio do Clima)",
+            "value": {
+                "number": 92.0,
+                "unit": "%",
+                "precision": 0.1
+            },
+            "description": "Meta sugerida pela sociedade civil para alinhamento com 1.5\u00b0C.",
+            "geography": "Brazil",
+            "type": "target",
+            "year_reference": 2035,
+            "sources": [
+                "44"
+            ],
+            "update": {
+                "frequency": "policy_change",
+                "status": "needs_better_source"
+            }
+        },
+        "deforestation_share_brazil_emissions": {
+            "id": "deforestation_share_brazil_emissions",
+            "label": "Desmatamento na Matriz de Emiss\u00f5es BR",
+            "value": {
+                "number": 26.7,
+                "unit": "%",
+                "precision": 0.1
+            },
+            "description": "Contribui\u00e7\u00e3o do desmatamento para as emiss\u00f5es totais do Brasil.",
+            "geography": "Brazil",
+            "type": "current_state",
+            "year_reference": 2024,
+            "sources": [
+                "5"
+            ],
+            "update": {
+                "frequency": "annual",
+                "status": "needs_better_source"
+            }
+        },
+        "solar_cost_vs_fossil": {
+            "id": "solar_cost_vs_fossil",
+            "label": "Custo Solar vs F\u00f3ssil",
+            "value": {
+                "number": -41.0,
+                "unit": "%",
+                "precision": 0.1
+            },
+            "description": "Energia solar \u00e9 em m\u00e9dia 41% mais barata que a alternativa f\u00f3ssil mais barata.",
+            "geography": "global",
+            "type": "current_state",
+            "year_reference": 2024,
+            "sources": [
+                "17"
+            ],
+            "update": {
+                "frequency": "annual",
+                "status": "needs_better_source"
+            }
+        },
+        "solar_jobs_vs_fossil": {
+            "id": "solar_jobs_vs_fossil",
+            "label": "Gera\u00e7\u00e3o de Empregos (Solar vs F\u00f3ssil)",
+            "value": {
+                "number": 50.0,
+                "unit": "%",
+                "precision": 0.1
+            },
+            "description": "Solar gera 50% mais empregos por investimento equivalente.",
+            "geography": "global",
+            "type": "current_state",
+            "year_reference": 2024,
+            "sources": [
+                "20"
+            ],
+            "update": {
+                "frequency": "occasional",
+                "status": "needs_better_source"
+            }
+        },
+        "brazil_disaster_cost_2011_2023": {
+            "id": "brazil_disaster_cost_2011_2023",
+            "label": "Custo Desastres Naturais Brasil (2011-2023)",
+            "value": {
+                "number": 485,
+                "unit": "bilh\u00e3o R$",
+                "precision": 1
+            },
+            "description": "Gasto federal em resposta a desastres.",
+            "geography": "Brazil",
+            "type": "trend",
+            "year_reference": 2023,
+            "sources": [
+                "15"
+            ],
+            "update": {
+                "frequency": "occasional",
+                "status": "needs_better_source"
+            }
+        }
+    },
+    "metrics": {
+        "global_emissions_factors": {
+            "title": "Principais Fatores de Emiss\u00e3o Global",
+            "chart_type_suggestion": "Donut Chart",
+            "items": [
+                "fossil_fuels",
+                "deforestation_co2",
+                "nitrous_oxide"
+            ]
+        },
+        "emissions_by_sector": {
+            "title": "Emiss\u00f5es por Setor Econ\u00f4mico",
+            "chart_type_suggestion": "Bar Chart or Tree Map",
+            "items": [
+                "electricity_heat",
+                "transport",
+                "manufacturing_construction"
+            ]
+        },
+        "current_status_kpis": {
+            "title": "Indicadores Clim\u00e1ticos Atuais (2024/2025)",
+            "chart_type_suggestion": "Scorecards / KPI Metrics",
+            "items": [
+                "global_warming_2024",
+                "brazil_regional_warming_max",
+                "atmospheric_co2"
+            ]
+        },
+        "solutions_impact": {
+            "title": "Potencial de Impacto das Solu\u00e7\u00f5es",
+            "chart_type_suggestion": "Horizontal Bar Chart (Comparative)",
+            "items": [
+                "forest_conservation",
+                "energy_efficiency",
+                "electric_vehicles",
+                "sustainable_livestock"
+            ]
+        },
+        "brazil_context": {
+            "title": "Contexto Brasil e Metas (NDC)",
+            "chart_type_suggestion": "Gauge Chart or Goal Tracker",
+            "items": [
+                "brazil_ndc_2035_reduction_range",
+                "brazil_ndc_ideal_observatorio",
+                "deforestation_share_brazil_emissions"
+            ]
+        },
+        "economic_data": {
+            "title": "Dados Econ\u00f4micos da Transi\u00e7\u00e3o",
+            "chart_type_suggestion": "KPI Cards + Comparative Bars",
+            "items": [
+                "solar_cost_vs_fossil",
+                "solar_jobs_vs_fossil",
+                "brazil_disaster_cost_2011_2023"
+            ]
+        }
+    },
+    "narrative": {
+        "title": "A Jornada do Clima",
+        "chapters": [
+            {
+                "id": "ato_1_diagnostico",
+                "title": "O Diagn\u00f3stico",
+                "guiding_question": "Onde estamos?",
+                "goal": "Impacto imediato, realidade antes de porcentagens.",
+                "primary_metrics": [
+                    "global_warming_2024",
+                    "brazil_regional_warming_max",
+                    "atmospheric_co2"
+                ],
+                "visuals": [
+                    {
+                        "type": "climate_stripes",
+                        "description": "Faixas azul\u2192vermelho, com transi\u00e7\u00e3o e satura\u00e7\u00e3o no scroll.",
+                        "assets_needed": [
+                            "dataset_temperatura_anual_global",
+                            "paleta_stripes"
+                        ]
+                    },
+                    {
+                        "type": "thermometer_or_gauge",
+                        "description": "Term\u00f4metro gigante com marcas de refer\u00eancia cr\u00edticas."
+                    }
+                ],
+                "copy": [
+                    "O aquecimento global ultrapassou patamares hist\u00f3ricos e virou realidade mensur\u00e1vel.",
+                    "O aquecimento n\u00e3o \u00e9 uniforme: algumas regi\u00f5es do Brasil aquecem mais."
+                ],
+                "interaction": {
+                    "scroll_behavior": "numbers_reveal_after_visual",
+                    "micro_interaction": "split_screen_global_vs_brazil"
+                }
+            },
+            {
+                "id": "ato_2_anatomia",
+                "title": "A Anatomia do Problema",
+                "guiding_question": "Quem s\u00e3o os culpados?",
+                "goal": "Explicar a mec\u00e2nica: atividades\u2192gases\u2192aquecimento. Sem moralismo, com causalidade clara.",
+                "primary_metrics": [
+                    "fossil_fuels",
+                    "deforestation_co2",
+                    "transport",
+                    "deforestation_share_brazil_emissions"
+                ],
+                "visuals": [
+                    {
+                        "type": "sankey",
+                        "description": "Fluxo de atividades (pecu\u00e1ria, carros, ind\u00fastria) para gases (CO2, CH4, N2O)."
+                    },
+                    {
+                        "type": "toggle_compare",
+                        "description": "Alternar 'Mundo' vs 'Brasil' para mostrar diferen\u00e7a de perfil de emiss\u00f5es."
+                    }
+                ],
+                "copy": [
+                    "N\u00e3o \u00e9 um fen\u00f4meno natural. Energia, transporte e comida est\u00e3o moldando a atmosfera.",
+                    "No mundo, f\u00f3sseis dominam. No Brasil, o uso da terra e o desmatamento entram no centro do palco."
+                ],
+                "interaction": {
+                    "scroll_behavior": "layered_reveal",
+                    "micro_interaction": "tap_to_highlight_biggest_driver"
+                }
+            },
+            {
+                "id": "ato_3_ferramentas",
+                "title": "A Caixa de Ferramentas",
+                "guiding_question": "Como consertamos?",
+                "goal": "Trocar eco-ansiedade por ag\u00eancia com solu\u00e7\u00f5es reais e compar\u00e1veis (sem cr\u00e9ditos de carbono).",
+                "primary_metrics": [
+                    "solar_cost_vs_fossil",
+                    "solar_jobs_vs_fossil",
+                    "forest_conservation",
+                    "energy_efficiency",
+                    "electric_vehicles",
+                    "sustainable_livestock"
+                ],
+                "visuals": [
+                    {
+                        "type": "comparative_cost_bars",
+                        "description": "Queda de custo e compara\u00e7\u00e3o com f\u00f3sseis."
+                    },
+                    {
+                        "type": "impact_sandbox",
+                        "description": "Simulador: usu\u00e1rio seleciona solu\u00e7\u00f5es e v\u00ea impacto agregado no 'medidor de CO2'.",
+                        "rules": {
+                            "no_carbon_credits": true,
+                            "show_bounds_or_uncertainty": true
+                        }
+                    }
+                ],
+                "copy": [
+                    "As ferramentas para reverter o cen\u00e1rio j\u00e1 existem e ganham escala rapidamente.",
+                    "Escolha solu\u00e7\u00f5es e veja o impacto: cortar emiss\u00f5es \u00e9 poss\u00edvel, mas exige escala."
+                ],
+                "interaction": {
+                    "scroll_behavior": "from_static_to_interactive",
+                    "micro_interaction": "drag_and_stack_solution_tiles"
+                }
+            },
+            {
+                "id": "ato_4_caminho",
+                "title": "O Caminho \u00e0 Frente",
+                "guiding_question": "O Brasil na lideran\u00e7a?",
+                "goal": "Encerrar com metas, ambi\u00e7\u00e3o e papel estrat\u00e9gico do Brasil (florestas + energia).",
+                "primary_metrics": [
+                    "brazil_ndc_2035_reduction_range",
+                    "brazil_ndc_ideal_observatorio",
+                    "deforestation_share_brazil_emissions"
+                ],
+                "visuals": [
+                    {
+                        "type": "goal_tracker",
+                        "description": "Linha atual vs linha necess\u00e1ria e diferen\u00e7a entre meta oficial e recomendada."
+                    },
+                    {
+                        "type": "map_story",
+                        "description": "Mapa do Brasil destacando biomas e onde desmatamento pesa mais."
+                    }
+                ],
+                "copy": [
+                    "O Brasil tem uma chave: florestas e uma matriz el\u00e9trica relativamente limpa. O desafio \u00e9 a ambi\u00e7\u00e3o.",
+                    "O contraste entre a meta oficial e a meta recomendada revela o tamanho da lacuna."
+                ],
+                "interaction": {
+                    "scroll_behavior": "tension_reveal",
+                    "micro_interaction": "scrub_timeline_to_2035"
+                }
+            }
         ]
-      },
-      {
-        "id": "act4",
-        "key": "path-forward",
-        "theme": "neutral",
-        "sections": [
-          {
-            "id": "section-4-1",
-            "type": "dataviz",
-            "narrativeKey": "goals",
-            "visual": {
-              "type": "goal-tracker",
-              "data": {
-                "target": 1.5,
-                "current": 1.1,
-                "projected": 2.7
-              }
-            }
-          },
-          {
-            "id": "section-4-2",
-            "type": "interaction",
-            "narrativeKey": "action",
-            "visual": {
-              "type": "impact-sandbox",
-              "parameters": ["energy", "transport", "diet", "consumption"]
-            }
-          },
-          {
-            "id": "section-4-3",
-            "type": "video",
-            "narrativeKey": "hope",
-            "visual": {
-              "type": "scrub-video",
-              "src": "/assets/demo/hope-video.mp4",
-              "poster": "/assets/demo/hope-poster.png",
-              "frames": 120
-            }
-          }
-        ]
-      }
-    ]
-  },
-  "metrics": {
-    "temperatureRise": {
-      "value": 1.1,
-      "unit": "°C",
-      "baseline": "pre-industrial"
     },
-    "co2Concentration": {
-      "value": 421,
-      "unit": "ppm",
-      "year": 2024
+    "app_structure": {
+        "menu": [
+            {
+                "id": "dashboard_impacto",
+                "label": "Dashboard de Impacto",
+                "purpose": "O 'agora': temperatura, CO2, sinais de extremos (expandir com dados futuros).",
+                "anchors": [
+                    "ato_1_diagnostico"
+                ]
+            },
+            {
+                "id": "mapa_causas",
+                "label": "Mapa das Causas",
+                "purpose": "De onde v\u00eam as emiss\u00f5es: Global vs Brasil.",
+                "anchors": [
+                    "ato_2_anatomia"
+                ]
+            },
+            {
+                "id": "biblioteca_solucoes",
+                "label": "Biblioteca de Solu\u00e7\u00f5es",
+                "purpose": "Cards + simulador com custo-benef\u00edcio e impacto.",
+                "anchors": [
+                    "ato_3_ferramentas"
+                ]
+            },
+            {
+                "id": "compromissometro",
+                "label": "Compromiss\u00f4metro",
+                "purpose": "Metas do Brasil e o gap para 1,5\u00b0C.",
+                "anchors": [
+                    "ato_4_caminho"
+                ]
+            }
+        ],
+        "routing": {
+            "keep_routes": true,
+            "chapter_routes": [
+                "/jornada/diagnostico",
+                "/jornada/causas",
+                "/jornada/solucoes",
+                "/jornada/caminho"
+            ],
+            "deep_links": true
+        }
     },
-    "seaLevelRise": {
-      "value": 3.7,
-      "unit": "mm/year",
-      "period": "2006-2018"
-    },
-    "arcticIceLoss": {
-      "value": 13,
-      "unit": "%/decade",
-      "period": "1979-2024"
+    "data_quality": {
+        "status_summary": {
+            "ok": [
+                "global_warming_2024 (com fontes C3S/WMO)",
+                "brazil_ndc_2035_reduction_range (fonte Gov BR/MMA)"
+            ],
+            "needs_update": [
+                "atmospheric_co2 (valor 419 ppm)"
+            ],
+            "needs_better_source": [
+                "brazil_regional_warming_max",
+                "deforestation_share_brazil_emissions",
+                "solutions_impact.* (valores de impacto comparativos)",
+                "emissions_by_sector.* (subpercentuais)",
+                "global_emissions_factors.deforestation_co2",
+                "global_emissions_factors.nitrous_oxide",
+                "economic_data.* (valores econ\u00f4micos)",
+                "brazil_ndc_ideal_observatorio"
+            ]
+        },
+        "update_workflow_hint": {
+            "goal": "Permitir atualiza\u00e7\u00e3o anual sem quebrar narrativa.",
+            "recommended_steps": [
+                "Atualizar m\u00e9tricas com status 'needs_update' e 'needs_better_source' com fontes prim\u00e1rias.",
+                "Manter IDs est\u00e1veis (n\u00e3o renomear).",
+                "Adicionar novos 'update_candidates' em vez de sobrescrever sem hist\u00f3rico.",
+                "Versionar mudan\u00e7as em 'meta.last_updated' e 'schema_version'."
+            ]
+        }
     }
-  }
 }
