@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redirecting...</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+    .container {
+      text-align: center;
+      padding: 2rem;
+    }
+    .spinner {
+      border: 4px solid rgba(255, 255, 255, 0.3);
+      border-top: 4px solid white;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 1rem;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    h1 {
+      font-size: 1.5rem;
+      margin: 0;
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="spinner"></div>
+    <h1>Loading...</h1>
+  </div>
+
+  <!--
+    GitHub Pages SPA Fallback for React Router
+
+    This 404.html file enables BrowserRouter to work correctly on GitHub Pages.
+    When a user directly accesses a route like /about, GitHub Pages serves this 404.html,
+    which redirects to the root URL where the React app can handle client-side routing.
+
+    Works with:
+    - React Router v6 (BrowserRouter)
+    - React Router v5 (BrowserRouter)
+    - Vue Router
+    - Angular Router
+    - Any client-side router
+
+    For project sites (owner.github.io/repo-name/), this script auto-detects
+    the base path and preserves query strings. It redirects into hash routes
+    so it works on static hosts without rewrite rules.
+  -->
+  <script>
+    (function () {
+      var location = window.location;
+      var pathParts = location.pathname.split("/");
+      var isGitHubPages = /\.github\.io$/.test(location.hostname);
+      var basePath = "";
+
+      if (isGitHubPages && pathParts.length > 1 && pathParts[1]) {
+        basePath = "/" + pathParts[1];
+      }
+
+      var routePath = location.pathname.slice(basePath.length) || "/";
+      if (routePath[0] !== "/") routePath = "/" + routePath;
+
+      // Redirect to hash-based route to avoid server-side rewrite requirements
+      var redirectUrl = (basePath || "") + "/#" + routePath + (location.search || "");
+      window.location.replace(redirectUrl);
+    })();
+  </script>
+</body>
+</html>

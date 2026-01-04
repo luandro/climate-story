@@ -15,4 +15,13 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  // Configure base path for GitHub Pages
+  // Set to '/repo-name/' if deploying to a subdirectory, otherwise '/'
+  // Use environment variable to support both scenarios
+  base: mode === "production" ? process.env.BASE_URL || "/" : "/",
+  build: {
+    // Ensure proper handling of client-side routing
+    outDir: "dist",
+    emptyOutDir: true,
+  },
 }));
