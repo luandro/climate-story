@@ -184,7 +184,28 @@ If a design or technical decision conflicts with this overview, **the overview w
 
 ---
 
-## 9. Living Document Policy
+## 9. Document Navigation
+
+This overview is the entry point. For detailed specifications, refer to:
+
+| Document | Purpose | Link |
+|----------|---------|------|
+| **Story Architecture** | Narrative structure, act-by-act breakdown, emotional intent | → [01_story_architecture.md](01_story_architecture.md) |
+| **Style Guide** | Visual identity, colors, typography, motion, accessibility | → [02_style_guide.md](02_style_guide.md) |
+| **Data Schema** | Data structure, metric registry, sources, narrative linking | → [03_data_schema.md](03_data_schema.md) |
+| **Interaction Spec** | Scroll behavior, sticky elements, video interaction rules | → [04_interaction_spec.md](04_interaction_spec.md) |
+| **Component Library** | Reusable components with props, behavior, usage rules | → [05_component_library.md](05_component_library.md) |
+| **Storyboards** | Scroll-by-scroll breakdown, implementation mapping | → [06_storyboards.md](06_storyboards.md) |
+| **Quick Reference** | How-to guides for common tasks | → [QUICK_REFERENCE.md](QUICK_REFERENCE.md) |
+
+**Language Policy:**
+- Primary narrative language: Portuguese (pt-BR)
+- Documentation language: English
+- Data labels: Localizable via data schema
+
+---
+
+## 10. Living Document Policy
 
 This document is expected to evolve.
 
@@ -196,7 +217,7 @@ All changes should:
 
 ---
 
-## 10. One-Sentence North Star
+## 11. One-Sentence North Star
 
 > **A Jornada do Clima transforma dados científicos em uma experiência visual contínua que mostra, sem simplificações ou atalhos, onde estamos, por que chegamos aqui, e o que realmente muda o jogo — especialmente no Brasil.**
 

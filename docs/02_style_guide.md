@@ -44,7 +44,63 @@ This is a **system**, not a moodboard.
 
 ## 3. Color System
 
-### 3.1 Base Neutrals (Foundation)
+### 3.1 Design Tokens
+
+#### Spacing Scale
+```text
+4px   - xs     (icon padding, tight spacing)
+8px   - sm     (button padding, compact gaps)
+12px  - md     (card padding, standard gaps)
+16px  - lg     (section padding, comfortable gaps)
+24px  - xl     (large gaps, content spacing)
+32px  - 2xl    (hero spacing, major sections)
+48px  - 3xl    (viewport margins)
+```
+
+**Tailwind Mapping:** Use `space-*` utilities (e.g., `p-lg`, `gap-sm`)
+
+#### Border Radius
+```text
+4px  - sm     (buttons, small cards)
+8px  - md     (containers, cards)
+12px - lg     (panels, modals)
+16px - xl     (hero containers)
+```
+
+**Tailwind Mapping:** `rounded-sm`, `rounded-md`, `rounded-lg`, `rounded-xl`
+
+#### Shadows / Elevation
+```text
+sm  - 0 1px 2px rgba(0,0,0,0.1)     (subtle borders)
+md  - 0 4px 6px rgba(0,0,0,0.15)    (cards, dropdowns)
+lg  - 0 10px 15px rgba(0,0,0,0.2)   (modals, overlays)
+xl  - 0 20px 25px rgba(0,0,0,0.25)  (hero elements)
+```
+
+**Tailwind Mapping:** `shadow-sm`, `shadow-md`, `shadow-lg`, `shadow-xl`
+
+#### Z-Index Tiers
+```text
+0     - Background content
+10    - Standard content
+100   - Sticky elements, tooltips
+1000  - Overlays, modals
+```
+
+**Usage:** Never use arbitrary z-index values. Use these tiers with CSS variables.
+
+#### Opacity Levels
+```text
+0%    - Hidden
+25%   - Disabled state
+50%   - Secondary content
+75%   - Hover preview
+100%  - Fully visible
+```
+
+---
+
+### 3.2 Base Neutrals (Foundation)
 
 ```text
 Background — Dark          #0E1116
@@ -63,7 +119,7 @@ Usage:
 
 ---
 
-### 3.2 Climate Semantic Colors
+### 3.3 Climate Semantic Colors
 
 Used **only** in data visualizations.
 
@@ -83,7 +139,7 @@ Rules:
 
 ---
 
-### 3.3 Brazil & Biome Accents
+### 3.4 Brazil & Biome Accents
 
 Used to differentiate **Brazil-specific data**, not for branding.
 
@@ -130,7 +186,29 @@ Body Text                  16–18px / 400
 Caption / Source           12–13px / 400
 ```
 
-Rules:
+---
+
+### 4.3 Responsive Typography
+
+| Breakpoint | Base | H1 | H2 | H3 | Body | Caption |
+|------------|------|----|----|----|----|----|
+| **Mobile** (< 768px) | 16px | 32px | 24px | 18px | 16px | 12px |
+| **Tablet** (768–1024px) | 16px | 40px | 28px | 20px | 16px | 12px |
+| **Desktop** (> 1024px) | 16px | 48px | 32px | 22px | 18px | 13px |
+
+**Line Heights:**
+- H1: 1.1
+- H2: 1.2
+- H3: 1.3
+- Body: 1.5
+- Caption: 1.4
+
+**Implementation:**
+- Use CSS `clamp()` for fluid scaling between breakpoints
+- Mobile-first approach (start with mobile sizes)
+- Ensure minimum readable size: 14px for body text
+
+**Rules:**
 
 * One numeric highlight per paragraph max
 * Never bold entire paragraphs
@@ -243,6 +321,42 @@ Secondary: linear (for data fills)
 ```
 
 Motion should feel **inevitable**, not playful.
+
+---
+
+### 7.4 Motion Timing
+
+**Durations:**
+- **Fast**: 200ms — hover states, micro-interactions, button feedback
+- **Base**: 400ms — standard transitions, element entry/exit
+- **Slow**: 700ms — major state changes, emphasis beats, chapter transitions
+
+**Stagger Timing:**
+- Sequential reveals: +50ms per item
+- Grid layouts: +100ms per row
+- Lists: +75ms per item
+
+**Performance Targets:**
+- All animations: 60fps (16ms per frame)
+- Scroll-driven animations: ≤50ms latency
+- State transitions: Complete within specified duration
+
+**Examples:**
+```css
+/* Fast hover */
+.button:hover { transition: background-color 200ms ease-out; }
+
+/* Base fade-in */
+.narrative-block { animation: fadeIn 400ms ease-out; }
+
+/* Slow chapter transition */
+.chapter-transition { transition: opacity 700ms ease-out; }
+
+/* Staggered list items */
+.list-item:nth-child(1) { animation-delay: 0ms; }
+.list-item:nth-child(2) { animation-delay: 75ms; }
+.list-item:nth-child(3) { animation-delay: 150ms; }
+```
 
 ---
 

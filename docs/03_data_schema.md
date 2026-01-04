@@ -1,6 +1,6 @@
 # **03 — Data Schema & Data Contract**
 
-**Version 1.1 · January 2026**
+**Version 2.0 · January 2026**
 
 ---
 
@@ -41,7 +41,24 @@ Breaking it requires an explicit version change.
 
 ---
 
-## 3. High-Level Schema Overview
+## 3. TypeScript Reference
+
+The canonical TypeScript types are defined in:
+
+**`src/data/storyData.ts`**
+
+This document (`03_data_schema.md`) defines the **contract** and **business rules**.
+The TypeScript file enforces the contract at compile-time.
+
+**Relationship:**
+- This doc = "What and why" (specification, rules, validation)
+- TypeScript file = "How" (implementation, types, interfaces)
+
+When they conflict, the TypeScript file wins (update this doc to match).
+
+---
+
+## 4. High-Level Schema Overview
 
 ```text
 root
@@ -62,13 +79,30 @@ root
 
 ---
 
-## 4. Meta Object
+## 5. Meta Object
 
 ### Purpose
 
 Describes scope, intent, and versioning.
 
-### Required fields
+### Required vs Optional Fields
+
+**Required:**
+```json
+{
+  "schema_version": "string",
+  "last_updated": "YYYY-MM-DD",
+  "intended_use": ["string"],
+  "localization": {
+    "default_language": "string",
+    "supported_languages": ["string"]
+  }
+}
+```
+
+**Optional:** None (all meta fields are required)
+
+### Example structure
 
 ```json
 {
@@ -89,11 +123,32 @@ Rules:
 
 ---
 
-## 5. Sources Object
+## 6. Sources Object
 
 ### Purpose
 
 Central registry for all data provenance.
+
+### Required vs Optional Fields
+
+**Required:**
+```json
+{
+  "source_id": {
+    "name": "string",
+    "type": "string",
+    "trust_level": "string"
+  }
+}
+```
+
+**Optional:**
+```json
+{
+  "ref": "string | null",
+  "url": "string | null"
+}
+```
 
 ### Structure
 
@@ -117,11 +172,51 @@ Rules:
 
 ---
 
-## 6. Metric Object (Atomic Unit)
+## 7. Metric Object (Atomic Unit)
 
 ### Purpose
 
 Represents a **single measurable fact**.
+
+### Required vs Optional Fields
+
+**Required:**
+```json
+{
+  "id": "string",
+  "label": "string",
+  "value": {
+    "number": "number",
+    "unit": "string"
+  },
+  "geography": "string",
+  "type": "string",
+  "year_reference": "number",
+  "sources": ["string"]
+}
+```
+
+**Optional (but recommended for completeness):**
+```json
+{
+  "value": {
+    "precision": "number"
+  },
+  "baseline": "string",
+  "context": {},
+  "trend": {},
+  "thresholds": {},
+  "notes": ["string"],
+  "update": {}
+}
+```
+
+**Conditional (required in specific cases):**
+```json
+{
+  "target_range": {}  // Required when range is authoritative
+}
+```
 
 ### Required structure
 
@@ -143,7 +238,25 @@ Represents a **single measurable fact**.
 
 ---
 
-## 7. Extended Metric Fields
+## 8. Extended Metric Fields
+
+### Required vs Optional
+
+**Optional but Common Fields:**
+
+Use these to provide context and improve data quality:
+- `precision`: For decimal accuracy
+- `baseline`: For comparison reference
+- `context`: For historical data
+- `trend`: For direction indicators
+- `thresholds`: For warning/critical levels
+- `notes`: For editor comments
+- `update`: For maintenance tracking
+
+**Conditional Requirements:**
+
+- If `update.status` is not `"ok"`, `notes` becomes **required**
+- If `target_range` is present, it becomes authoritative (see §10)
 
 ### Optional but common fields
 
@@ -176,7 +289,19 @@ Rules:
 
 ---
 
-## 8. Metric Registry & Groups
+## 9. Metric Registry & Groups
+
+### Required vs Optional
+
+**Registry:** Required
+- All metric objects must exist in the central registry
+- Registry keys must match metric `id` fields
+- Only registry holds actual metric values
+
+**Groups:** Optional (for organization only)
+- Used to group metrics for narrative/visualization purposes
+- Groups never store values, only references to metric IDs
+- Can be nested or overlapping as needed
 
 ### Registry (required)
 
@@ -222,7 +347,43 @@ Rules:
 
 ---
 
-## 9. Narrative Linking
+## 10. Narrative Linking
+
+### Required vs Optional Fields
+
+**Required:**
+```json
+{
+  "narrative": {
+    "section_id": {
+      "title": "string",
+      "primary_metrics": ["metric_id"]
+    }
+  }
+}
+```
+
+**Optional:**
+```json
+{
+  "secondary_metrics": ["metric_id"],
+  "copy_blocks": [
+    {
+      "id": "string",
+      "text": "string",
+      "appearAt": "number",
+      "disappearAt": "number"
+    }
+  ]
+}
+```
+
+**Rules:**
+- Narrative sections **never embed numeric values** in text
+- Always reference metric IDs from the registry
+- Scroll coordinates (`appearAt`, `disappearAt`) are in scroll units
+
+### Narrative Linking
 
 Narrative sections **never embed numbers**.
 
@@ -306,7 +467,78 @@ When a range is primary, you may include a single `value` as a helper for charts
 
 ---
 
-## 13. Validation Checklist
+## 13. Controlled Vocabularies
+
+### 13.1 Geography
+
+Valid values for `metric.geography`:
+
+```text
+global       # Worldwide data
+brazil       # Brazil-specific data
+```
+
+**Future extensions** (not yet implemented):
+```text
+north_america
+europe
+asia
+south_america
+africa
+oceania
+```
+
+**Rules:**
+* Use `global` for worldwide averages or totals
+* Use `brazil` for Brazil-specific data only
+* Regional breakdowns require explicit biome/state context
+
+---
+
+### 13.2 Source Types
+
+Valid values for `source.type`:
+
+```text
+government         # Official government data (e.g., INPE, NASA, NOAA)
+intergovernmental  # Multi-national bodies (e.g., IPCC, IEA, WHO)
+ngo                # Non-profit organizations (e.g., WRI, EDF)
+academic           # Peer-reviewed research
+media              # Reporting with data (use sparingly)
+```
+
+**Rules:**
+* Prefer `government` and `intergovernmental` for highest trust
+* Use `academic` only for peer-reviewed, consensus research
+* Use `media` only when original sources are unavailable
+* One source can have multiple types (e.g., `["government", "academic"]`)
+
+---
+
+### 13.3 Source Trust Levels
+
+Valid values for `source.trust_level`:
+
+```text
+very_high   # Multiple consensus sources, official data
+high        # Official government/NGO data, peer-reviewed
+medium      # Single source or indirect measurement
+unknown     # Needs verification or validation
+```
+
+**Rules:**
+* `very_high`: IPCC assessments, NASA/NOAA long-term records
+* `high`: Government databases, peer-reviewed research, established NGOs
+* `medium`: Industry reports, single studies, gray literature
+* `unknown`: Requires additional validation before use
+
+**Validation:**
+* Every metric must have at least one source with `trust_level: "high"` or `"very_high"`
+* Sources marked `unknown` should trigger review warnings
+
+---
+
+## 14. Validation Checklist
 
 Before release:
 
@@ -318,7 +550,7 @@ Before release:
 
 ---
 
-## 14. Data Schema North Star
+## 15. Data Schema North Star
 
 > **If the number changes tomorrow,
 > the story must still work today.**

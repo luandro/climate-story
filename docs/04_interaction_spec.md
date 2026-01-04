@@ -53,6 +53,45 @@ Rules:
 
 ---
 
+### 2.3 Scroll Unit Definition
+
+**1 scroll unit = 100vh** (full viewport height)
+
+This convention provides:
+
+* **Device-agnostic measurement**: Works on mobile, tablet, desktop
+* **Easy mental calculation**: 3 units = 3 screenfuls of scrolling
+* **Direct CSS mapping**: `scrollUnits × 100vh` gives pixel height
+
+**Pin Duration Example:**
+
+```typescript
+// Pin for 3 scroll units = 300vh of scroll travel
+stickyStart: 0,
+stickyEnd: 3
+```
+
+**Trigger Point Calculation:**
+
+```typescript
+// Element enters when its top crosses 25% of viewport
+const triggerThreshold = 0.25; // 25% from top
+
+// IntersectionObserver equivalent
+new IntersectionObserver(
+  callback,
+  { threshold: [0.25, 0.75] } // entry at 25%, exit at 75%
+);
+```
+
+**Why This Matters:**
+
+* Storyboards reference scroll ranges (e.g., "1.0–1.2 scroll units")
+* Components need to know their scroll budget
+* Responsive behavior is automatic (100vh scales with device)
+
+---
+
 ## 3. Global Scroll Rules
 
 * Vertical scrolling only

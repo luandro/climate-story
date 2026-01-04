@@ -346,10 +346,6 @@ value: string
 
 ---
 
-Yes—crystal clear. Here are the **two new video components** to add to `05_component_library.md`, written in the same “contract/spec” style (purpose, props, behavior, rules, forbidden uses). You can paste these as a new **Section 6.4–6.5** (or under a new “Video Components” section).
-
----
-
 ## 6.4 `<AutoPlayVideoSection>`
 
 **Purpose**
