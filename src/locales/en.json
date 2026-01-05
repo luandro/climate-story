@@ -11,6 +11,59 @@
     "title": "Diagnosis",
     "subtitle": "Where are we?",
     "actLabel": "Act I",
+    "arrival": {
+      "text": "In 2024, the planet crossed a threshold that should never have become normal."
+    },
+    "timeBegins": {
+      "microText": "Scroll to see time pass.",
+      "ariaLabel": "Thermometer and timeline showing temperature progression since 1900"
+    },
+    "warming": {
+      "text1": "For decades, warming seemed slow.",
+      "text2": "But it never stopped."
+    },
+    "present": {
+      "mainText": "2024 was the hottest year ever recorded.",
+      "subText": "+1.6 °C compared to pre-industrial levels",
+      "credibility": "Independent measurements from NASA, Copernicus and the World Meteorological Organization."
+    },
+    "average": {
+      "centerText": "The global average doesn't tell the whole story.",
+      "followUp": "Some regions of Brazil are already living in a world above 2 °C.",
+      "globalLabel": "Global average",
+      "brazilLabel": "Brazil (regions)"
+    },
+    "impacts": {
+      "ariaLabel": "List of climate impact consequences",
+      "intro": "What does this mean in practice?",
+      "extremeHeat": {
+        "title": "More extreme heat days",
+        "description": "Heat waves that used to be rare now happen every year."
+      },
+      "health": {
+        "title": "More hospitalizations and deaths",
+        "description": "Excessive heat increases risks of dehydration, heart and respiratory problems."
+      },
+      "drought": {
+        "title": "Longer and more severe droughts",
+        "description": "Less water for consumption, agriculture and energy generation."
+      },
+      "disasters": {
+        "title": "Climate disasters exploded in Brazil",
+        "description": "Since the 1990s, extreme events increased more than 460% and have affected 92% of the country's municipalities.",
+        "label1990": "1990s",
+        "labelToday": "Today"
+      },
+      "closing": "These are not projections. This is happening now."
+    },
+    "landing": {
+      "mainText": "This is not a future scenario.",
+      "subText": "This is where we already are.",
+      "followUp": "What comes next depends on what we do now."
+    },
+    "transition": {
+      "microText": "Next: Where does all this come from?"
+    },
     "thermometer": {
       "ariaLabel": "Interactive thermometer showing temperature rise in Brazil",
       "unit": "degrees Celsius above pre-industrial",
@@ -27,14 +80,6 @@
       "globalLabel": "Global Average",
       "brazilLabel": "Brazil (regions)",
       "narrative": "The global average hides regional extremes."
-    },
-    "impacts": {
-      "ariaLabel": "List of climate impact consequences",
-      "intro": "What does this mean in practice?",
-      "extremeHeat": "More extreme heat days",
-      "health": "Health impacts",
-      "drought": "Longer droughts",
-      "closing": "These are not projections. This is happening now."
     }
   },
   "acts": {
