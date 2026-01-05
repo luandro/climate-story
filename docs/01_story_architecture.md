@@ -120,6 +120,34 @@ Background remains dark.
 
 ---
 
+### Implementation References
+
+**Data Schema:**
+- `metrics_registry.global_warming_2024`
+- `metrics_registry.brazil_regional_warming_max`
+- `metrics_registry.co2_atmospheric_2024`
+- See [03_data_schema.md §7](03_data_schema.md#7-metric-object-atomic-unit)
+
+**Interaction Spec:**
+- Scroll-linked animations: [04_interaction_spec.md §5.1](04_interaction_spec.md#51-scroll-linked-animations)
+- Discrete triggers: [04_interaction_spec.md §5.2](04_interaction_spec.md#52-discrete-scroll-triggers)
+- Sticky behavior: [04_interaction_spec.md §4](04_interaction_spec.md#4-sticky-pinning-behavior)
+
+**Components:**
+- `<StorySection>`: [05_component_library.md §3.1](05_component_library.md#31-storysection)
+- `<StickyStage>`: [05_component_library.md §3.2](05_component_library.md#32-stickystage)
+- `<ClimateStripesSVG>`: [05_component_library.md §4.1](05_component_library.md#41-climatestripessvg)
+- `<TemperatureGauge>`: [05_component_library.md §4.2](05_component_library.md#42-temperaturegauge)
+
+**Style Guide:**
+- Color progression (blue → red): [02_style_guide.md §3.3](02_style_guide.md#33-climate-semantic-colors)
+- Motion timing: [02_style_guide.md §7.4](02_style_guide.md#74-motion-timing)
+
+**Storyboard:**
+- Rows 1.0–3.6 in [06_storyboards.md §4](06_storyboards.md#4-ato-1-o-diagnóstico-onde-estamos)
+
+---
+
 ## **ATO 2 — A Anatomia do Problema**
 
 ### *Quem são os culpados?*
@@ -180,6 +208,34 @@ Text fades in over still diagram:
 > “A boa notícia é que isso também significa que podemos mudar.”
 
 Background lightens subtly.
+
+---
+
+### Implementation References
+
+**Data Schema:**
+- `metrics_registry.emissions_by_source_global`
+- `metrics_registry.emissions_by_source_brazil`
+- `metrics_registry.emissions_by_sector_global`
+- `metrics_registry.emissions_by_sector_brazil`
+- See [03_data_schema.md §9](03_data_schema.md#9-metric-registry-groups)
+
+**Interaction Spec:**
+- Layered scroll animations: [04_interaction_spec.md §5.1](04_interaction_spec.md#51-scroll-linked-animations)
+- Toggle interactions: [04_interaction_spec.md §5.2](04_interaction_spec.md#52-discrete-scroll-triggers)
+- Morph transitions: [02_style_guide.md §7.4](02_style_guide.md#74-motion-timing)
+
+**Components:**
+- `<SankeyEmissions>`: [05_component_library.md §4.3](05_component_library.md#43-sankeyemissions)
+- `<CompareToggle>`: [05_component_library.md §6.3](05_component_library.md#63-comparetoggle)
+- `<NarrativeBlock>`: [05_component_library.md §7.1](05_component_library.md#71-narrativeblock)
+
+**Style Guide:**
+- Flow thickness and visual weight: [02_style_guide.md §3.3](02_style_guide.md#33-climate-semantic-colors)
+- Animation duration: [02_style_guide.md §7.4](02_style_guide.md#74-motion-timing) (base: 400ms, morph: 600ms)
+
+**Storyboard:**
+- Rows 4.0–7.2 in [06_storyboards.md §5](06_storyboards.md#5-ato-2-a-anatomia-do-problema-quem-são-os-culpados)
 
 ---
 
@@ -248,6 +304,34 @@ Tone becomes serious again.
 
 ---
 
+### Implementation References
+
+**Data Schema:**
+- `metrics_registry.solar_cost_vs_fossil`
+- `metrics_registry.wind_cost_vs_fossil`
+- `metrics_registry.forest_conservation_impact`
+- `metrics_registry.electric_vehicle_impact`
+- See [03_data_schema.md §9](03_data_schema.md#9-metric-registry-groups)
+
+**Interaction Spec:**
+- Interactive sandbox: [04_interaction_spec.md §7](04_interaction_spec.md#7-act-specific-interaction-adjustments)
+- User selection handling: [05_component_library.md §6.1](05_component_library.md#61-solutionimpactsandbox)
+- Reduced motion support: [04_interaction_spec.md §8](04_interaction_spec.md#8-reduced-motion-mode-global)
+
+**Components:**
+- `<SolutionImpactSandbox>`: [05_component_library.md §6.1](05_component_library.md#61-solutionimpactsandbox)
+- `<SolutionCard>`: [05_component_library.md §6.2](05_component_library.md#62-solutioncard)
+- `<DataLabel>`: [05_component_library.md §7.2](05_component_library.md#72-datalabel)
+
+**Style Guide:**
+- Chart styling: [02_style_guide.md §3.3](02_style_guide.md#33-climate-semantic-colors)
+- Interactive states: [02_style_guide.md §9](02_style_guide.md#9-ui-elements)
+
+**Storyboard:**
+- Rows 7.5–10.6 in [06_storyboards.md §6](06_storyboards.md#6-ato-3-a-caixa-de-ferramentas-como-consertamos)
+
+---
+
 ## **ATO 4 — O Caminho à Frente**
 
 ### *O Brasil na liderança?*
@@ -298,6 +382,35 @@ This is not hopeful or pessimistic — it is honest.
 4. Gap remains on screen
 
 No resolution is forced.
+
+---
+
+### Implementation References
+
+**Data Schema:**
+- `metrics_registry.brazil_ndc_target`
+- `metrics_registry.science_based_target_1_5c`
+- `metrics_registry.deforestation_rate_brazil`
+- `metrics_registry.historical_emissions_brazil`
+- See [03_data_schema.md §9](03_data_schema.md#9-metric-registry-groups)
+
+**Interaction Spec:**
+- Timeline animation: [04_interaction_spec.md §5.1](04_interaction_spec.md#51-scroll-linked-animations)
+- Path divergence: [04_interaction_spec.md §5.1](04_interaction_spec.md#51-scroll-linked-animations)
+- Gap persistence: [04_interaction_spec.md §4.3](04_interaction_spec.md#43-constraints)
+
+**Components:**
+- `<GoalTrackerTimeline>`: [05_component_library.md §4.4](05_component_library.md#44-goaltrackertimeline)
+- `<NarrativeBlock>`: [05_component_library.md §7.1](05_component_library.md#71-narrativeblock)
+- `<SourceDrawer>`: [05_component_library.md §8.1](05_component_library.md#81-sourcedrawer)
+
+**Style Guide:**
+- Path colors (policy vs science): [02_style_guide.md §3.3](02_style_guide.md#33-climate-semantic-colors)
+- Gap visualization: [02_style_guide.md §3.3](02_style_guide.md#33-climate-semantic-colors)
+- Timeline typography: [02_style_guide.md §4.2](02_style_guide.md#42-hierarchy)
+
+**Storyboard:**
+- Rows 11.0–13.2+ in [06_storyboards.md §7](06_storyboards.md#7-ato-4-o-caminho-à-frente-o-brasil-na-liderança)
 
 ---
 
