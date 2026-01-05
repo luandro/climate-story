@@ -42,9 +42,6 @@ export function Act1Present({ progress, isActive, reducedMotion }: Act1PresentPr
   const subTextOpacity = progress > 0.3 ? Math.min(1, (progress - 0.3) / 0.2) : 0;
   const credibilityOpacity = progress > 0.5 ? Math.min(1, (progress - 0.5) / 0.2) : 0;
 
-  // Red pulse intensity
-  const pulseIntensity = Math.sin(Date.now() / 1000) * 0.1 + 0.9;
-
   // Section opacity
   const sectionOpacity = isActive ? 1 : 0;
 
@@ -83,13 +80,27 @@ export function Act1Present({ progress, isActive, reducedMotion }: Act1PresentPr
         }}
       />
 
-      {/* Red glow effect */}
+      {/* Red glow effect - uses CSS animation for performance */}
       <div
-        className="absolute inset-0 pointer-events-none"
+        className={cn(
+          'absolute inset-0 pointer-events-none',
+          !reducedMotion && 'animate-pulse-glow'
+        )}
         style={{
-          background: `radial-gradient(ellipse at center, rgba(239, 68, 68, ${0.15 * pulseIntensity}) 0%, transparent 70%)`,
+          background: 'radial-gradient(ellipse at center, rgba(239, 68, 68, 0.15) 0%, transparent 70%)',
         }}
       />
+
+      {/* CSS for pulse animation */}
+      <style>{`
+        @keyframes pulse-glow {
+          0%, 100% { opacity: 0.9; }
+          50% { opacity: 1; }
+        }
+        .animate-pulse-glow {
+          animation: pulse-glow 2s ease-in-out infinite;
+        }
+      `}</style>
 
       {/* Main Content */}
       <div className="relative z-10 h-full flex flex-col items-center justify-center px-6">

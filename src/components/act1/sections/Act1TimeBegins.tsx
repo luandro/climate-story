@@ -41,18 +41,35 @@ export function Act1TimeBegins({ progress, isActive, reducedMotion }: Act1TimeBe
   // Map progress to year (0 = 1900, 1 = 2024)
   const currentYear = Math.round(1900 + progress * 124);
 
-  // Calculate current temperature anomaly based on interpolation
+  // Calculate current temperature anomaly based on interpolation with boundary validation
   const currentTemperature = useMemo(() => {
+    const firstDataPoint = TEMPERATURE_DATA[0];
+    const lastDataPoint = TEMPERATURE_DATA[TEMPERATURE_DATA.length - 1];
+
+    // Boundary validation: clamp to data range
+    if (currentYear <= firstDataPoint.year) {
+      return firstDataPoint.anomaly;
+    }
+    if (currentYear >= lastDataPoint.year) {
+      return lastDataPoint.anomaly;
+    }
+
     // Find the two data points to interpolate between
     for (let i = 0; i < TEMPERATURE_DATA.length - 1; i++) {
       const curr = TEMPERATURE_DATA[i];
       const next = TEMPERATURE_DATA[i + 1];
       if (currentYear >= curr.year && currentYear <= next.year) {
-        const yearProgress = (currentYear - curr.year) / (next.year - curr.year);
+        // Prevent division by zero
+        const yearRange = next.year - curr.year;
+        if (yearRange === 0) return curr.anomaly;
+
+        const yearProgress = (currentYear - curr.year) / yearRange;
         return curr.anomaly + yearProgress * (next.anomaly - curr.anomaly);
       }
     }
-    return TEMPERATURE_DATA[TEMPERATURE_DATA.length - 1].anomaly;
+
+    // Fallback (should not reach here with proper data)
+    return lastDataPoint.anomaly;
   }, [currentYear]);
 
   // Thermometer fill percentage (0-100)
