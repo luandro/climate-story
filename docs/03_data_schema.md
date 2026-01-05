@@ -406,7 +406,7 @@ This allows:
 
 ---
 
-## 10. Handling Ranges & Uncertainty
+## 10.1. Handling Ranges & Uncertainty
 
 ### Ranges
 
@@ -446,7 +446,7 @@ When a range is primary, you may include a single `value` as a helper for charts
 
 ---
 
-## 11. Versioning Rules
+## 10.2. Versioning Rules
 
 | Change type   | Action                |
 | ------------- | --------------------- |
@@ -457,7 +457,7 @@ When a range is primary, you may include a single `value` as a helper for charts
 
 ---
 
-## 12. Forbidden Practices
+## 10.3. Forbidden Practices
 
 * ❌ Embedding numbers in narrative text
 * ❌ Changing metric IDs
@@ -467,9 +467,9 @@ When a range is primary, you may include a single `value` as a helper for charts
 
 ---
 
-## 13. Controlled Vocabularies
+## 11. Controlled Vocabularies
 
-### 13.1 Geography
+### 11.1 Geography
 
 Valid values for `metric.geography`:
 
@@ -495,7 +495,7 @@ oceania
 
 ---
 
-### 13.2 Source Types
+### 11.2 Source Types
 
 Valid values for `source.type`:
 
@@ -515,7 +515,7 @@ media              # Reporting with data (use sparingly)
 
 ---
 
-### 13.3 Source Trust Levels
+### 11.3 Source Trust Levels
 
 Valid values for `source.trust_level`:
 
@@ -538,7 +538,7 @@ unknown     # Needs verification or validation
 
 ---
 
-## 14. Validation Checklist
+## 12. Validation Checklist
 
 Before release:
 
@@ -550,7 +550,7 @@ Before release:
 
 ---
 
-## 15. Data Schema North Star
+## 13. Data Schema North Star
 
 > **If the number changes tomorrow,
 > the story must still work today.**

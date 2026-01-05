@@ -346,7 +346,9 @@ value: string
 
 ---
 
-## 6.4 `<AutoPlayVideoSection>`
+## 6.4 Video Components
+
+### 6.4.1 `<AutoPlayVideoSection>`
 
 **Purpose**
 A scroll-triggered video “scene” that **auto-starts when it enters view**, displays **subtitles**, and when finished **auto-advances** the narrative by scrolling to the next section.
@@ -419,7 +421,7 @@ muted?: boolean                  // default true (mobile autoplay compatibility)
 
 ---
 
-## 6.5 `<ScrollScrubVideo>`
+### 6.5.2 `<ScrollScrubVideo>`
 
 **Purpose**
 A “scroll-scrubbed” video component where the **user’s scroll position controls playback progress**, creating the effect of the video unfolding *as you scroll* (frame-accurate feel).
@@ -494,13 +496,32 @@ smoothing?: number               // default 0.08 (lerp factor)
 
 ---
 
-### Small addition: recommended shared utility
+### 6.6 Shared Video Utilities
 
-If you want to keep architecture clean, both components should rely on a shared helper concept:
+**Purpose**
+Common hooks and utilities for video components.
 
-* `useIntersectionTrigger()` for visibility threshold
-* `useScrollProgress()` for normalized progress per section
-* `prefersReducedMotion` guard that disables auto-scroll / scrub
+**Hooks**
+
+```ts
+// useIntersectionTrigger
+useIntersectionTrigger(threshold: number = 0.6)
+  → [ref: RefObject<HTMLElement>, isVisible: boolean]
+
+// useScrollProgress
+useScrollProgress(scrollUnits: number)
+  → { progress: number (0–1), scrollY: number }
+
+// useReducedMotion
+useReducedMotion()
+  → boolean
+```
+
+**Usage**
+
+All video components must use these shared utilities for consistency.
+
+---
 
 ## 7. Text Components
 
