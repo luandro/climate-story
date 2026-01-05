@@ -3,18 +3,13 @@ import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { ScrollProgressIndicator } from '@/components/ui/scroll-progress-indicator';
 import { StorySection } from '@/components/story/StorySection';
-import { StickyStage } from '@/components/story/StickyStage';
-import { NarrativeBlock } from '@/components/story/NarrativeBlock';
-import { ScrollImage } from '@/components/story/ScrollImage';
-import { ClimateStripesPlaceholder } from '@/components/dataviz/ClimateStripesPlaceholder';
-import { TemperatureGaugePlaceholder } from '@/components/dataviz/TemperatureGaugePlaceholder';
-import { SankeyPlaceholder } from '@/components/dataviz/SankeyPlaceholder';
-import { GoalTrackerPlaceholder } from '@/components/dataviz/GoalTrackerPlaceholder';
-import { CompareToggle } from '@/components/interaction/CompareToggle';
-import { SolutionCardsGrid } from '@/components/interaction/SolutionCard';
-import { ImpactSandboxPlaceholder } from '@/components/interaction/ImpactSandboxPlaceholder';
-import { AutoPlayVideoSection } from '@/components/video/AutoPlayVideoSection';
-import { ScrollScrubVideo } from '@/components/video/ScrollScrubVideo';
+import { 
+  SEGTemperatureThermometer,
+  TemperatureTimelineMini,
+  SplitComparisonGauge,
+  HeatImpactCallouts
+} from '@/components/act1';
+import { act1Data } from '@/data/act1-data';
 
 function ClimateJourneyContent() {
   const { t } = useTranslation();
@@ -43,264 +38,52 @@ function ClimateJourneyContent() {
           </div>
         </section>
 
-        {/* Act 1: Diagnosis */}
+        {/* Act 1: Diagnosis - "Onde estamos?" */}
         <StorySection id="act-1-diagnosis" theme="dark">
-          <StickyStage>
-            <ScrollImage
-              src="/assets/demo/earth.png"
-              alt={t.acts.act1.title}
-              animation="fade"
-            />
-          </StickyStage>
-          
-          <div className="relative z-10">
-            {/* Title block */}
-            <div className="min-h-screen flex items-center justify-center">
-              <div className="text-center px-6">
-                <span className="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">
-                  Act I
-                </span>
-                <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
-                  {t.acts.act1.title}
-                </h2>
-                <p className="text-lg text-muted-foreground">
-                  {t.acts.act1.subtitle}
-                </p>
-              </div>
+          {/* Act 1 Title */}
+          <div className="min-h-screen flex items-center justify-center">
+            <div className="text-center px-6">
+              <span className="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">
+                {t.act1.actLabel}
+              </span>
+              <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
+                {t.act1.title}
+              </h2>
+              <p className="text-lg text-muted-foreground">
+                {t.act1.subtitle}
+              </p>
             </div>
-            
-            {/* Narrative 1 */}
-            <NarrativeBlock
-              heading={t.acts.act1.narratives[0].heading}
-              body={t.acts.act1.narratives[0].body}
-              alignment="left"
-              animation="slide-left"
-            />
-            
-            {/* Narrative 2 with Climate Stripes */}
-            <div className="min-h-screen flex items-center justify-center">
-              <div className="w-full">
-                <NarrativeBlock
-                  heading={t.acts.act1.narratives[1].heading}
-                  body={t.acts.act1.narratives[1].body}
-                  alignment="center"
-                  animation="fade"
-                />
-                <div className="mt-8">
-                  <ClimateStripesPlaceholder />
-                </div>
-              </div>
-            </div>
-            
-            {/* Narrative 3 */}
-            <NarrativeBlock
-              heading={t.acts.act1.narratives[2].heading}
-              body={t.acts.act1.narratives[2].body}
-              alignment="right"
-              animation="slide-right"
-            />
           </div>
+          
+          {/* Section 1: Giant Temperature Thermometer */}
+          <SEGTemperatureThermometer
+            brazilAnomaly={act1Data.thermometer.brazilAnomaly}
+            globalAnomaly={act1Data.thermometer.globalAnomaly}
+          />
+          
+          {/* Section 2: How Fast This Happened */}
+          <TemperatureTimelineMini 
+            data={act1Data.timeline.dataPoints}
+          />
+          
+          {/* Section 3: Brazil vs Global Comparison */}
+          <SplitComparisonGauge
+            globalAnomaly={act1Data.comparison.globalAnomaly}
+            brazilAnomaly={act1Data.comparison.brazilRegionalMax}
+          />
+          
+          {/* Section 4: Consequence Teaser */}
+          <HeatImpactCallouts />
         </StorySection>
 
-        {/* Act 2: Causes */}
-        <StorySection id="act-2-causes" theme="dark">
-          <StickyStage>
-            <ScrollImage
-              src="/assets/demo/industry.png"
-              alt={t.acts.act2.title}
-              animation="slide-left"
-            />
-          </StickyStage>
-          
-          <div className="relative z-10">
-            {/* Title block */}
-            <div className="min-h-screen flex items-center justify-center">
-              <div className="text-center px-6">
-                <span className="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">
-                  Act II
-                </span>
-                <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
-                  {t.acts.act2.title}
-                </h2>
-                <p className="text-lg text-muted-foreground">
-                  {t.acts.act2.subtitle}
-                </p>
-              </div>
-            </div>
-            
-            {/* Narrative 1 */}
-            <NarrativeBlock
-              heading={t.acts.act2.narratives[0].heading}
-              body={t.acts.act2.narratives[0].body}
-              alignment="left"
-              animation="slide-left"
-            />
-            
-            {/* Narrative 2 with Sankey */}
-            <div className="min-h-screen flex items-center justify-center">
-              <div className="w-full">
-                <NarrativeBlock
-                  heading={t.acts.act2.narratives[1].heading}
-                  body={t.acts.act2.narratives[1].body}
-                  alignment="center"
-                  animation="fade"
-                />
-                <div className="mt-8">
-                  <SankeyPlaceholder />
-                </div>
-              </div>
-            </div>
-            
-            {/* Narrative 3 with Video */}
-            <div className="min-h-screen flex items-center justify-center">
-              <div className="w-full max-w-4xl mx-auto px-6">
-                <NarrativeBlock
-                  heading={t.acts.act2.narratives[2].heading}
-                  body={t.acts.act2.narratives[2].body}
-                  alignment="center"
-                  animation="fade"
-                />
-                <div className="mt-8">
-                  <AutoPlayVideoSection />
-                </div>
-              </div>
-            </div>
+        {/* Placeholder for future acts - to be implemented */}
+        <section className="min-h-screen bg-doc-dark-bg text-doc-dark-fg flex items-center justify-center">
+          <div className="text-center px-6 opacity-50">
+            <p className="text-lg text-muted-foreground">
+              Acts 2–4 coming soon...
+            </p>
           </div>
-        </StorySection>
-
-        {/* Act 3: Solutions */}
-        <StorySection id="act-3-solutions" theme="light">
-          <StickyStage>
-            <ScrollImage
-              src="/assets/demo/renewable.png"
-              alt={t.acts.act3.title}
-              animation="slide-right"
-            />
-          </StickyStage>
-          
-          <div className="relative z-10">
-            {/* Title block */}
-            <div className="min-h-screen flex items-center justify-center">
-              <div className="text-center px-6">
-                <span className="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">
-                  Act III
-                </span>
-                <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
-                  {t.acts.act3.title}
-                </h2>
-                <p className="text-lg text-muted-foreground">
-                  {t.acts.act3.subtitle}
-                </p>
-              </div>
-            </div>
-            
-            {/* Narrative 1 */}
-            <NarrativeBlock
-              heading={t.acts.act3.narratives[0].heading}
-              body={t.acts.act3.narratives[0].body}
-              alignment="left"
-              animation="slide-left"
-            />
-            
-            {/* Narrative 2 with Compare Toggle */}
-            <div className="min-h-screen flex items-center justify-center">
-              <div className="w-full">
-                <NarrativeBlock
-                  heading={t.acts.act3.narratives[1].heading}
-                  body={t.acts.act3.narratives[1].body}
-                  alignment="center"
-                  animation="fade"
-                />
-                <div className="mt-8">
-                  <CompareToggle />
-                </div>
-              </div>
-            </div>
-            
-            {/* Narrative 3 with Solution Cards */}
-            <div className="min-h-screen flex items-center justify-center">
-              <div className="w-full">
-                <NarrativeBlock
-                  heading={t.acts.act3.narratives[2].heading}
-                  body={t.acts.act3.narratives[2].body}
-                  alignment="center"
-                  animation="fade"
-                />
-                <div className="mt-8">
-                  <SolutionCardsGrid />
-                </div>
-              </div>
-            </div>
-          </div>
-        </StorySection>
-
-        {/* Act 4: Path Forward */}
-        <StorySection id="act-4-path-forward" theme="neutral">
-          <div className="relative z-10">
-            {/* Title block */}
-            <div className="min-h-screen flex items-center justify-center">
-              <div className="text-center px-6">
-                <span className="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">
-                  Act IV
-                </span>
-                <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
-                  {t.acts.act4.title}
-                </h2>
-                <p className="text-lg text-muted-foreground">
-                  {t.acts.act4.subtitle}
-                </p>
-              </div>
-            </div>
-            
-            {/* Narrative 1 with Goal Tracker */}
-            <div className="min-h-screen flex items-center justify-center">
-              <div className="w-full max-w-4xl mx-auto px-6">
-                <NarrativeBlock
-                  heading={t.acts.act4.narratives[0].heading}
-                  body={t.acts.act4.narratives[0].body}
-                  alignment="center"
-                  animation="fade"
-                />
-                <div className="mt-8 flex justify-center">
-                  <GoalTrackerPlaceholder />
-                </div>
-              </div>
-            </div>
-            
-            {/* Narrative 2 with Impact Sandbox */}
-            <div className="min-h-screen flex items-center justify-center">
-              <div className="w-full max-w-4xl mx-auto px-6">
-                <NarrativeBlock
-                  heading={t.acts.act4.narratives[1].heading}
-                  body={t.acts.act4.narratives[1].body}
-                  alignment="center"
-                  animation="fade"
-                />
-                <div className="mt-8">
-                  <ImpactSandboxPlaceholder />
-                </div>
-              </div>
-            </div>
-            
-            {/* Narrative 3 with Scroll Scrub Video */}
-            <div className="relative">
-              <div className="sticky top-1/2 -translate-y-1/2 z-10 pointer-events-none py-20">
-                <NarrativeBlock
-                  heading={t.acts.act4.narratives[2].heading}
-                  body={t.acts.act4.narratives[2].body}
-                  alignment="center"
-                  animation="fade"
-                />
-              </div>
-              <ScrollScrubVideo />
-            </div>
-            
-            {/* Temperature Gauge */}
-            <div className="min-h-screen flex items-center justify-center">
-              <TemperatureGaugePlaceholder />
-            </div>
-          </div>
-        </StorySection>
+        </section>
       </main>
 
       <Footer />

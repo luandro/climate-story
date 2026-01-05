@@ -7,6 +7,36 @@
     "languageToggle": "Language",
     "skipToContent": "Skip to main content"
   },
+  "act1": {
+    "title": "Diagnosis",
+    "subtitle": "Where are we?",
+    "actLabel": "Act I",
+    "thermometer": {
+      "ariaLabel": "Interactive thermometer showing temperature rise in Brazil",
+      "unit": "degrees Celsius above pre-industrial",
+      "globalAverage": "Global avg",
+      "narrative": "In some regions of Brazil, temperatures have already risen more than 2°C above pre-industrial levels."
+    },
+    "timeline": {
+      "ariaLabel": "Timeline showing acceleration of temperature rise",
+      "narrative": "Most of this warming happened in just a few decades."
+    },
+    "comparison": {
+      "ariaLabel": "Comparison between global and Brazil regional warming",
+      "title": "Global Average vs Regional Reality",
+      "globalLabel": "Global Average",
+      "brazilLabel": "Brazil (regions)",
+      "narrative": "The global average hides regional extremes."
+    },
+    "impacts": {
+      "ariaLabel": "List of climate impact consequences",
+      "intro": "What does this mean in practice?",
+      "extremeHeat": "More extreme heat days",
+      "health": "Health impacts",
+      "drought": "Longer droughts",
+      "closing": "These are not projections. This is happening now."
+    }
+  },
   "acts": {
     "act1": {
       "id": "diagnosis",

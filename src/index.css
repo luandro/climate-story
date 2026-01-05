@@ -66,6 +66,11 @@
     --stripe-cold: 210 100% 40%;
     --stripe-warm: 0 80% 50%;
 
+    /* Thermometer temperature colors (cold → warm → critical) */
+    --thermo-cold: 210 80% 55%;
+    --thermo-warm: 35 90% 50%;
+    --thermo-critical: 0 80% 50%;
+
     /* Typography scale */
     --font-display: 'Playfair Display', Georgia, serif;
     --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
