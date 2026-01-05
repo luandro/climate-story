@@ -7,6 +7,36 @@
     "languageToggle": "Idioma",
     "skipToContent": "Pular para o conteúdo principal"
   },
+  "act1": {
+    "title": "Diagnóstico",
+    "subtitle": "Onde estamos?",
+    "actLabel": "Ato I",
+    "thermometer": {
+      "ariaLabel": "Termômetro interativo mostrando aumento de temperatura no Brasil",
+      "unit": "graus Celsius acima do pré-industrial",
+      "globalAverage": "Média global",
+      "narrative": "Em algumas regiões do Brasil, a temperatura já subiu mais de 2°C em relação aos níveis pré-industriais."
+    },
+    "timeline": {
+      "ariaLabel": "Linha do tempo mostrando aceleração do aquecimento",
+      "narrative": "A maior parte desse aquecimento aconteceu em poucas décadas."
+    },
+    "comparison": {
+      "ariaLabel": "Comparação entre aquecimento global e regional brasileiro",
+      "title": "Média Global vs Realidade Regional",
+      "globalLabel": "Média Global",
+      "brazilLabel": "Brasil (regiões)",
+      "narrative": "O aquecimento médio global esconde extremos regionais."
+    },
+    "impacts": {
+      "ariaLabel": "Lista de consequências dos impactos climáticos",
+      "intro": "O que isso significa na prática?",
+      "extremeHeat": "Mais dias de calor extremo",
+      "health": "Impactos na saúde",
+      "drought": "Secas mais longas",
+      "closing": "Estas não são projeções. Isso está acontecendo agora."
+    }
+  },
   "acts": {
     "act1": {
       "id": "diagnostico",
