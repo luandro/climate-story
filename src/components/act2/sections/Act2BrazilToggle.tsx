@@ -99,12 +99,12 @@ export function Act2BrazilToggle({
         }}
       />
 
-      {/* Toggle Control */}
+      {/* Toggle Control - positioned below narrative to avoid language switcher overlap */}
       <div
-        className="absolute top-8 left-1/2 -translate-x-1/2 z-20"
+        className="absolute bottom-24 left-1/2 -translate-x-1/2 z-20"
         style={{
           opacity: toggleOpacity,
-          transform: `translateY(${(1 - toggleOpacity) * -20}px)`,
+          transform: `translateY(${(1 - toggleOpacity) * 20}px)`,
           transition: reducedMotion ? 'none' : 'all 0.5s ease-out',
         }}
       >
@@ -141,7 +141,7 @@ export function Act2BrazilToggle({
       </div>
 
       {/* Sankey visualization */}
-      <div className="h-full flex pt-20">
+      <div className="h-full flex pb-32">
         <div
           className="w-2/5 h-full relative"
           style={{ opacity: flowVisibility }}

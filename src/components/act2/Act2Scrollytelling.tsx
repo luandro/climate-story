@@ -89,6 +89,9 @@ export function Act2Scrollytelling({ className }: Act2ScrollytellingProps) {
   // Region state for toggle (persists across sections after toggle)
   const [selectedRegion, setSelectedRegion] = useState<'world' | 'brazil'>('world');
 
+  // Track if user has manually interacted with the toggle
+  const [userHasInteracted, setUserHasInteracted] = useState(false);
+
   // Dynamic reduced motion preference detection
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(() => {
     if (typeof window === 'undefined') return false;
@@ -119,6 +122,35 @@ export function Act2Scrollytelling({ className }: Act2ScrollytellingProps) {
       }
     };
   }, []);
+
+  // Auto-switch from World → Brazil based on scroll progress
+  // Only if user hasn't manually interacted with the toggle
+  useEffect(() => {
+    if (userHasInteracted) return;
+
+    // Auto-switch to Brazil when reaching ~60% of the toggle section
+    // This corresponds to the "Brazil is different" narrative moment
+    const toggleSectionProgress = (progress - SECTIONS.toggle.start) /
+      (SECTIONS.toggle.end - SECTIONS.toggle.start);
+
+    if (progress >= SECTIONS.toggle.start && toggleSectionProgress > 0.5) {
+      if (selectedRegion !== 'brazil') {
+        setSelectedRegion('brazil');
+      }
+    } else if (progress < SECTIONS.toggle.start) {
+      // Reset to world when scrolling back before toggle section
+      if (selectedRegion !== 'world') {
+        setSelectedRegion('world');
+      }
+    }
+  }, [progress, userHasInteracted, selectedRegion]);
+
+  // Reset user interaction flag when scrolling past Act 2
+  useEffect(() => {
+    if (progress >= 1) {
+      setUserHasInteracted(false);
+    }
+  }, [progress]);
 
   /**
    * GLOBAL VISUAL STATE for Act 2
@@ -219,9 +251,10 @@ export function Act2Scrollytelling({ className }: Act2ScrollytellingProps) {
     return Math.abs(sectionIndex - activeSectionIndex) <= 1;
   }, [activeSectionIndex]);
 
-  // Handle region toggle
+  // Handle region toggle (manual interaction)
   const handleRegionToggle = useCallback((region: 'world' | 'brazil') => {
     setSelectedRegion(region);
+    setUserHasInteracted(true);
   }, []);
 
   return (
