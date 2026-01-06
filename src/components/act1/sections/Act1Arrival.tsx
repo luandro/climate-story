@@ -5,6 +5,8 @@ interface Act1ArrivalProps {
   progress: number;
   isActive: boolean;
   reducedMotion: boolean;
+  /** Continuous opacity from global visual state (no discrete transitions) */
+  continuousOpacity?: number;
 }
 
 /**
@@ -12,29 +14,23 @@ interface Act1ArrivalProps {
  *
  * Visual: Fullscreen black, no UI, no charts, no scroll indicator
  * Text: Centered - "Em 2024, o planeta cruzou um limite que nunca deveria ter sido normal."
- * Behavior: Text fades in (1.5s), holds for ~2s, on scroll fades out smoothly
+ * Behavior: Text fades continuously based on global scroll progress (no discrete enter/exit)
  */
-export function Act1Arrival({ progress, isActive, reducedMotion }: Act1ArrivalProps) {
+export function Act1Arrival({ progress, isActive, reducedMotion, continuousOpacity }: Act1ArrivalProps) {
   const { t } = useTranslation();
 
-  // Text fades in during first 30% of section, then fades out during last 30%
-  const getOpacity = () => {
-    if (reducedMotion) return isActive ? 1 : 0;
+  // Use continuous opacity from parent if provided, otherwise fall back to local calculation
+  const opacity = continuousOpacity !== undefined
+    ? continuousOpacity
+    : (() => {
+        if (reducedMotion) return isActive ? 1 : 0;
+        if (progress < 0.3) return progress / 0.3;
+        if (progress > 0.7) return 1 - (progress - 0.7) / 0.3;
+        return 1;
+      })();
 
-    if (progress < 0.3) {
-      // Fade in
-      return progress / 0.3;
-    } else if (progress > 0.7) {
-      // Fade out
-      return 1 - (progress - 0.7) / 0.3;
-    }
-    return 1;
-  };
-
-  const opacity = getOpacity();
-
-  // Only render when in this section
-  if (!isActive && progress >= 1) return null;
+  // Only render when visible
+  if (opacity <= 0 && !isActive) return null;
 
   return (
     <div

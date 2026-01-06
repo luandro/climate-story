@@ -5,34 +5,42 @@ interface Act1PresentProps {
   progress: number;
   isActive: boolean;
   reducedMotion: boolean;
+  /** Global temperature progress (0=0°C, 1=+1.6°C) - LOCKED at 1.0 during plateau */
+  temperatureProgress?: number;
+  /** Global stripes opacity from continuous interpolation */
+  stripesOpacity?: number;
+  /** Whether we're in the scroll plateau (zero visual change) */
+  inPlateau?: boolean;
+  /** Progress through the plateau (0-1), for any subtle UI hints */
+  plateauProgress?: number;
 }
 
 // Climate stripes for background (all red for 2024)
 const STRIPE_YEARS = Array.from({ length: 125 }, (_, i) => 1900 + i);
 
-// Easing function for smooth transitions
-function easeOutCubic(t: number): number {
-  return 1 - Math.pow(1 - t, 3);
-}
-
 /**
- * ACT 1.3 - The Present Moment
+ * ACT 1.3 - The Present Moment (SCROLL PLATEAU)
+ *
+ * This section implements the SCROLL PLATEAU - a "dead zone" where:
+ * - Scrolling continues but all visuals stay LOCKED at peak
+ * - Temperature stays at +1.6°C (no change)
+ * - Stripes stay fully red (no change)
+ * - All text stays at full opacity (no change)
+ * - This creates the "heavy, final, impossible to rush through" feeling
  *
  * Visual: Thermometer at +1.6°C, red saturation, climate stripes almost entirely red
  * Main Text: "2024 foi o ano mais quente já registrado."
- * Subtext: "+1,6 °C em relação ao período pré-industrial"
- * Credibility: "Medições independentes da NASA, Copernicus e da OMM."
- *
- * DWELL: Last 45% of section progress is a "hold" where visuals stay constant
- * This creates breathing room at the peak before moving to the split-screen
  */
-export function Act1Present({ progress, isActive, reducedMotion }: Act1PresentProps) {
+export function Act1Present({
+  progress,
+  isActive,
+  reducedMotion,
+  temperatureProgress = 1, // Default to peak when used for plateau
+  stripesOpacity = 0.4,    // Default to full opacity
+  inPlateau = false,
+  plateauProgress = 0,
+}: Act1PresentProps) {
   const { t } = useTranslation();
-
-  // Content progress: 0-55% of section = animation, 55-100% = dwell (capped at 1)
-  // This creates a "breathing room" where user scrolls but visuals stay at peak
-  const contentProgress = Math.min(1, progress / 0.55);
-  const isDwelling = progress > 0.55;
 
   // Get stripe color with smooth HSL interpolation
   const getStripeColor = (year: number) => {
@@ -47,23 +55,22 @@ export function Act1Present({ progress, isActive, reducedMotion }: Act1PresentPr
     return `hsl(${Math.max(0, hue)}, ${saturation}%, ${lightness}%)`;
   };
 
-  // Text animations with easing (all reach full opacity before dwell starts)
-  const mainTextOpacity = contentProgress > 0.1
-    ? easeOutCubic(Math.min(1, (contentProgress - 0.1) / 0.25))
-    : 0;
-  const subTextOpacity = contentProgress > 0.35
-    ? easeOutCubic(Math.min(1, (contentProgress - 0.35) / 0.25))
-    : 0;
-  const credibilityOpacity = contentProgress > 0.6
-    ? easeOutCubic(Math.min(1, (contentProgress - 0.6) / 0.25))
-    : 0;
+  /**
+   * PLATEAU BEHAVIOR: During the plateau (inPlateau=true), ALL visuals are LOCKED.
+   * Text opacities are all 1.0, no animation, no change whatsoever.
+   * The user scrolls but nothing happens - this creates the "heavy, final" feeling.
+   */
 
-  // Section opacity
-  const sectionOpacity = isActive ? 1 : 0;
+  // During plateau: all text at full opacity (locked)
+  // Before/after plateau: animate based on progress
+  const mainTextOpacity = inPlateau || temperatureProgress >= 1 ? 1 : Math.min(1, temperatureProgress * 1.5);
+  const subTextOpacity = inPlateau || temperatureProgress >= 1 ? 1 : Math.min(1, Math.max(0, (temperatureProgress - 0.5) * 2));
+  const credibilityOpacity = inPlateau || temperatureProgress >= 1 ? 1 : Math.min(1, Math.max(0, (temperatureProgress - 0.7) * 3.3));
 
-  // During dwell, add a subtle "breathing" effect to indicate the pause
-  const dwellPulse = isDwelling && !reducedMotion ? 1 : 0;
+  // Section opacity - continuous, no sudden jumps
+  const sectionOpacity = isActive ? 1 : Math.max(0, 1 - progress * 2);
 
+  // Only render when visible
   if (!isActive && progress <= 0) return null;
 
   return (
@@ -77,7 +84,7 @@ export function Act1Present({ progress, isActive, reducedMotion }: Act1PresentPr
         zIndex: isActive ? 35 : 0,
       }}
     >
-      {/* Climate Stripes Background - fully visible, mostly red */}
+      {/* Climate Stripes Background - all stripes visible, mostly red at peak */}
       <div className="absolute inset-0 flex" aria-hidden="true">
         {STRIPE_YEARS.map((year) => (
           <div
@@ -85,18 +92,17 @@ export function Act1Present({ progress, isActive, reducedMotion }: Act1PresentPr
             className="flex-1 h-full"
             style={{
               backgroundColor: getStripeColor(year),
-              opacity: 0.4,
+              opacity: stripesOpacity,
             }}
           />
         ))}
       </div>
 
-      {/* Dark overlay for readability - slightly lighter during dwell */}
+      {/* Dark overlay for readability - constant during plateau */}
       <div
         className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60"
         style={{
-          opacity: 0.75 + contentProgress * 0.15,
-          transition: reducedMotion ? 'none' : 'opacity 0.5s ease-out',
+          opacity: 0.9,
         }}
       />
 
@@ -175,23 +181,24 @@ export function Act1Present({ progress, isActive, reducedMotion }: Act1PresentPr
           {t.act1.present.credibility}
         </p>
 
-        {/* Dwell indicator - subtle hint to keep scrolling */}
-        <div
-          className="absolute bottom-12 left-1/2 -translate-x-1/2"
-          style={{
-            opacity: dwellPulse * 0.4,
-            transition: 'opacity 0.8s ease-out',
-          }}
-        >
-          <div className="w-6 h-10 border-2 border-white/20 rounded-full flex justify-center">
-            <div
-              className="w-1 h-3 bg-white/30 rounded-full mt-2"
-              style={{
-                animation: isDwelling && !reducedMotion ? 'bounce 1.5s ease-in-out infinite' : 'none',
-              }}
-            />
+        {/* Plateau indicator - subtle hint to keep scrolling (only shows during plateau) */}
+        {inPlateau && (
+          <div
+            className="absolute bottom-12 left-1/2 -translate-x-1/2"
+            style={{
+              opacity: 0.3,
+            }}
+          >
+            <div className="w-6 h-10 border-2 border-white/20 rounded-full flex justify-center">
+              <div
+                className="w-1 h-3 bg-white/30 rounded-full mt-2"
+                style={{
+                  animation: !reducedMotion ? 'bounce 1.5s ease-in-out infinite' : 'none',
+                }}
+              />
+            </div>
           </div>
-        </div>
+        )}
       </div>
 
       {/* Additional CSS for bounce animation */}

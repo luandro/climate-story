@@ -6,6 +6,10 @@ interface Act1TimeBeginsProps {
   progress: number;
   isActive: boolean;
   reducedMotion: boolean;
+  /** Global temperature progress (0=0°C, 1=+1.6°C) from continuous interpolation */
+  temperatureProgress?: number;
+  /** Global stripes opacity from continuous interpolation */
+  stripesOpacity?: number;
 }
 
 // Temperature data from 1900 to 2024
@@ -40,9 +44,15 @@ function easeOutCubic(t: number): number {
  * Year progression: 1900 -> 2024
  * Temperature: 0°C -> 1.6°C
  *
- * Intro: First 15% of progress = gentle fade-in/slide-in of elements
+ * Uses global visual state for continuous interpolation (no discrete transitions)
  */
-export function Act1TimeBegins({ progress, isActive, reducedMotion }: Act1TimeBeginsProps) {
+export function Act1TimeBegins({
+  progress,
+  isActive,
+  reducedMotion,
+  temperatureProgress: globalTempProgress,
+  stripesOpacity: globalStripesOpacity,
+}: Act1TimeBeginsProps) {
   const { t } = useTranslation();
 
   // Intro animation: first 15% of section is fade-in
@@ -53,42 +63,17 @@ export function Act1TimeBegins({ progress, isActive, reducedMotion }: Act1TimeBe
   // Content progress: starts after intro (15% to 100% mapped to 0-1)
   const contentProgress = progress < 0.15 ? 0 : (progress - 0.15) / 0.85;
 
+  // Use global temperature progress if provided, otherwise calculate locally
+  const tempProgress = globalTempProgress !== undefined ? globalTempProgress : contentProgress;
+
+  // Map temperature progress to actual temperature (0 = 0°C, 1 = +1.6°C)
+  const currentTemperature = tempProgress * 1.6;
+
   // Map content progress to year (0 = 1900, 1 = 2024)
-  const currentYear = Math.round(1900 + contentProgress * 124);
-
-  // Calculate current temperature anomaly based on interpolation with boundary validation
-  const currentTemperature = useMemo(() => {
-    const firstDataPoint = TEMPERATURE_DATA[0];
-    const lastDataPoint = TEMPERATURE_DATA[TEMPERATURE_DATA.length - 1];
-
-    // Boundary validation: clamp to data range
-    if (currentYear <= firstDataPoint.year) {
-      return firstDataPoint.anomaly;
-    }
-    if (currentYear >= lastDataPoint.year) {
-      return lastDataPoint.anomaly;
-    }
-
-    // Find the two data points to interpolate between
-    for (let i = 0; i < TEMPERATURE_DATA.length - 1; i++) {
-      const curr = TEMPERATURE_DATA[i];
-      const next = TEMPERATURE_DATA[i + 1];
-      if (currentYear >= curr.year && currentYear <= next.year) {
-        // Prevent division by zero
-        const yearRange = next.year - curr.year;
-        if (yearRange === 0) return curr.anomaly;
-
-        const yearProgress = (currentYear - curr.year) / yearRange;
-        return curr.anomaly + yearProgress * (next.anomaly - curr.anomaly);
-      }
-    }
-
-    // Fallback (should not reach here with proper data)
-    return lastDataPoint.anomaly;
-  }, [currentYear]);
+  const currentYear = Math.round(1900 + tempProgress * 124);
 
   // Thermometer fill percentage (0-100)
-  const thermometerFill = (currentTemperature / 1.6) * 100;
+  const thermometerFill = tempProgress * 100;
 
   // Get color based on temperature with smooth interpolation
   const getTemperatureColor = (temp: number) => {
@@ -116,11 +101,13 @@ export function Act1TimeBegins({ progress, isActive, reducedMotion }: Act1TimeBe
   const showText1 = contentProgress > 0.3 && contentProgress < 0.75;
   const showText2 = contentProgress > 0.6;
 
-  // Climate stripes visibility (fade in after intro and some content progress)
-  const stripesOpacity = Math.min(1, Math.max(0, (contentProgress - 0.2) / 0.3)) * introOpacity;
+  // Use global stripes opacity if provided, otherwise calculate locally
+  const stripesOpacity = globalStripesOpacity !== undefined
+    ? globalStripesOpacity
+    : Math.min(1, Math.max(0, (contentProgress - 0.2) / 0.3)) * introOpacity * 0.3;
 
-  // Overall section opacity
-  const sectionOpacity = isActive ? 1 : 0;
+  // Overall section opacity - continuous, no sudden jumps
+  const sectionOpacity = isActive ? 1 : Math.max(0, 1 - progress * 2);
 
   // Visible stripe count based on current year
   const visibleStripes = Math.max(0, currentYear - 1900 + 1);
@@ -142,7 +129,7 @@ export function Act1TimeBegins({ progress, isActive, reducedMotion }: Act1TimeBe
       <div
         className="absolute inset-0 flex"
         style={{
-          opacity: stripesOpacity * 0.3,
+          opacity: stripesOpacity,
           transition: reducedMotion ? 'none' : 'opacity 1s ease-out',
         }}
         aria-hidden="true"
