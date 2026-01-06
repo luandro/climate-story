@@ -7,7 +7,7 @@ import { Act1Arrival } from './sections/Act1Arrival';
 import { Act1TimeBegins } from './sections/Act1TimeBegins';
 import { Act1Present } from './sections/Act1Present';
 import { Act1Average } from './sections/Act1Average';
-import { Act1Impacts } from './sections/Act1Impacts';
+import { ImpactSlideshowPinned } from './sections/ImpactSlideshowPinned';
 import { Act1Landing } from './sections/Act1Landing';
 import { Act1Transition } from './sections/Act1Transition';
 
@@ -242,9 +242,9 @@ export function Act1Scrollytelling({ className }: Act1ScrollytellingProps) {
           />
         )}
 
-        {/* ACT 1.5 - What This Means in Practice */}
+        {/* ACT 1.5 - Impact Cards (Full-viewport pinned slideshow) */}
         {shouldRenderSection('impacts') && (
-          <Act1Impacts
+          <ImpactSlideshowPinned
             progress={getSectionProgress('impacts')}
             isActive={activeSection === 'impacts'}
             reducedMotion={prefersReducedMotion}
