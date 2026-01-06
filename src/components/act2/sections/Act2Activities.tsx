@@ -51,11 +51,11 @@ export function Act2Activities({
   if (!isActive && progress <= 0) return null;
 
   const activityLabels = {
-    energy: t.act2?.activities?.energy || 'Geração de energia',
-    transport: t.act2?.activities?.transport || 'Transporte',
-    industry: t.act2?.activities?.industry || 'Indústria',
-    agriculture: t.act2?.activities?.agriculture || 'Agricultura',
-    deforestation: t.act2?.activities?.deforestation || 'Desmatamento',
+    energy: t.act2?.activities?.energy || '',
+    transport: t.act2?.activities?.transport || '',
+    industry: t.act2?.activities?.industry || '',
+    agriculture: t.act2?.activities?.agriculture || '',
+    deforestation: t.act2?.activities?.deforestation || '',
   };
 
   return (
@@ -113,7 +113,7 @@ export function Act2Activities({
             }}
           >
             <p className="text-lg md:text-xl lg:text-2xl text-white/90 text-left max-w-md">
-              {t.act2?.activities?.text || 'Tudo começa com atividades humanas.'}
+              {t.act2?.activities?.text || ''}
             </p>
           </div>
         </div>

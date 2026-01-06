@@ -91,7 +91,7 @@ export function Act2AtmosphereFills({
             {WORLD_SOURCES.map((source) => (
               <div key={source.id} className="flex items-center gap-2">
                 <ActivityIcon
-                  type={source.id as 'energy' | 'transport' | 'industry' | 'agriculture' | 'deforestation'}
+                  type={source.id}
                   size={28}
                   reducedMotion={reducedMotion}
                 />
@@ -169,7 +169,7 @@ export function Act2AtmosphereFills({
             }}
           >
             <p className="text-lg md:text-xl lg:text-2xl text-white/90 text-center max-w-md">
-              {t.act2?.atmosphere?.text || 'Quanto mais gases, mais calor fica retido.'}
+              {t.act2?.atmosphere?.text || ''}
             </p>
           </div>
         </div>

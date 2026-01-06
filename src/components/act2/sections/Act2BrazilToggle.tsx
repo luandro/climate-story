@@ -121,7 +121,7 @@ export function Act2BrazilToggle({
               transition: reducedMotion ? 'none' : 'all 0.3s ease-out',
             }}
           >
-            {t.act2?.toggle?.world || 'MUNDO'}
+            {t.act2?.toggle?.world || ''}
           </button>
           <button
             onClick={() => onRegionToggle('brazil')}
@@ -135,7 +135,7 @@ export function Act2BrazilToggle({
               transition: reducedMotion ? 'none' : 'all 0.3s ease-out',
             }}
           >
-            {t.act2?.toggle?.brazil || 'BRASIL'}
+            {t.act2?.toggle?.brazil || ''}
           </button>
         </div>
       </div>
@@ -164,7 +164,7 @@ export function Act2BrazilToggle({
                   }}
                 >
                   <ActivityIcon
-                    type={source.id as 'energy' | 'transport' | 'industry' | 'agriculture' | 'deforestation'}
+                    type={source.id}
                     size={28}
                     reducedMotion={reducedMotion}
                     className={isHighlighted ? 'text-white' : ''}
@@ -201,7 +201,7 @@ export function Act2BrazilToggle({
                 <stop offset="0%" stopColor="rgba(107, 114, 128, 0.5)" />
                 <stop offset="100%" stopColor="rgba(107, 114, 128, 0.2)" />
               </linearGradient>
-              <filter id="glow-brazil">
+              <filter id="act2-glow-brazil">
                 <feGaussianBlur stdDeviation="4" result="blur" />
                 <feMerge>
                   <feMergeNode in="blur" />
@@ -235,7 +235,7 @@ export function Act2BrazilToggle({
                     stroke={gradient}
                     strokeWidth={flowWidth}
                     strokeLinecap="round"
-                    filter={isHighlighted ? 'url(#glow-brazil)' : 'none'}
+                    filter={isHighlighted ? 'url(#act2-glow-brazil)' : 'none'}
                     style={{
                       transition: reducedMotion ? 'none' : 'all 0.8s ease-out',
                     }}
@@ -277,7 +277,7 @@ export function Act2BrazilToggle({
                 }}
               >
                 <p className="text-xl md:text-2xl text-white/90 text-center max-w-md font-medium">
-                  {t.act2?.toggle?.brazilText || 'No Brasil, a história é diferente.'}
+                  {t.act2?.toggle?.brazilText || ''}
                 </p>
               </div>
 
@@ -291,11 +291,11 @@ export function Act2BrazilToggle({
                 }}
               >
                 <p className="text-base md:text-lg text-white/70 text-center max-w-md">
-                  {t.act2?.toggle?.brazilFollowUp || 'Aqui, o desmatamento e a agropecuária dividem o protagonismo.'}
+                  {t.act2?.toggle?.brazilFollowUp || ''}
                 </p>
               </div>
 
-              {/* Brazil-specific percentages */}
+              {/* Brazil-specific percentages - derived from sources data */}
               <div
                 className="flex gap-8 mt-4"
                 style={{
@@ -304,12 +304,16 @@ export function Act2BrazilToggle({
                 }}
               >
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-red-500">~27%</div>
-                  <div className="text-xs text-white/50">{t.act2?.toggle?.deforestationLabel || 'Desmatamento'}</div>
+                  <div className="text-2xl font-bold text-red-500">
+                    ~{sources.find(s => s.id === 'deforestation')?.value ?? 0}%
+                  </div>
+                  <div className="text-xs text-white/50">{t.act2?.toggle?.deforestationLabel || ''}</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-amber-500">~28%</div>
-                  <div className="text-xs text-white/50">{t.act2?.toggle?.agricultureLabel || 'Agropecuária'}</div>
+                  <div className="text-2xl font-bold text-amber-500">
+                    ~{sources.find(s => s.id === 'agriculture')?.value ?? 0}%
+                  </div>
+                  <div className="text-xs text-white/50">{t.act2?.toggle?.agricultureLabel || ''}</div>
                 </div>
               </div>
             </>
@@ -321,7 +325,7 @@ export function Act2BrazilToggle({
               }}
             >
               <p className="text-lg text-white/60 text-center max-w-md">
-                {t.act2?.toggle?.worldPrompt || 'Toque em "Brasil" para ver a diferença.'}
+                {t.act2?.toggle?.worldPrompt || ''}
               </p>
             </div>
           )}

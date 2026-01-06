@@ -85,7 +85,7 @@ export function Act2Agriculture({
                   }}
                 >
                   <ActivityIcon
-                    type={source.id as 'energy' | 'transport' | 'industry' | 'agriculture' | 'deforestation'}
+                    type={source.id}
                     size={isAgriculture ? 36 : 28}
                     reducedMotion={reducedMotion}
                     className={isAgriculture ? 'text-amber-500' : ''}
@@ -110,7 +110,7 @@ export function Act2Agriculture({
                 <stop offset="0%" stopColor="rgba(107, 114, 128, 0.15)" />
                 <stop offset="100%" stopColor="rgba(107, 114, 128, 0.05)" />
               </linearGradient>
-              <filter id="methane-glow">
+              <filter id="act2-methane-glow">
                 <feGaussianBlur stdDeviation="5" result="blur" />
                 <feColorMatrix
                   in="blur"
@@ -149,7 +149,7 @@ export function Act2Agriculture({
                     stroke={isAgriculture ? 'url(#agriculture-focus)' : 'url(#dimmed-agri)'}
                     strokeWidth={flowWidth}
                     strokeLinecap="round"
-                    filter={isAgriculture ? 'url(#methane-glow)' : 'none'}
+                    filter={isAgriculture ? 'url(#act2-methane-glow)' : 'none'}
                     style={{
                       transition: reducedMotion ? 'none' : 'all 0.6s ease-out',
                     }}
@@ -209,10 +209,10 @@ export function Act2Agriculture({
             }}
           >
             <p className="text-lg md:text-xl lg:text-2xl text-white/90 text-center max-w-md leading-relaxed">
-              {t.act2?.agriculture?.text || 'A criação intensiva de gado libera'}
+              {t.act2?.agriculture?.text || ''}
               {' '}
               <span className="text-amber-400 font-medium">
-                {t.act2?.agriculture?.methane || 'metano'}
+                {t.act2?.agriculture?.methane || ''}
               </span>,
             </p>
           </div>
@@ -227,7 +227,7 @@ export function Act2Agriculture({
             }}
           >
             <p className="text-base md:text-lg text-white/60 text-center max-w-sm">
-              {t.act2?.agriculture?.followUp || 'um gás muito mais potente que o CO₂ no curto prazo.'}
+              {t.act2?.agriculture?.followUp || ''}
             </p>
           </div>
 
@@ -256,7 +256,7 @@ export function Act2Agriculture({
                 <span className="text-sm text-amber-400 font-medium">CH₄</span>
               </div>
               <span className="text-xs text-amber-400/60 mt-1">
-                {t.act2?.agriculture?.potencyLabel || '80x mais potente*'}
+                {t.act2?.agriculture?.potencyLabel || ''}
               </span>
             </div>
           </div>
@@ -267,7 +267,7 @@ export function Act2Agriculture({
               opacity: followUpOpacity * 0.6,
             }}
           >
-            {t.act2?.agriculture?.potencyNote || '*em 20 anos'}
+            {t.act2?.agriculture?.potencyNote || ''}
           </p>
         </div>
       </div>

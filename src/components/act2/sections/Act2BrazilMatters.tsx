@@ -144,7 +144,7 @@ export function Act2BrazilMatters({
           }}
         >
           <p className="text-2xl md:text-3xl lg:text-4xl text-white/95 font-semibold mb-6">
-            {t.act2?.brazilMatters?.text || 'Por isso o Brasil é decisivo.'}
+            {t.act2?.brazilMatters?.text || ''}
           </p>
         </div>
 
@@ -158,7 +158,7 @@ export function Act2BrazilMatters({
           }}
         >
           <p className="text-lg md:text-xl text-white/70 text-center max-w-md leading-relaxed">
-            {t.act2?.brazilMatters?.followUp || 'Poucos países concentram tanto impacto em um único fator.'}
+            {t.act2?.brazilMatters?.followUp || ''}
           </p>
         </div>
 
@@ -172,17 +172,17 @@ export function Act2BrazilMatters({
         >
           <div className="px-4 py-2 rounded-full bg-green-600/20 border border-green-500/30">
             <span className="text-sm text-green-400">
-              {t.act2?.brazilMatters?.badge1 || '60% da Amazônia'}
+              {t.act2?.brazilMatters?.badge1 || ''}
             </span>
           </div>
           <div className="px-4 py-2 rounded-full bg-amber-600/20 border border-amber-500/30">
             <span className="text-sm text-amber-400">
-              {t.act2?.brazilMatters?.badge2 || 'Maior rebanho comercial'}
+              {t.act2?.brazilMatters?.badge2 || ''}
             </span>
           </div>
           <div className="px-4 py-2 rounded-full bg-red-600/20 border border-red-500/30">
             <span className="text-sm text-red-400">
-              {t.act2?.brazilMatters?.badge3 || 'Top 6 emissor global'}
+              {t.act2?.brazilMatters?.badge3 || ''}
             </span>
           </div>
         </div>

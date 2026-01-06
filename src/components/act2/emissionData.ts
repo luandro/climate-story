@@ -1,32 +1,45 @@
 /**
  * Emission source data for Sankey flow visualization
  * Separated from component to avoid Fast Refresh warnings
+ *
+ * Sources:
+ * - Global: WRI/IPCC sector breakdown
+ * - Brazil: SEEG (Sistema de Estimativas de Emissões de Gases de Efeito Estufa)
  */
 
+// Type for emission source IDs
+export type EmissionSourceId = 'energy' | 'transport' | 'industry' | 'agriculture' | 'deforestation';
+
 export interface EmissionSource {
-  id: string;
+  id: EmissionSourceId;
   label: string;
-  value: number; // percentage
+  value: number; // percentage (should sum to 100%)
   color: string;
   gasType: 'co2' | 'ch4' | 'n2o';
 }
 
-// Global emission sources (percentages)
+export function isValidSourceId(id: string): id is EmissionSourceId {
+  return ['energy', 'transport', 'industry', 'agriculture', 'deforestation'].includes(id);
+}
+
+// Global emission sources (percentages - sum to 100%)
+// Based on WRI/IPCC sector data
 export const WORLD_SOURCES: EmissionSource[] = [
-  { id: 'energy', label: 'Geração de energia', value: 30, color: '#6B7280', gasType: 'co2' },
-  { id: 'transport', label: 'Transporte', value: 15, color: '#4B5563', gasType: 'co2' },
-  { id: 'industry', label: 'Indústria', value: 12, color: '#374151', gasType: 'co2' },
-  { id: 'agriculture', label: 'Agricultura', value: 12, color: '#F59E0B', gasType: 'ch4' },
+  { id: 'energy', label: 'Geração de energia', value: 31, color: '#6B7280', gasType: 'co2' },
+  { id: 'transport', label: 'Transporte', value: 16, color: '#4B5563', gasType: 'co2' },
+  { id: 'industry', label: 'Indústria', value: 21, color: '#374151', gasType: 'co2' },
+  { id: 'agriculture', label: 'Agricultura', value: 14, color: '#F59E0B', gasType: 'ch4' },
   { id: 'deforestation', label: 'Desmatamento', value: 18, color: '#DC2626', gasType: 'co2' },
 ];
 
-// Brazil emission sources (percentages) - deforestation and agriculture much larger
+// Brazil emission sources (percentages - sum to 100%)
+// Based on SEEG Brazil data - deforestation and agriculture dominate
 export const BRAZIL_SOURCES: EmissionSource[] = [
-  { id: 'energy', label: 'Geração de energia', value: 8, color: '#6B7280', gasType: 'co2' },
-  { id: 'transport', label: 'Transporte', value: 12, color: '#4B5563', gasType: 'co2' },
-  { id: 'industry', label: 'Indústria', value: 8, color: '#374151', gasType: 'co2' },
-  { id: 'agriculture', label: 'Agropecuária', value: 28, color: '#F59E0B', gasType: 'ch4' },
-  { id: 'deforestation', label: 'Desmatamento', value: 27, color: '#DC2626', gasType: 'co2' },
+  { id: 'energy', label: 'Geração de energia', value: 18, color: '#6B7280', gasType: 'co2' },
+  { id: 'transport', label: 'Transporte', value: 4, color: '#4B5563', gasType: 'co2' },
+  { id: 'industry', label: 'Indústria', value: 5, color: '#374151', gasType: 'co2' },
+  { id: 'agriculture', label: 'Agropecuária', value: 27, color: '#F59E0B', gasType: 'ch4' },
+  { id: 'deforestation', label: 'Desmatamento', value: 46, color: '#DC2626', gasType: 'co2' },
 ];
 
 // Gas colors

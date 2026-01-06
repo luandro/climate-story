@@ -133,7 +133,7 @@ export function Act2Transition({
         }}
       >
         <p className="text-lg md:text-xl text-white/60 text-center max-w-md">
-          {t.act2?.transition?.text || 'A seguir: O que realmente muda o jogo.'}
+          {t.act2?.transition?.text || ''}
         </p>
       </div>
 

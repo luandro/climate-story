@@ -86,7 +86,7 @@ export function Act2Deforestation({
                   }}
                 >
                   <ActivityIcon
-                    type={source.id as 'energy' | 'transport' | 'industry' | 'agriculture' | 'deforestation'}
+                    type={source.id}
                     size={isDeforestation ? 36 : 28}
                     reducedMotion={reducedMotion}
                     className={isDeforestation ? 'text-red-500' : ''}
@@ -111,7 +111,7 @@ export function Act2Deforestation({
                 <stop offset="0%" stopColor="rgba(107, 114, 128, 0.15)" />
                 <stop offset="100%" stopColor="rgba(107, 114, 128, 0.05)" />
               </linearGradient>
-              <filter id="deforestation-glow">
+              <filter id="act2-deforestation-glow">
                 <feGaussianBlur stdDeviation="5" result="blur" />
                 <feMerge>
                   <feMergeNode in="blur" />
@@ -142,7 +142,7 @@ export function Act2Deforestation({
                     stroke={isDeforestation ? 'url(#deforestation-focus)' : 'url(#dimmed-flow)'}
                     strokeWidth={flowWidth}
                     strokeLinecap="round"
-                    filter={isDeforestation ? 'url(#deforestation-glow)' : 'none'}
+                    filter={isDeforestation ? 'url(#act2-deforestation-glow)' : 'none'}
                     style={{
                       transition: reducedMotion ? 'none' : 'all 0.6s ease-out',
                     }}
@@ -202,10 +202,10 @@ export function Act2Deforestation({
             }}
           >
             <p className="text-lg md:text-xl lg:text-2xl text-white/90 text-center max-w-md leading-relaxed">
-              {t.act2?.deforestation?.text || 'Quando uma floresta cai,'}
+              {t.act2?.deforestation?.text || ''}
               <br />
               <span className="text-red-400">
-                {t.act2?.deforestation?.textEmphasis || 'o carbono armazenado é liberado.'}
+                {t.act2?.deforestation?.textEmphasis || ''}
               </span>
             </p>
           </div>
@@ -220,7 +220,7 @@ export function Act2Deforestation({
             }}
           >
             <p className="text-base md:text-lg text-white/60 text-center max-w-sm">
-              {t.act2?.deforestation?.followUp || 'E a capacidade de absorver CO₂ desaparece.'}
+              {t.act2?.deforestation?.followUp || ''}
             </p>
           </div>
 
@@ -234,11 +234,11 @@ export function Act2Deforestation({
           >
             <div className="text-center">
               <div className="text-3xl mb-1">↑</div>
-              <div className="text-xs text-red-400/70">{t.act2?.deforestation?.releases || 'Libera CO₂'}</div>
+              <div className="text-xs text-red-400/70">{t.act2?.deforestation?.releases || ''}</div>
             </div>
             <div className="text-center">
               <div className="text-3xl mb-1">↓</div>
-              <div className="text-xs text-red-400/70">{t.act2?.deforestation?.losesAbsorption || 'Perde absorção'}</div>
+              <div className="text-xs text-red-400/70">{t.act2?.deforestation?.losesAbsorption || ''}</div>
             </div>
           </div>
         </div>

@@ -97,7 +97,7 @@ export function Act2GlobalPicture({
                   }}
                 >
                   <ActivityIcon
-                    type={source.id as 'energy' | 'transport' | 'industry' | 'agriculture' | 'deforestation'}
+                    type={source.id}
                     size={28}
                     reducedMotion={reducedMotion}
                     className={isFossil && highlightProgress > 0.5 ? 'text-white' : ''}
@@ -122,7 +122,7 @@ export function Act2GlobalPicture({
                 <stop offset="0%" stopColor="rgba(127, 29, 29, 0.4)" />
                 <stop offset="100%" stopColor="rgba(127, 29, 29, 0.2)" />
               </linearGradient>
-              <filter id="glow-global">
+              <filter id="act2-glow-global">
                 <feGaussianBlur stdDeviation="3" result="blur" />
                 <feMerge>
                   <feMergeNode in="blur" />
@@ -153,7 +153,7 @@ export function Act2GlobalPicture({
                     stroke={isFossil ? 'url(#fossil-highlight)' : 'url(#other-flow)'}
                     strokeWidth={flowWidth}
                     strokeLinecap="round"
-                    filter={isFossil && highlightProgress > 0.5 ? 'url(#glow-global)' : 'none'}
+                    filter={isFossil && highlightProgress > 0.5 ? 'url(#act2-glow-global)' : 'none'}
                     style={{
                       transition: reducedMotion ? 'none' : 'all 0.5s ease-out',
                     }}
@@ -194,7 +194,7 @@ export function Act2GlobalPicture({
               ~{fossilTotal}%
             </div>
             <div className="text-sm text-white/50 text-center mt-1">
-              {t.act2?.global?.percentLabel || 'das emissões globais'}
+              {t.act2?.global?.percentLabel || ''}
             </div>
           </div>
 
@@ -208,10 +208,10 @@ export function Act2GlobalPicture({
             }}
           >
             <p className="text-lg md:text-xl text-white/90 text-center max-w-md">
-              {t.act2?.global?.text || 'No mundo, a principal causa é clara:'}
+              {t.act2?.global?.text || ''}
               <br />
               <span className="font-semibold">
-                {t.act2?.global?.emphasis || 'a queima de combustíveis fósseis.'}
+                {t.act2?.global?.emphasis || ''}
               </span>
             </p>
           </div>
@@ -226,7 +226,7 @@ export function Act2GlobalPicture({
             }}
           >
             <p className="text-sm text-white/50 text-center">
-              {t.act2?.global?.microText || 'Carvão, petróleo e gás.'}
+              {t.act2?.global?.microText || ''}
             </p>
           </div>
         </div>

@@ -90,7 +90,7 @@ export function Act2Entry({ progress, isActive, reducedMotion, flowVisibility }:
         }}
       >
         <p className="text-xl md:text-2xl lg:text-3xl text-white/90 text-center max-w-2xl font-light">
-          {t.act2?.entry?.text || 'O aquecimento não acontece por acaso.'}
+          {t.act2?.entry?.text || ''}
         </p>
       </div>
 

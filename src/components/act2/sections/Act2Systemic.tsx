@@ -81,7 +81,7 @@ export function Act2Systemic({
                 }}
               >
                 <ActivityIcon
-                  type={source.id as 'energy' | 'transport' | 'industry' | 'agriculture' | 'deforestation'}
+                  type={source.id}
                   size={28}
                   reducedMotion={reducedMotion}
                 />
@@ -163,7 +163,7 @@ export function Act2Systemic({
             }}
           >
             <p className="text-xl md:text-2xl lg:text-3xl text-white/90 text-center max-w-lg font-medium">
-              {t.act2?.systemic?.text || 'Não é sobre escolhas individuais.'}
+              {t.act2?.systemic?.text || ''}
             </p>
           </div>
 
@@ -177,7 +177,7 @@ export function Act2Systemic({
             }}
           >
             <p className="text-lg md:text-xl text-white/70 text-center max-w-md">
-              {t.act2?.systemic?.followUp || 'É sobre sistemas inteiros de produção e uso da terra.'}
+              {t.act2?.systemic?.followUp || ''}
             </p>
           </div>
 

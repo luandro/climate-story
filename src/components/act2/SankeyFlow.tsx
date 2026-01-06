@@ -1,12 +1,12 @@
 import { useMemo } from 'react';
 import { cn } from '@/lib/utils';
-import { GAS_COLORS, WORLD_SOURCES, BRAZIL_SOURCES } from './emissionData';
-import type { EmissionSource } from './emissionData';
+import { GAS_COLORS, WORLD_SOURCES, BRAZIL_SOURCES, isValidSourceId } from './emissionData';
+import type { EmissionSource, EmissionSourceId } from './emissionData';
 
 // Re-export for convenience - used by section components
 // eslint-disable-next-line react-refresh/only-export-components
-export { WORLD_SOURCES, BRAZIL_SOURCES };
-export type { EmissionSource };
+export { WORLD_SOURCES, BRAZIL_SOURCES, isValidSourceId };
+export type { EmissionSource, EmissionSourceId };
 
 export interface SankeyFlowProps {
   sources: EmissionSource[];
@@ -87,7 +87,7 @@ export function SankeyFlow({
           ))}
 
           {/* Glow filter for focused flows */}
-          <filter id="flow-glow" x="-50%" y="-50%" width="200%" height="200%">
+          <filter id="act2-flow-glow" x="-50%" y="-50%" width="200%" height="200%">
             <feGaussianBlur stdDeviation="3" result="blur" />
             <feMerge>
               <feMergeNode in="blur" />
@@ -121,7 +121,7 @@ export function SankeyFlow({
                 strokeLinecap="round"
                 style={{
                   opacity: flow.opacity,
-                  filter: flow.isFocused ? 'url(#flow-glow)' : 'none',
+                  filter: flow.isFocused ? 'url(#act2-flow-glow)' : 'none',
                   transition: reducedMotion ? 'none' : 'all 0.6s ease-out',
                 }}
               />
@@ -154,7 +154,7 @@ export function SankeyFlow({
  * ActivityIcon - System-level icon (not personal)
  */
 interface ActivityIconProps {
-  type: 'energy' | 'transport' | 'industry' | 'agriculture' | 'deforestation';
+  type: EmissionSourceId;
   size?: number;
   className?: string;
   pulsing?: boolean;

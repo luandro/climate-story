@@ -68,7 +68,7 @@ export function Act2EmissionsFlow({
             {WORLD_SOURCES.map((source, index) => (
               <div key={source.id} className="flex items-center gap-2">
                 <ActivityIcon
-                  type={source.id as 'energy' | 'transport' | 'industry' | 'agriculture' | 'deforestation'}
+                  type={source.id}
                   size={28}
                   reducedMotion={reducedMotion}
                 />
@@ -156,7 +156,7 @@ export function Act2EmissionsFlow({
             }}
           >
             <p className="text-lg md:text-xl text-white/90 text-center max-w-md">
-              {t.act2?.emissions?.text || 'Cada atividade libera gases que ficam presos na atmosfera.'}
+              {t.act2?.emissions?.text || ''}
             </p>
           </div>
 
@@ -170,7 +170,7 @@ export function Act2EmissionsFlow({
             }}
           >
             <p className="text-sm md:text-base text-white/50 text-center max-w-sm">
-              {t.act2?.emissions?.microText || 'Eles retêm calor. É isso que aquece o planeta.'}
+              {t.act2?.emissions?.microText || ''}
             </p>
           </div>
 
