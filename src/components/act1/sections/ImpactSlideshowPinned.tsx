@@ -44,15 +44,21 @@ interface SlideConfig {
  * - Card 3 (Drought): 0.44-0.66
  * - Card 4 (Disasters): 0.66-0.85
  * - End Plateau: 0.85-1.00 (Card 4 stays visible for extra scroll)
+ *
+ * Images from Unsplash (free to use):
+ * - Heat: Urban heat wave / hot city
+ * - Health: Hospital/medical environment
+ * - Drought: Cracked dry earth
+ * - Disasters: Flooding/storm damage
  */
 const SLIDES: SlideConfig[] = [
   {
     id: 'extreme-heat',
     start: 0,
     end: 0.22,
-    assetType: 'gradient',
-    // Heat wave visual - orange/red gradient with heat shimmer effect
-    assetSrc: 'radial-gradient(ellipse at 50% 30%, #5c2a0a 0%, #3d1515 30%, #1a0808 70%, #0a0505 100%)',
+    assetType: 'image',
+    // Heat wave - scorching sun over city (Unsplash: Matt Palmer)
+    assetSrc: 'https://images.unsplash.com/photo-1504370805625-d32c54b16100?auto=format&fit=crop&w=1920&q=80',
     iconType: 'thermometer',
     titleKey: 'extremeHeat',
     accentColor: '#f97316', // orange-500
@@ -61,9 +67,9 @@ const SLIDES: SlideConfig[] = [
     id: 'health',
     start: 0.22,
     end: 0.44,
-    assetType: 'gradient',
-    // Health/medical feel - deep red/purple
-    assetSrc: 'radial-gradient(ellipse at 50% 50%, #2a0a1a 0%, #1a0515 40%, #0a0510 70%, #050508 100%)',
+    assetType: 'image',
+    // Health impact - hospital corridor (Unsplash: Hush Naidoo Jade Photography)
+    assetSrc: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1920&q=80',
     iconType: 'heart',
     titleKey: 'health',
     accentColor: '#ef4444', // red-500
@@ -72,9 +78,9 @@ const SLIDES: SlideConfig[] = [
     id: 'drought',
     start: 0.44,
     end: 0.66,
-    assetType: 'gradient',
-    // Drought/dry earth - amber/brown
-    assetSrc: 'radial-gradient(ellipse at 50% 70%, #3a2a0a 0%, #2a1a08 40%, #1a0f05 70%, #0a0805 100%)',
+    assetType: 'image',
+    // Drought - cracked dry earth (Unsplash: Redcharlie)
+    assetSrc: 'https://images.unsplash.com/photo-1509316785289-025f5b846b35?auto=format&fit=crop&w=1920&q=80',
     iconType: 'droplets',
     titleKey: 'drought',
     accentColor: '#f59e0b', // amber-500
@@ -83,9 +89,9 @@ const SLIDES: SlideConfig[] = [
     id: 'disasters',
     start: 0.66,
     end: 0.85,
-    assetType: 'gradient',
-    // Emergency/crisis feel - intense red
-    assetSrc: 'radial-gradient(ellipse at 50% 40%, #4a0f0f 0%, #2a0808 40%, #1a0505 70%, #0a0303 100%)',
+    assetType: 'image',
+    // Disasters - flooded street (Unsplash: Chris Gallagher)
+    assetSrc: 'https://images.unsplash.com/photo-1547683905-f686c993aae5?auto=format&fit=crop&w=1920&q=80',
     iconType: 'alert',
     titleKey: 'disasters',
     accentColor: '#dc2626', // red-600
@@ -287,11 +293,11 @@ export function ImpactSlideshowPinned({ progress, isActive, reducedMotion }: Imp
         })}
       </div>
 
-      {/* Dark scrim for text readability */}
+      {/* Dark scrim for text readability over images */}
       <div
         className="absolute inset-0"
         style={{
-          background: 'linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.5) 40%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0.3) 100%)',
+          background: 'linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.7) 40%, rgba(0,0,0,0.7) 60%, rgba(0,0,0,0.5) 100%)',
           zIndex: 3,
         }}
       />
