@@ -2,14 +2,7 @@ import { LanguageProvider, useTranslation } from '@/contexts/LanguageContext';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { ScrollProgressIndicator } from '@/components/ui/scroll-progress-indicator';
-import { StorySection } from '@/components/story/StorySection';
-import { 
-  SEGTemperatureThermometer,
-  TemperatureTimelineMini,
-  SplitComparisonGauge,
-  HeatImpactCallouts
-} from '@/components/act1';
-import { act1Data } from '@/data/act1-data';
+import { Act1Scrollytelling } from '@/components/act1';
 
 function ClimateJourneyContent() {
   const { t } = useTranslation();
@@ -18,7 +11,7 @@ function ClimateJourneyContent() {
     <div className="relative">
       <ScrollProgressIndicator />
       <Header />
-      
+
       <main id="main-content">
         {/* Hero Section */}
         <section className="relative h-screen flex items-center justify-center bg-doc-dark-bg text-doc-dark-fg overflow-hidden">
@@ -39,47 +32,12 @@ function ClimateJourneyContent() {
         </section>
 
         {/* Act 1: Diagnosis - "Onde estamos?" */}
-        <StorySection id="act-1-diagnosis" theme="dark">
-          {/* Act 1 Title */}
-          <div className="min-h-screen flex items-center justify-center">
-            <div className="text-center px-6">
-              <span className="text-sm uppercase tracking-widest text-muted-foreground mb-4 block">
-                {t.act1.actLabel}
-              </span>
-              <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
-                {t.act1.title}
-              </h2>
-              <p className="text-lg text-muted-foreground">
-                {t.act1.subtitle}
-              </p>
-            </div>
-          </div>
-          
-          {/* Section 1: Giant Temperature Thermometer */}
-          <SEGTemperatureThermometer
-            brazilAnomaly={act1Data.thermometer.brazilAnomaly}
-            globalAnomaly={act1Data.thermometer.globalAnomaly}
-          />
-          
-          {/* Section 2: How Fast This Happened */}
-          <TemperatureTimelineMini 
-            data={act1Data.timeline.dataPoints}
-          />
-          
-          {/* Section 3: Brazil vs Global Comparison */}
-          <SplitComparisonGauge
-            globalAnomaly={act1Data.comparison.globalAnomaly}
-            brazilAnomaly={act1Data.comparison.brazilRegionalMax}
-          />
-          
-          {/* Section 4: Consequence Teaser */}
-          <HeatImpactCallouts />
-        </StorySection>
+        <Act1Scrollytelling />
 
         {/* Placeholder for future acts - to be implemented */}
-        <section className="min-h-screen bg-doc-dark-bg text-doc-dark-fg flex items-center justify-center">
+        <section className="min-h-screen bg-[#171717] text-white flex items-center justify-center">
           <div className="text-center px-6 opacity-50">
-            <p className="text-lg text-muted-foreground">
+            <p className="text-lg text-white/50">
               Acts 2–4 coming soon...
             </p>
           </div>

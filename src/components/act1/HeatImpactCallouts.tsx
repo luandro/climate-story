@@ -22,17 +22,17 @@ export function HeatImpactCallouts({ className }: HeatImpactCalloutsProps) {
     {
       id: 'extreme-heat',
       icon: Thermometer,
-      text: t.act1.impacts.extremeHeat,
+      text: t.act1.impacts.extremeHeat.title,
     },
     {
       id: 'health',
       icon: HeartPulse,
-      text: t.act1.impacts.health,
+      text: t.act1.impacts.health.title,
     },
     {
       id: 'drought',
       icon: Droplets,
-      text: t.act1.impacts.drought,
+      text: t.act1.impacts.drought.title,
     },
   ];
 

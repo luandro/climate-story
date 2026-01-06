@@ -11,6 +11,59 @@
     "title": "Diagnóstico",
     "subtitle": "Onde estamos?",
     "actLabel": "Ato I",
+    "arrival": {
+      "text": "Em 2024, o planeta cruzou um limite que nunca deveria ter sido normal."
+    },
+    "timeBegins": {
+      "microText": "Arraste para ver o tempo passar.",
+      "ariaLabel": "Termômetro e linha do tempo mostrando a progressão da temperatura desde 1900"
+    },
+    "warming": {
+      "text1": "Por décadas, o aquecimento parecia lento.",
+      "text2": "Mas ele nunca parou."
+    },
+    "present": {
+      "mainText": "2024 foi o ano mais quente já registrado.",
+      "subText": "+1,6 °C em relação ao período pré-industrial",
+      "credibility": "Medições independentes da NASA, Copernicus e da Organização Meteorológica Mundial."
+    },
+    "average": {
+      "centerText": "A média global não conta a história inteira.",
+      "followUp": "Algumas regiões do Brasil já vivem um mundo acima de 2 °C.",
+      "globalLabel": "Média global",
+      "brazilLabel": "Brasil (regiões)"
+    },
+    "impacts": {
+      "ariaLabel": "Lista de consequências dos impactos climáticos",
+      "intro": "O que isso significa na prática?",
+      "extremeHeat": {
+        "title": "Mais dias de calor extremo",
+        "description": "Ondas de calor que antes eram raras agora acontecem todos os anos."
+      },
+      "health": {
+        "title": "Mais internações e mortes",
+        "description": "O calor excessivo aumenta riscos de desidratação, problemas cardíacos e respiratórios."
+      },
+      "drought": {
+        "title": "Secas mais longas e severas",
+        "description": "Menos água para consumo, agricultura e geração de energia."
+      },
+      "disasters": {
+        "title": "Desastres climáticos explodiram no Brasil",
+        "description": "Desde os anos 1990, eventos extremos aumentaram mais de 460% e já atingiram 92% dos municípios do país.",
+        "label1990": "Anos 1990",
+        "labelToday": "Hoje"
+      },
+      "closing": "Estas não são projeções. Isso está acontecendo agora."
+    },
+    "landing": {
+      "mainText": "Isso não é um cenário futuro.",
+      "subText": "É o ponto em que já estamos.",
+      "followUp": "O que vem a seguir depende do que fazemos agora."
+    },
+    "transition": {
+      "microText": "A seguir: De onde isso tudo vem?"
+    },
     "thermometer": {
       "ariaLabel": "Termômetro interativo mostrando aumento de temperatura no Brasil",
       "unit": "graus Celsius acima do pré-industrial",
@@ -27,14 +80,6 @@
       "globalLabel": "Média Global",
       "brazilLabel": "Brasil (regiões)",
       "narrative": "O aquecimento médio global esconde extremos regionais."
-    },
-    "impacts": {
-      "ariaLabel": "Lista de consequências dos impactos climáticos",
-      "intro": "O que isso significa na prática?",
-      "extremeHeat": "Mais dias de calor extremo",
-      "health": "Impactos na saúde",
-      "drought": "Secas mais longas",
-      "closing": "Estas não são projeções. Isso está acontecendo agora."
     }
   },
   "acts": {
