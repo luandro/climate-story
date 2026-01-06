@@ -27,6 +27,11 @@ const TEMPERATURE_DATA = [
 // Climate stripes data (simplified - showing transition from cold to warm)
 const STRIPE_YEARS = Array.from({ length: 125 }, (_, i) => 1900 + i);
 
+// Easing function for smooth intro
+function easeOutCubic(t: number): number {
+  return 1 - Math.pow(1 - t, 3);
+}
+
 /**
  * ACT 1.1 & 1.2 - Time Begins + Warming Over Time
  *
@@ -34,12 +39,22 @@ const STRIPE_YEARS = Array.from({ length: 125 }, (_, i) => 1900 + i);
  * Climate stripes fade in behind content
  * Year progression: 1900 -> 2024
  * Temperature: 0°C -> 1.6°C
+ *
+ * Intro: First 15% of progress = gentle fade-in/slide-in of elements
  */
 export function Act1TimeBegins({ progress, isActive, reducedMotion }: Act1TimeBeginsProps) {
   const { t } = useTranslation();
 
-  // Map progress to year (0 = 1900, 1 = 2024)
-  const currentYear = Math.round(1900 + progress * 124);
+  // Intro animation: first 15% of section is fade-in
+  const introProgress = Math.min(1, progress / 0.15);
+  const introOpacity = reducedMotion ? 1 : easeOutCubic(introProgress);
+  const introTranslateY = reducedMotion ? 0 : (1 - easeOutCubic(introProgress)) * 30;
+
+  // Content progress: starts after intro (15% to 100% mapped to 0-1)
+  const contentProgress = progress < 0.15 ? 0 : (progress - 0.15) / 0.85;
+
+  // Map content progress to year (0 = 1900, 1 = 2024)
+  const currentYear = Math.round(1900 + contentProgress * 124);
 
   // Calculate current temperature anomaly based on interpolation with boundary validation
   const currentTemperature = useMemo(() => {
@@ -75,7 +90,7 @@ export function Act1TimeBegins({ progress, isActive, reducedMotion }: Act1TimeBe
   // Thermometer fill percentage (0-100)
   const thermometerFill = (currentTemperature / 1.6) * 100;
 
-  // Get color based on temperature
+  // Get color based on temperature with smooth interpolation
   const getTemperatureColor = (temp: number) => {
     if (temp < 0.3) return 'from-blue-500 to-blue-400';
     if (temp < 0.6) return 'from-blue-400 to-yellow-400';
@@ -83,28 +98,26 @@ export function Act1TimeBegins({ progress, isActive, reducedMotion }: Act1TimeBe
     return 'from-orange-500 to-red-600';
   };
 
-  // Get stripe color for a year
+  // Get stripe color for a year with smoother color transitions
   const getStripeColor = (year: number) => {
     const yearProgress = (year - 1900) / 124;
     const temp = yearProgress * 1.6;
 
-    // Cold blue to warm red transition
-    if (temp < 0.2) return 'hsl(210, 70%, 55%)';
-    if (temp < 0.4) return 'hsl(200, 60%, 50%)';
-    if (temp < 0.6) return 'hsl(180, 40%, 50%)';
-    if (temp < 0.8) return 'hsl(50, 60%, 50%)';
-    if (temp < 1.0) return 'hsl(35, 70%, 50%)';
-    if (temp < 1.2) return 'hsl(20, 80%, 50%)';
-    if (temp < 1.4) return 'hsl(10, 85%, 50%)';
-    return 'hsl(0, 90%, 45%)';
+    // Smooth HSL interpolation from blue to red
+    // Blue: hsl(210, 70%, 55%) -> Red: hsl(0, 90%, 45%)
+    const hue = 210 - (temp / 1.6) * 210;
+    const saturation = 70 + (temp / 1.6) * 20;
+    const lightness = 55 - (temp / 1.6) * 10;
+
+    return `hsl(${Math.max(0, hue)}, ${saturation}%, ${lightness}%)`;
   };
 
-  // Narrative text visibility
-  const showText1 = progress > 0.3 && progress < 0.7;
-  const showText2 = progress > 0.6;
+  // Narrative text visibility (adjusted for content progress)
+  const showText1 = contentProgress > 0.3 && contentProgress < 0.75;
+  const showText2 = contentProgress > 0.6;
 
-  // Climate stripes visibility (fade in after year 1950)
-  const stripesOpacity = Math.min(1, Math.max(0, (progress - 0.3) / 0.3));
+  // Climate stripes visibility (fade in after intro and some content progress)
+  const stripesOpacity = Math.min(1, Math.max(0, (contentProgress - 0.2) / 0.3)) * introOpacity;
 
   // Overall section opacity
   const sectionOpacity = isActive ? 1 : 0;
@@ -127,8 +140,11 @@ export function Act1TimeBegins({ progress, isActive, reducedMotion }: Act1TimeBe
     >
       {/* Climate Stripes Background */}
       <div
-        className="absolute inset-0 flex transition-opacity duration-1000"
-        style={{ opacity: stripesOpacity * 0.3 }}
+        className="absolute inset-0 flex"
+        style={{
+          opacity: stripesOpacity * 0.3,
+          transition: reducedMotion ? 'none' : 'opacity 1s ease-out',
+        }}
         aria-hidden="true"
       >
         {STRIPE_YEARS.slice(0, visibleStripes).map((year, i) => (
@@ -138,16 +154,31 @@ export function Act1TimeBegins({ progress, isActive, reducedMotion }: Act1TimeBe
             style={{
               backgroundColor: getStripeColor(year),
               opacity: i < visibleStripes ? 1 : 0,
+              transition: reducedMotion ? 'none' : 'background-color 0.5s ease-out',
             }}
           />
         ))}
       </div>
 
-      {/* Main Content */}
-      <div className="relative z-10 h-full flex items-center justify-center px-6">
+      {/* Main Content with intro animation */}
+      <div
+        className="relative z-10 h-full flex items-center justify-center px-6"
+        style={{
+          opacity: introOpacity,
+          transform: `translateY(${introTranslateY}px)`,
+          transition: reducedMotion ? 'none' : 'opacity 0.8s ease-out, transform 0.8s ease-out',
+        }}
+      >
         <div className="flex flex-col md:flex-row items-center gap-8 md:gap-16 w-full max-w-6xl">
           {/* LEFT: Thermometer */}
-          <div className="flex-shrink-0 flex flex-col items-center">
+          <div
+            className="flex-shrink-0 flex flex-col items-center"
+            style={{
+              opacity: introOpacity,
+              transform: `translateX(${reducedMotion ? 0 : (1 - introOpacity) * -20}px)`,
+              transition: reducedMotion ? 'none' : 'opacity 0.8s ease-out, transform 0.8s ease-out',
+            }}
+          >
             {/* Temperature value */}
             <div className="mb-4 text-center">
               <span className="text-4xl md:text-5xl font-bold tabular-nums text-white">
@@ -171,8 +202,7 @@ export function Act1TimeBegins({ progress, isActive, reducedMotion }: Act1TimeBe
               {/* Mercury fill */}
               <div
                 className={cn(
-                  'absolute bottom-0 left-1/2 -translate-x-1/2 w-10 md:w-12 rounded-full bg-gradient-to-t transition-all',
-                  reducedMotion ? '' : 'duration-300',
+                  'absolute bottom-0 left-1/2 -translate-x-1/2 w-10 md:w-12 rounded-full bg-gradient-to-t',
                   getTemperatureColor(currentTemperature)
                 )}
                 style={{
@@ -180,6 +210,7 @@ export function Act1TimeBegins({ progress, isActive, reducedMotion }: Act1TimeBe
                   boxShadow: currentTemperature > 1.0
                     ? '0 0 20px rgba(239, 68, 68, 0.4)'
                     : '0 0 10px rgba(59, 130, 246, 0.3)',
+                  transition: reducedMotion ? 'none' : 'height 0.3s ease-out, box-shadow 0.5s ease-out',
                 }}
               />
             </div>
@@ -187,8 +218,7 @@ export function Act1TimeBegins({ progress, isActive, reducedMotion }: Act1TimeBe
             {/* Thermometer bulb */}
             <div
               className={cn(
-                'w-20 md:w-24 h-20 md:h-24 -mt-4 rounded-full bg-gradient-to-br transition-all',
-                reducedMotion ? '' : 'duration-500',
+                'w-20 md:w-24 h-20 md:h-24 -mt-4 rounded-full bg-gradient-to-br',
                 currentTemperature > 1.0
                   ? 'from-orange-500 to-red-600'
                   : currentTemperature > 0.5
@@ -199,12 +229,20 @@ export function Act1TimeBegins({ progress, isActive, reducedMotion }: Act1TimeBe
                 boxShadow: currentTemperature > 1.0
                   ? '0 0 30px rgba(239, 68, 68, 0.5)'
                   : '0 0 20px rgba(59, 130, 246, 0.3)',
+                transition: reducedMotion ? 'none' : 'box-shadow 0.5s ease-out',
               }}
             />
           </div>
 
           {/* RIGHT: Timeline + Narrative */}
-          <div className="flex-1 max-w-xl">
+          <div
+            className="flex-1 max-w-xl"
+            style={{
+              opacity: introOpacity,
+              transform: `translateX(${reducedMotion ? 0 : (1 - introOpacity) * 20}px)`,
+              transition: reducedMotion ? 'none' : 'opacity 0.8s ease-out, transform 0.8s ease-out',
+            }}
+          >
             {/* Year display */}
             <div className="mb-8">
               <span className="text-6xl md:text-8xl font-bold font-display tabular-nums text-white">
@@ -215,8 +253,11 @@ export function Act1TimeBegins({ progress, isActive, reducedMotion }: Act1TimeBe
             {/* Timeline */}
             <div className="relative h-2 bg-white/10 rounded-full overflow-hidden mb-8">
               <div
-                className="absolute left-0 top-0 h-full bg-gradient-to-r from-blue-500 via-yellow-500 to-red-500 rounded-full transition-all duration-100"
-                style={{ width: `${progress * 100}%` }}
+                className="absolute left-0 top-0 h-full bg-gradient-to-r from-blue-500 via-yellow-500 to-red-500 rounded-full"
+                style={{
+                  width: `${contentProgress * 100}%`,
+                  transition: reducedMotion ? 'none' : 'width 0.1s ease-out',
+                }}
               />
               {/* Year markers */}
               <div className="absolute inset-0 flex justify-between items-center">
@@ -226,6 +267,7 @@ export function Act1TimeBegins({ progress, isActive, reducedMotion }: Act1TimeBe
                     className="w-1 h-3 bg-white/30 rounded-full"
                     style={{
                       opacity: currentYear >= year ? 1 : 0.3,
+                      transition: reducedMotion ? 'none' : 'opacity 0.3s ease-out',
                     }}
                   />
                 ))}
@@ -241,25 +283,21 @@ export function Act1TimeBegins({ progress, isActive, reducedMotion }: Act1TimeBe
             {/* Narrative text */}
             <div className="space-y-4">
               <p
-                className={cn(
-                  'text-lg md:text-xl text-white/80 transition-all',
-                  reducedMotion ? '' : 'duration-500'
-                )}
+                className="text-lg md:text-xl text-white/80"
                 style={{
                   opacity: showText1 ? 1 : 0,
                   transform: showText1 ? 'translateY(0)' : 'translateY(10px)',
+                  transition: reducedMotion ? 'none' : 'opacity 0.5s ease-out, transform 0.5s ease-out',
                 }}
               >
                 {t.act1.warming.text1}
               </p>
               <p
-                className={cn(
-                  'text-lg md:text-xl text-white transition-all',
-                  reducedMotion ? '' : 'duration-500'
-                )}
+                className="text-lg md:text-xl text-white"
                 style={{
                   opacity: showText2 ? 1 : 0,
                   transform: showText2 ? 'translateY(0)' : 'translateY(10px)',
+                  transition: reducedMotion ? 'none' : 'opacity 0.5s ease-out, transform 0.5s ease-out',
                 }}
               >
                 {t.act1.warming.text2}
@@ -271,11 +309,11 @@ export function Act1TimeBegins({ progress, isActive, reducedMotion }: Act1TimeBe
 
       {/* Micro-text hint */}
       <div
-        className={cn(
-          'absolute bottom-8 right-8 text-xs text-white/40 transition-opacity',
-          reducedMotion ? '' : 'duration-500'
-        )}
-        style={{ opacity: progress < 0.2 ? 1 : 0 }}
+        className="absolute bottom-8 right-8 text-xs text-white/40"
+        style={{
+          opacity: progress < 0.25 ? 1 : 0,
+          transition: reducedMotion ? 'none' : 'opacity 0.5s ease-out',
+        }}
       >
         {t.act1.timeBegins.microText}
       </div>

@@ -16,14 +16,15 @@ interface Act1ScrollytellingProps {
 }
 
 // Define section boundaries as percentages of total scroll
+// Adjusted for better pacing: longer arrival, dwell in present section
 const SECTIONS = {
-  arrival: { start: 0, end: 0.08, index: 0 },
-  timeBegins: { start: 0.08, end: 0.30, index: 1 },
-  present: { start: 0.30, end: 0.42, index: 2 },
-  average: { start: 0.42, end: 0.55, index: 3 },
-  impacts: { start: 0.55, end: 0.85, index: 4 },
-  landing: { start: 0.85, end: 0.94, index: 5 },
-  transition: { start: 0.94, end: 1.0, index: 6 },
+  arrival: { start: 0, end: 0.10, index: 0 },      // 10% - more breathing room
+  timeBegins: { start: 0.10, end: 0.32, index: 1 }, // 22% - with intro fade
+  present: { start: 0.32, end: 0.50, index: 2 },    // 18% - includes 8% dwell at end
+  average: { start: 0.50, end: 0.60, index: 3 },    // 10%
+  impacts: { start: 0.60, end: 0.86, index: 4 },    // 26%
+  landing: { start: 0.86, end: 0.94, index: 5 },    // 8%
+  transition: { start: 0.94, end: 1.0, index: 6 },  // 6%
 } as const;
 
 type SectionName = keyof typeof SECTIONS;
@@ -37,6 +38,15 @@ const SECTION_ORDER: SectionName[] = [
   'landing',
   'transition',
 ];
+
+// Easing function for smooth transitions
+function easeOutCubic(t: number): number {
+  return 1 - Math.pow(1 - t, 3);
+}
+
+function easeInOutCubic(t: number): number {
+  return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+}
 
 export function Act1Scrollytelling({ className }: Act1ScrollytellingProps) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -60,12 +70,13 @@ export function Act1Scrollytelling({ className }: Act1ScrollytellingProps) {
     return () => mediaQuery.removeEventListener('change', handleChange);
   }, []);
 
-  // Calculate section-local progress
-  const getSectionProgress = useCallback((section: SectionName) => {
+  // Calculate section-local progress with optional easing
+  const getSectionProgress = useCallback((section: SectionName, applyEasing = false) => {
     const { start, end } = SECTIONS[section];
     if (progress < start) return 0;
     if (progress > end) return 1;
-    return (progress - start) / (end - start);
+    const rawProgress = (progress - start) / (end - start);
+    return applyEasing ? easeInOutCubic(rawProgress) : rawProgress;
   }, [progress]);
 
   // Determine which section is active
@@ -87,6 +98,10 @@ export function Act1Scrollytelling({ className }: Act1ScrollytellingProps) {
     return Math.abs(sectionIndex - activeSectionIndex) <= 1;
   }, [activeSectionIndex]);
 
+  // Calculate intro fade for the entire Act 1 (from hero)
+  // First 5% of progress = fade in from hero
+  const act1IntroOpacity = Math.min(1, progress / 0.05);
+
   return (
     <div
       ref={containerRef}
@@ -101,7 +116,13 @@ export function Act1Scrollytelling({ className }: Act1ScrollytellingProps) {
       }}
     >
       {/* Sticky container for all content */}
-      <div className="sticky top-0 h-screen overflow-hidden bg-black">
+      <div
+        className="sticky top-0 h-screen overflow-hidden bg-black"
+        style={{
+          // Smooth fade from hero section
+          opacity: prefersReducedMotion ? 1 : easeOutCubic(act1IntroOpacity),
+        }}
+      >
         {/* ACT 1.0 - Arrival */}
         {shouldRenderSection('arrival') && (
           <Act1Arrival
@@ -120,7 +141,7 @@ export function Act1Scrollytelling({ className }: Act1ScrollytellingProps) {
           />
         )}
 
-        {/* ACT 1.3 - The Present Moment */}
+        {/* ACT 1.3 - The Present Moment (with dwell) */}
         {shouldRenderSection('present') && (
           <Act1Present
             progress={getSectionProgress('present')}
