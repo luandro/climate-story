@@ -153,6 +153,104 @@
             "trust_level": "very_high",
             "type": "government",
             "url": "https://www.climate.gov/news-features/understanding-climate/climate-change-atmospheric-carbon-dioxide"
+        },
+        "nature_scientific_reports_2023": {
+            "name": "Nature Scientific Reports",
+            "ref": "Indigenous territories and deforestation rates (2023)",
+            "trust_level": "very_high",
+            "type": "academic",
+            "url": null
+        },
+        "fao_unsdsn": {
+            "name": "FAO / UN SDSN",
+            "ref": "Forest governance and indigenous stewardship",
+            "trust_level": "very_high",
+            "type": "intergovernmental",
+            "url": null
+        },
+        "rainforest_foundation": {
+            "name": "Rainforest Foundation",
+            "ref": "Indigenous land rights and forest conservation",
+            "trust_level": "high",
+            "type": "ngo",
+            "url": null
+        },
+        "mdpi_sustainability_2020": {
+            "name": "MDPI Sustainability",
+            "ref": "Agroforestry productivity studies (2020)",
+            "trust_level": "high",
+            "type": "academic",
+            "url": null
+        },
+        "sciencedirect_2020": {
+            "name": "ScienceDirect",
+            "ref": "Agroforestry systems productivity comparison (2020)",
+            "trust_level": "high",
+            "type": "academic",
+            "url": null
+        },
+        "ipea_td_2296": {
+            "name": "IPEA",
+            "ref": "Texto para Discuss\u00e3o 2296 - ILPF",
+            "trust_level": "very_high",
+            "type": "government",
+            "url": null
+        },
+        "embrapa_abc_plus": {
+            "name": "EMBRAPA / Plano ABC+",
+            "ref": "Integra\u00e7\u00e3o Lavoura-Pecu\u00e1ria-Floresta",
+            "trust_level": "very_high",
+            "type": "government",
+            "url": null
+        },
+        "reuters_brazil": {
+            "name": "Reuters Brasil",
+            "ref": "Pastagens regenerativas no Par\u00e1",
+            "trust_level": "high",
+            "type": "media",
+            "url": null
+        },
+        "fao_insper_agro": {
+            "name": "FAO / Insper Agro",
+            "ref": "Regenerative pasture management",
+            "trust_level": "high",
+            "type": "academic",
+            "url": null
+        },
+        "wri_ipcc_nbs": {
+            "name": "WRI / IPCC",
+            "ref": "Nature-based solutions potential",
+            "trust_level": "very_high",
+            "type": "intergovernmental",
+            "url": null
+        },
+        "irena_2024": {
+            "name": "IRENA",
+            "ref": "Renewable Power Generation Costs 2024",
+            "trust_level": "very_high",
+            "type": "intergovernmental",
+            "url": null
+        },
+        "iea_ipcc_ar6": {
+            "name": "IEA / IPCC AR6",
+            "ref": "Energy efficiency potential",
+            "trust_level": "very_high",
+            "type": "intergovernmental",
+            "url": null
+        },
+        "icct_ev_lifecycle": {
+            "name": "ICCT",
+            "ref": "Electric vehicle lifecycle emissions comparison",
+            "trust_level": "very_high",
+            "type": "ngo",
+            "url": null
+        },
+        "springer_climate_justice_2024": {
+            "name": "Springer",
+            "ref": "Climate Justice & Indigenous Governance (2024)",
+            "trust_level": "high",
+            "type": "academic",
+            "url": null
         }
     },
     "metrics_registry": {
@@ -469,6 +567,87 @@
                 "status": "needs_better_source"
             }
         },
+        "indigenous_territories_deforestation": {
+            "id": "indigenous_territories_deforestation",
+            "category": "Florestas",
+            "label": "Terras Ind\u00edgenas - Desmatamento",
+            "impact": {
+                "description": "Taxas de desmatamento significativamente menores em terras ind\u00edgenas reconhecidas",
+                "comparison": "Menor desmatamento comparado a \u00e1reas vizinhas n\u00e3o protegidas"
+            },
+            "geography": "Brazil",
+            "type": "current_state",
+            "year_reference": 2023,
+            "sources": [
+                "nature_scientific_reports_2023",
+                "fao_unsdsn",
+                "rainforest_foundation"
+            ],
+            "update": {
+                "frequency": "annual",
+                "status": "ok"
+            }
+        },
+        "agroforestry_productivity": {
+            "id": "agroforestry_productivity",
+            "category": "Agricultura",
+            "label": "Agroflorestas - Produtividade",
+            "impact": {
+                "description": "Maior produtividade total por hectare comparada a monoculturas simples",
+                "co2_sequestration": true
+            },
+            "geography": "Brazil",
+            "type": "current_state",
+            "year_reference": 2020,
+            "sources": [
+                "mdpi_sustainability_2020",
+                "sciencedirect_2020"
+            ],
+            "update": {
+                "frequency": "occasional",
+                "status": "ok"
+            }
+        },
+        "ilpf_productivity": {
+            "id": "ilpf_productivity",
+            "category": "Agricultura",
+            "label": "ILPF - Integra\u00e7\u00e3o Lavoura-Pecu\u00e1ria-Floresta",
+            "impact": {
+                "description": "Aumento significativo na taxa de lota\u00e7\u00e3o animal por hectare e redu\u00e7\u00e3o no tempo de abate",
+                "benefits": ["Produtividade pecu\u00e1ria maior", "Melhor conforto t\u00e9rmico animal", "Solo mais f\u00e9rtil", "Recupera\u00e7\u00e3o de pastagens degradadas"]
+            },
+            "geography": "Brazil",
+            "type": "current_state",
+            "year_reference": 2024,
+            "sources": [
+                "ipea_td_2296",
+                "embrapa_abc_plus"
+            ],
+            "update": {
+                "frequency": "occasional",
+                "status": "ok"
+            }
+        },
+        "regenerative_pastures": {
+            "id": "regenerative_pastures",
+            "category": "Agricultura",
+            "label": "Pastagens Regenerativas",
+            "impact": {
+                "description": "Melhoria do solo, reten\u00e7\u00e3o de \u00e1gua e redu\u00e7\u00e3o de emiss\u00f5es de metano",
+                "deforestation_pressure": "Reduz press\u00e3o por novos desmatamentos"
+            },
+            "geography": "Brazil",
+            "type": "current_state",
+            "year_reference": 2024,
+            "sources": [
+                "reuters_brazil",
+                "fao_insper_agro"
+            ],
+            "update": {
+                "frequency": "occasional",
+                "status": "ok"
+            }
+        },
         "brazil_ndc_2035_reduction_range": {
             "id": "brazil_ndc_2035_reduction_range",
             "label": "Meta de Redu\u00e7\u00e3o (NDC 2035)",
@@ -678,6 +857,41 @@
                 "solar_jobs_vs_fossil",
                 "brazil_disaster_cost_2011_2023"
             ]
+        },
+        "solutions_impact_extended": {
+            "title": "Potencial de Impacto das Solu\u00e7\u00f5es (Extendido)",
+            "chart_type_suggestion": "Interactive Toolkit Tiles",
+            "agriculture_sustainable": {
+                "title": "Agricultura Sustent\u00e1vel e Uso da Terra",
+                "items": [
+                    {
+                        "id": "agroforestry_productivity",
+                        "label": "Agroflorestas",
+                        "impact": "Aumento da produtividade total por hectare + sequestro de carbono",
+                        "evidence": "Produ\u00e7\u00e3o diversificada supera monoculturas simples",
+                        "sources": ["mdpi_sustainability_2020", "sciencedirect_2020"]
+                    },
+                    {
+                        "id": "ilpf_productivity",
+                        "label": "ILPF",
+                        "impact": "Maior taxa de lota\u00e7\u00e3o animal e recupera\u00e7\u00e3o de pastagens",
+                        "evidence": "Produtividade pecu\u00e1ria maior e menor press\u00e3o por desmatamento",
+                        "sources": ["ipea_td_2296", "embrapa_abc_plus"]
+                    },
+                    {
+                        "id": "regenerative_pastures",
+                        "label": "Pastagens Regenerativas",
+                        "impact": "Melhora do solo, menor metano, maior resili\u00eancia",
+                        "sources": ["reuters_brazil", "fao_insper_agro"]
+                    }
+                ]
+            },
+            "indigenous_stewardship": {
+                "id": "indigenous_territories_deforestation",
+                "title": "Povos Ind\u00edgenas e Territ\u00f3rios",
+                "impact": "Menor desmatamento e maior estabilidade de carbono",
+                "sources": ["nature_scientific_reports_2023", "fao_unsdsn", "rainforest_foundation"]
+            }
         }
     },
     "narrative": {

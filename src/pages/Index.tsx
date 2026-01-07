@@ -4,6 +4,7 @@ import { Footer } from '@/components/layout/Footer';
 import { ScrollProgressIndicator } from '@/components/ui/scroll-progress-indicator';
 import { Act1Scrollytelling } from '@/components/act1';
 import { Act2Scrollytelling } from '@/components/act2';
+import { Act3Scrollytelling } from '@/components/act3';
 
 function ClimateJourneyContent() {
   const { t } = useTranslation();
@@ -38,11 +39,14 @@ function ClimateJourneyContent() {
         {/* Act 2: Anatomy of the Problem - "De onde isso tudo vem?" */}
         <Act2Scrollytelling />
 
-        {/* Placeholder for future acts - to be implemented */}
+        {/* Act 3: The Toolkit - "O que realmente muda o jogo?" */}
+        <Act3Scrollytelling />
+
+        {/* Placeholder for Act 4 - to be implemented */}
         <section className="min-h-screen bg-[#0f0f0f] text-white flex items-center justify-center">
           <div className="text-center px-6 opacity-50">
             <p className="text-lg text-white/50">
-              Acts 3–4 coming soon...
+              Act 4 coming soon...
             </p>
           </div>
         </section>
