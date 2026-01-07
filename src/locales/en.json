@@ -7,6 +7,72 @@
     "languageToggle": "Language",
     "skipToContent": "Skip to main content"
   },
+  "act2": {
+    "title": "The Anatomy of the Problem",
+    "subtitle": "Where does all this come from?",
+    "actLabel": "Act II",
+    "entry": {
+      "text": "Warming doesn't happen by accident."
+    },
+    "activities": {
+      "text": "It all starts with human activities.",
+      "energy": "Energy generation",
+      "transport": "Transportation",
+      "industry": "Industry",
+      "agriculture": "Agriculture",
+      "deforestation": "Deforestation"
+    },
+    "emissions": {
+      "text": "Each activity releases gases that get trapped in the atmosphere.",
+      "microText": "They retain heat. That's what warms the planet."
+    },
+    "atmosphere": {
+      "text": "The more gases, the more heat is retained."
+    },
+    "global": {
+      "text": "Globally, the main cause is clear:",
+      "emphasis": "burning fossil fuels.",
+      "microText": "Coal, oil, and gas.",
+      "percentLabel": "of global emissions"
+    },
+    "toggle": {
+      "world": "WORLD",
+      "brazil": "BRAZIL",
+      "worldPrompt": "Tap \"Brazil\" to see the difference.",
+      "brazilText": "In Brazil, the story is different.",
+      "brazilFollowUp": "Here, deforestation and agriculture share the spotlight.",
+      "deforestationLabel": "Deforestation",
+      "agricultureLabel": "Agriculture"
+    },
+    "deforestation": {
+      "text": "When a forest falls,",
+      "textEmphasis": "the stored carbon is released.",
+      "followUp": "And the ability to absorb CO₂ disappears.",
+      "releases": "Releases CO₂",
+      "losesAbsorption": "Loses absorption"
+    },
+    "agriculture": {
+      "text": "Intensive cattle farming releases",
+      "methane": "methane",
+      "followUp": "a gas much more potent than CO₂ in the short term.",
+      "potencyLabel": "80x more potent*",
+      "potencyNote": "*over 20 years"
+    },
+    "systemic": {
+      "text": "It's not about individual choices.",
+      "followUp": "It's about entire systems of production and land use."
+    },
+    "brazilMatters": {
+      "text": "That's why Brazil is decisive.",
+      "followUp": "Few countries concentrate so much impact in a single factor.",
+      "badge1": "60% of the Amazon",
+      "badge2": "Largest commercial herd",
+      "badge3": "Top 6 global emitter"
+    },
+    "transition": {
+      "text": "Next: What actually changes the game."
+    }
+  },
   "act1": {
     "title": "Diagnosis",
     "subtitle": "Where are we?",

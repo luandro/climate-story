@@ -7,6 +7,72 @@
     "languageToggle": "Idioma",
     "skipToContent": "Pular para o conteúdo principal"
   },
+  "act2": {
+    "title": "A Anatomia do Problema",
+    "subtitle": "De onde isso tudo vem?",
+    "actLabel": "Ato II",
+    "entry": {
+      "text": "O aquecimento não acontece por acaso."
+    },
+    "activities": {
+      "text": "Tudo começa com atividades humanas.",
+      "energy": "Geração de energia",
+      "transport": "Transporte",
+      "industry": "Indústria",
+      "agriculture": "Agricultura",
+      "deforestation": "Desmatamento"
+    },
+    "emissions": {
+      "text": "Cada atividade libera gases que ficam presos na atmosfera.",
+      "microText": "Eles retêm calor. É isso que aquece o planeta."
+    },
+    "atmosphere": {
+      "text": "Quanto mais gases, mais calor fica retido."
+    },
+    "global": {
+      "text": "No mundo, a principal causa é clara:",
+      "emphasis": "a queima de combustíveis fósseis.",
+      "microText": "Carvão, petróleo e gás.",
+      "percentLabel": "das emissões globais"
+    },
+    "toggle": {
+      "world": "MUNDO",
+      "brazil": "BRASIL",
+      "worldPrompt": "Toque em \"Brasil\" para ver a diferença.",
+      "brazilText": "No Brasil, a história é diferente.",
+      "brazilFollowUp": "Aqui, o desmatamento e a agropecuária dividem o protagonismo.",
+      "deforestationLabel": "Desmatamento",
+      "agricultureLabel": "Agropecuária"
+    },
+    "deforestation": {
+      "text": "Quando uma floresta cai,",
+      "textEmphasis": "o carbono armazenado é liberado.",
+      "followUp": "E a capacidade de absorver CO₂ desaparece.",
+      "releases": "Libera CO₂",
+      "losesAbsorption": "Perde absorção"
+    },
+    "agriculture": {
+      "text": "A criação intensiva de gado libera",
+      "methane": "metano",
+      "followUp": "um gás muito mais potente que o CO₂ no curto prazo.",
+      "potencyLabel": "80x mais potente*",
+      "potencyNote": "*em 20 anos"
+    },
+    "systemic": {
+      "text": "Não é sobre escolhas individuais.",
+      "followUp": "É sobre sistemas inteiros de produção e uso da terra."
+    },
+    "brazilMatters": {
+      "text": "Por isso o Brasil é decisivo.",
+      "followUp": "Poucos países concentram tanto impacto em um único fator.",
+      "badge1": "60% da Amazônia",
+      "badge2": "Maior rebanho comercial",
+      "badge3": "Top 6 emissor global"
+    },
+    "transition": {
+      "text": "A seguir: O que realmente muda o jogo."
+    }
+  },
   "act1": {
     "title": "Diagnóstico",
     "subtitle": "Onde estamos?",
