@@ -69,7 +69,7 @@ export function Act2Entry({ progress, isActive, reducedMotion, flowVisibility }:
                   height: '100%',
                   animation: reducedMotion
                     ? 'none'
-                    : `flowUp ${2 + i * 0.3}s ease-in-out infinite`,
+                    : `act2-flowUp ${2 + i * 0.3}s ease-in-out infinite`,
                   animationDelay: `${i * 0.2}s`,
                 }}
               />
@@ -96,7 +96,7 @@ export function Act2Entry({ progress, isActive, reducedMotion, flowVisibility }:
 
       {/* CSS for flow animation */}
       <style>{`
-        @keyframes flowUp {
+        @keyframes act2-flowUp {
           0% {
             transform: translateY(100%);
             opacity: 0;

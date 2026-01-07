@@ -83,11 +83,11 @@ export function Act2EmissionsFlow({
             preserveAspectRatio="xMidYMid meet"
           >
             <defs>
-              <linearGradient id="co2-gradient" x1="0%" y1="100%" x2="100%" y2="0%">
+              <linearGradient id="act2-co2-gradient" x1="0%" y1="100%" x2="100%" y2="0%">
                 <stop offset="0%" stopColor="rgba(127, 29, 29, 0.7)" />
                 <stop offset="100%" stopColor="rgba(127, 29, 29, 0.3)" />
               </linearGradient>
-              <linearGradient id="ch4-gradient" x1="0%" y1="100%" x2="100%" y2="0%">
+              <linearGradient id="act2-ch4-gradient" x1="0%" y1="100%" x2="100%" y2="0%">
                 <stop offset="0%" stopColor="rgba(245, 158, 11, 0.7)" />
                 <stop offset="100%" stopColor="rgba(245, 158, 11, 0.3)" />
               </linearGradient>
@@ -113,7 +113,7 @@ export function Act2EmissionsFlow({
                           ${(startX + endX) / 2} ${(startY + endY) / 2}
                         T ${endX} ${endY}`}
                     fill="none"
-                    stroke={source.gasType === 'ch4' ? 'url(#ch4-gradient)' : 'url(#co2-gradient)'}
+                    stroke={source.gasType === 'ch4' ? 'url(#act2-ch4-gradient)' : 'url(#act2-co2-gradient)'}
                     strokeWidth={flowWidth * flowProgress}
                     strokeLinecap="round"
                     strokeDasharray={`${pathLength * 200} 200`}

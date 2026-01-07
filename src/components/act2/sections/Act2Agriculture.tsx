@@ -102,11 +102,11 @@ export function Act2Agriculture({
             preserveAspectRatio="xMidYMid meet"
           >
             <defs>
-              <linearGradient id="agriculture-focus" x1="0%" y1="100%" x2="100%" y2="0%">
+              <linearGradient id="act2-agriculture-focus" x1="0%" y1="100%" x2="100%" y2="0%">
                 <stop offset="0%" stopColor="rgba(245, 158, 11, 1)" />
                 <stop offset="100%" stopColor="rgba(245, 158, 11, 0.6)" />
               </linearGradient>
-              <linearGradient id="dimmed-agri" x1="0%" y1="100%" x2="100%" y2="0%">
+              <linearGradient id="act2-dimmed-agri" x1="0%" y1="100%" x2="100%" y2="0%">
                 <stop offset="0%" stopColor="rgba(107, 114, 128, 0.15)" />
                 <stop offset="100%" stopColor="rgba(107, 114, 128, 0.05)" />
               </linearGradient>
@@ -146,7 +146,7 @@ export function Act2Agriculture({
                           ${(startX + endX) / 2} ${(startY + endY) / 2}
                         T ${endX} ${endY}`}
                     fill="none"
-                    stroke={isAgriculture ? 'url(#agriculture-focus)' : 'url(#dimmed-agri)'}
+                    stroke={isAgriculture ? 'url(#act2-agriculture-focus)' : 'url(#act2-dimmed-agri)'}
                     strokeWidth={flowWidth}
                     strokeLinecap="round"
                     filter={isAgriculture ? 'url(#act2-methane-glow)' : 'none'}

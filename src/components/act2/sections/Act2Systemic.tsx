@@ -99,7 +99,7 @@ export function Act2Systemic({
             preserveAspectRatio="xMidYMid meet"
           >
             <defs>
-              <linearGradient id="systemic-flow" x1="0%" y1="100%" x2="100%" y2="0%">
+              <linearGradient id="act2-systemic-flow" x1="0%" y1="100%" x2="100%" y2="0%">
                 <stop offset="0%" stopColor="rgba(156, 163, 175, 0.6)" />
                 <stop offset="100%" stopColor="rgba(156, 163, 175, 0.3)" />
               </linearGradient>
@@ -120,7 +120,7 @@ export function Act2Systemic({
                           ${(startX + endX) / 2} ${(startY + endY) / 2}
                         T ${endX} ${endY}`}
                     fill="none"
-                    stroke="url(#systemic-flow)"
+                    stroke="url(#act2-systemic-flow)"
                     strokeWidth={flowWidth}
                     strokeLinecap="round"
                     style={{

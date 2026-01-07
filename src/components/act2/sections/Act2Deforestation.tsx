@@ -103,11 +103,11 @@ export function Act2Deforestation({
             preserveAspectRatio="xMidYMid meet"
           >
             <defs>
-              <linearGradient id="deforestation-focus" x1="0%" y1="100%" x2="100%" y2="0%">
+              <linearGradient id="act2-deforestation-focus" x1="0%" y1="100%" x2="100%" y2="0%">
                 <stop offset="0%" stopColor="rgba(220, 38, 38, 1)" />
                 <stop offset="100%" stopColor="rgba(220, 38, 38, 0.6)" />
               </linearGradient>
-              <linearGradient id="dimmed-flow" x1="0%" y1="100%" x2="100%" y2="0%">
+              <linearGradient id="act2-dimmed-flow" x1="0%" y1="100%" x2="100%" y2="0%">
                 <stop offset="0%" stopColor="rgba(107, 114, 128, 0.15)" />
                 <stop offset="100%" stopColor="rgba(107, 114, 128, 0.05)" />
               </linearGradient>
@@ -139,7 +139,7 @@ export function Act2Deforestation({
                           ${(startX + endX) / 2} ${(startY + endY) / 2}
                         T ${endX} ${endY}`}
                     fill="none"
-                    stroke={isDeforestation ? 'url(#deforestation-focus)' : 'url(#dimmed-flow)'}
+                    stroke={isDeforestation ? 'url(#act2-deforestation-focus)' : 'url(#act2-dimmed-flow)'}
                     strokeWidth={flowWidth}
                     strokeLinecap="round"
                     filter={isDeforestation ? 'url(#act2-deforestation-glow)' : 'none'}

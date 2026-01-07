@@ -73,7 +73,7 @@ export function Act2AtmosphereFills({
                 rgba(255, 100, 50, ${heatShimmer * 0.05}) 2%,
                 transparent 4%
               )`,
-              animation: 'shimmer 3s ease-in-out infinite',
+              animation: 'act2-shimmer 3s ease-in-out infinite',
               opacity: heatShimmer,
             }}
           />
@@ -106,11 +106,11 @@ export function Act2AtmosphereFills({
             preserveAspectRatio="xMidYMid meet"
           >
             <defs>
-              <linearGradient id="co2-atm-gradient" x1="0%" y1="100%" x2="100%" y2="0%">
+              <linearGradient id="act2-co2-atm-gradient" x1="0%" y1="100%" x2="100%" y2="0%">
                 <stop offset="0%" stopColor="rgba(127, 29, 29, 0.7)" />
                 <stop offset="100%" stopColor="rgba(127, 29, 29, 0.3)" />
               </linearGradient>
-              <linearGradient id="ch4-atm-gradient" x1="0%" y1="100%" x2="100%" y2="0%">
+              <linearGradient id="act2-ch4-atm-gradient" x1="0%" y1="100%" x2="100%" y2="0%">
                 <stop offset="0%" stopColor="rgba(245, 158, 11, 0.7)" />
                 <stop offset="100%" stopColor="rgba(245, 158, 11, 0.3)" />
               </linearGradient>
@@ -131,7 +131,7 @@ export function Act2AtmosphereFills({
                           ${(startX + endX) / 2} ${(startY + endY) / 2}
                         T ${endX} ${endY}`}
                     fill="none"
-                    stroke={source.gasType === 'ch4' ? 'url(#ch4-atm-gradient)' : 'url(#co2-atm-gradient)'}
+                    stroke={source.gasType === 'ch4' ? 'url(#act2-ch4-atm-gradient)' : 'url(#act2-co2-atm-gradient)'}
                     strokeWidth={flowWidth}
                     strokeLinecap="round"
                   />
@@ -177,7 +177,7 @@ export function Act2AtmosphereFills({
 
       {/* CSS for shimmer animation */}
       <style>{`
-        @keyframes shimmer {
+        @keyframes act2-shimmer {
           0%, 100% {
             transform: translateY(0);
           }

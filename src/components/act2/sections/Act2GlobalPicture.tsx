@@ -114,11 +114,11 @@ export function Act2GlobalPicture({
             preserveAspectRatio="xMidYMid meet"
           >
             <defs>
-              <linearGradient id="fossil-highlight" x1="0%" y1="100%" x2="100%" y2="0%">
+              <linearGradient id="act2-fossil-highlight" x1="0%" y1="100%" x2="100%" y2="0%">
                 <stop offset="0%" stopColor="rgba(75, 85, 99, 0.9)" />
                 <stop offset="100%" stopColor="rgba(75, 85, 99, 0.5)" />
               </linearGradient>
-              <linearGradient id="other-flow" x1="0%" y1="100%" x2="100%" y2="0%">
+              <linearGradient id="act2-other-flow" x1="0%" y1="100%" x2="100%" y2="0%">
                 <stop offset="0%" stopColor="rgba(127, 29, 29, 0.4)" />
                 <stop offset="100%" stopColor="rgba(127, 29, 29, 0.2)" />
               </linearGradient>
@@ -150,7 +150,7 @@ export function Act2GlobalPicture({
                           ${(startX + endX) / 2} ${(startY + endY) / 2}
                         T ${endX} ${endY}`}
                     fill="none"
-                    stroke={isFossil ? 'url(#fossil-highlight)' : 'url(#other-flow)'}
+                    stroke={isFossil ? 'url(#act2-fossil-highlight)' : 'url(#act2-other-flow)'}
                     strokeWidth={flowWidth}
                     strokeLinecap="round"
                     filter={isFossil && highlightProgress > 0.5 ? 'url(#act2-glow-global)' : 'none'}

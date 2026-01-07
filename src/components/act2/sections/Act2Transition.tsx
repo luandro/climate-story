@@ -67,7 +67,7 @@ export function Act2Transition({
           }}
         >
           <defs>
-            <linearGradient id="fade-flow" x1="0%" y1="100%" x2="0%" y2="0%">
+            <linearGradient id="act2-fade-flow" x1="0%" y1="100%" x2="0%" y2="0%">
               <stop offset="0%" stopColor="rgba(156, 163, 175, 0.4)" />
               <stop offset="100%" stopColor="rgba(156, 163, 175, 0.1)" />
             </linearGradient>
@@ -84,7 +84,7 @@ export function Act2Transition({
                 <path
                   d={`M ${startX} 180 Q ${startX + 20} 100, ${100 + i * 10} 20`}
                   fill="none"
-                  stroke="url(#fade-flow)"
+                  stroke="url(#act2-fade-flow)"
                   strokeWidth={Math.max(1, width)}
                   strokeLinecap="round"
                   style={{

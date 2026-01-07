@@ -108,9 +108,15 @@ export function Act2BrazilToggle({
           transition: reducedMotion ? 'none' : 'all 0.5s ease-out',
         }}
       >
-        <div className="flex items-center bg-white/10 backdrop-blur-sm rounded-full p-1">
+        <div
+          className="flex items-center bg-white/10 backdrop-blur-sm rounded-full p-1"
+          role="radiogroup"
+          aria-label="Select region to view emissions data"
+        >
           <button
             onClick={() => onRegionToggle('world')}
+            role="radio"
+            aria-checked={!isBrazil}
             className={cn(
               'px-4 py-2 rounded-full text-sm font-medium transition-all',
               !isBrazil
@@ -125,6 +131,8 @@ export function Act2BrazilToggle({
           </button>
           <button
             onClick={() => onRegionToggle('brazil')}
+            role="radio"
+            aria-checked={isBrazil}
             className={cn(
               'px-4 py-2 rounded-full text-sm font-medium transition-all',
               isBrazil
@@ -189,15 +197,15 @@ export function Act2BrazilToggle({
             preserveAspectRatio="xMidYMid meet"
           >
             <defs>
-              <linearGradient id="deforestation-br" x1="0%" y1="100%" x2="100%" y2="0%">
+              <linearGradient id="act2-deforestation-br" x1="0%" y1="100%" x2="100%" y2="0%">
                 <stop offset="0%" stopColor="rgba(220, 38, 38, 0.9)" />
                 <stop offset="100%" stopColor="rgba(220, 38, 38, 0.5)" />
               </linearGradient>
-              <linearGradient id="agriculture-br" x1="0%" y1="100%" x2="100%" y2="0%">
+              <linearGradient id="act2-agriculture-br" x1="0%" y1="100%" x2="100%" y2="0%">
                 <stop offset="0%" stopColor="rgba(245, 158, 11, 0.9)" />
                 <stop offset="100%" stopColor="rgba(245, 158, 11, 0.5)" />
               </linearGradient>
-              <linearGradient id="other-br" x1="0%" y1="100%" x2="100%" y2="0%">
+              <linearGradient id="act2-other-br" x1="0%" y1="100%" x2="100%" y2="0%">
                 <stop offset="0%" stopColor="rgba(107, 114, 128, 0.5)" />
                 <stop offset="100%" stopColor="rgba(107, 114, 128, 0.2)" />
               </linearGradient>
@@ -220,9 +228,9 @@ export function Act2BrazilToggle({
               const isHighlighted = isBrazil &&
                 (source.id === 'deforestation' || source.id === 'agriculture');
 
-              let gradient = 'url(#other-br)';
-              if (source.id === 'deforestation') gradient = 'url(#deforestation-br)';
-              if (source.id === 'agriculture') gradient = 'url(#agriculture-br)';
+              let gradient = 'url(#act2-other-br)';
+              if (source.id === 'deforestation') gradient = 'url(#act2-deforestation-br)';
+              if (source.id === 'agriculture') gradient = 'url(#act2-agriculture-br)';
 
               return (
                 <g key={source.id}>
