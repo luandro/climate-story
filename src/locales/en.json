@@ -7,6 +7,103 @@
     "languageToggle": "Language",
     "skipToContent": "Skip to main content"
   },
+  "act3": {
+    "title": "The Toolkit",
+    "subtitle": "What really changes the game?",
+    "actLabel": "Act III",
+    "entry": {
+      "text": "The good news:",
+      "emphasis": "there are proven ways to change this scenario.",
+      "followUp1": "Some are technological.",
+      "followUp2": "Some are social.",
+      "followUp3": "Some are territorial."
+    },
+    "scale": {
+      "text": "Not all solutions carry the same weight.",
+      "followUp": "Some act on the surface. Others change the system.",
+      "scaleLabel": "Real impact on emissions reduction"
+    },
+    "toolkit": {
+      "title": "The Toolkit",
+      "instruction": "Explore the levers that change the system",
+      "tiles": {
+        "forests": "Forest Conservation",
+        "indigenous": "Indigenous Peoples and Territories",
+        "cleanEnergy": "Clean Energy",
+        "efficiency": "Energy Efficiency",
+        "transport": "Electric Transport",
+        "agriculture": "Sustainable Agriculture"
+      }
+    },
+    "forests": {
+      "text": "Conserving forests prevents billions of tons of CO₂ every year.",
+      "context": "Impact comparable to removing over 1.5 billion cars from the roads.",
+      "source": "WRI / IPCC — Nature-based solutions"
+    },
+    "indigenous": {
+      "intro": "Forests don't protect themselves.",
+      "text": "Where indigenous territories are recognized, the forest remains standing.",
+      "data": "Indigenous lands have significantly lower deforestation rates than neighboring areas.",
+      "source": "Nature Scientific Reports (2023) / FAO / Rainforest Foundation",
+      "anchor": "This is not a climate policy. It's a way of life."
+    },
+    "systems": {
+      "text": "The climate crisis doesn't come from technology alone.",
+      "followUp": "It comes from economic systems based on continuous extraction.",
+      "alternative": "Other systems organize identity, economy, and well-being without destroying the base that sustains them.",
+      "source": "Climate Justice & Indigenous Governance (Springer, 2024)"
+    },
+    "cleanEnergy": {
+      "text": "The energy transition is already underway.",
+      "data": "Today, solar energy is on average 41% cheaper than the cheapest fossil alternative.",
+      "source": "IRENA (2024)"
+    },
+    "efficiency": {
+      "text": "Doing the same thing using less energy is one of the fastest ways to reduce emissions.",
+      "data": "Efficiency can reduce up to 20% of global emissions.",
+      "source": "IEA / IPCC AR6"
+    },
+    "transport": {
+      "text": "Electric vehicles emit much less throughout their entire lifecycle.",
+      "data": "On average, up to 68% fewer emissions than combustion vehicles.",
+      "source": "ICCT"
+    },
+    "agriculture": {
+      "intro": "How we use land in Brazil can be part of the problem — or the solution.",
+      "agroforestry": {
+        "title": "Agroforestry",
+        "text": "Agroforestry combines trees, food, and income in the same landscape.",
+        "data": "These systems can increase total productivity per hectare while sequestering carbon.",
+        "evidence": "Studies indicate higher total production per area compared to simple monocultures.",
+        "source": "MDPI Sustainability (2020) / ScienceDirect (2020)"
+      },
+      "ilpf": {
+        "title": "Crop-Livestock-Forest Integration (ILPF)",
+        "text": "Integrated systems recover degraded pastures and produce more without opening new areas.",
+        "data": "In Brazil, ILPF can significantly increase animal stocking rate per hectare and reduce slaughter time.",
+        "benefits": ["Increased livestock productivity", "Better animal thermal comfort", "More fertile soil"],
+        "source": "IPEA (TD 2296) / EMBRAPA / ABC+ Plan"
+      },
+      "regenerative": {
+        "title": "Regenerative Pastures",
+        "text": "Regenerative management improves soil, retains water, and reduces methane emissions.",
+        "followUp": "Producing more in already open areas reduces pressure for deforestation.",
+        "source": "Reuters / FAO / Insper Agro"
+      },
+      "impact": "With different land use, Brazil can produce more food, emit less carbon, and keep forests standing."
+    },
+    "pattern": {
+      "text": "No single tool solves everything alone.",
+      "followUp": "But together, they completely change the system."
+    },
+    "brazilCentral": {
+      "text": "Few countries concentrate so much potential for change in so few fronts.",
+      "followUp": "That's why Brazil is not peripheral. It's central."
+    },
+    "transition": {
+      "text": "Next: what is being promised — and what still needs to be done."
+    }
+  },
   "act2": {
     "title": "The Anatomy of the Problem",
     "subtitle": "Where does all this come from?",

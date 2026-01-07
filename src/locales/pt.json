@@ -7,6 +7,103 @@
     "languageToggle": "Idioma",
     "skipToContent": "Pular para o conteúdo principal"
   },
+  "act3": {
+    "title": "A Caixa de Ferramentas",
+    "subtitle": "O que realmente muda o jogo?",
+    "actLabel": "Ato III",
+    "entry": {
+      "text": "A boa notícia:",
+      "emphasis": "existem formas comprovadas de mudar esse cenário.",
+      "followUp1": "Algumas são tecnológicas.",
+      "followUp2": "Outras são sociais.",
+      "followUp3": "Outras são territoriais."
+    },
+    "scale": {
+      "text": "Nem todas as soluções têm o mesmo peso.",
+      "followUp": "Algumas atuam na superfície. Outras mudam o sistema.",
+      "scaleLabel": "Impacto real na redução de emissões"
+    },
+    "toolkit": {
+      "title": "A Caixa de Ferramentas",
+      "instruction": "Explore as alavancas que mudam o sistema",
+      "tiles": {
+        "forests": "Conservação de Florestas",
+        "indigenous": "Povos Indígenas e Territórios",
+        "cleanEnergy": "Energia Limpa",
+        "efficiency": "Eficiência Energética",
+        "transport": "Transporte Elétrico",
+        "agriculture": "Agricultura Sustentável"
+      }
+    },
+    "forests": {
+      "text": "Conservar florestas evita bilhões de toneladas de CO₂ todos os anos.",
+      "context": "Impacto comparável a retirar mais de 1,5 bilhão de carros das ruas.",
+      "source": "WRI / IPCC — Soluções baseadas na natureza"
+    },
+    "indigenous": {
+      "intro": "Florestas não se protegem sozinhas.",
+      "text": "Onde territórios indígenas são reconhecidos, a floresta permanece em pé.",
+      "data": "Terras indígenas apresentam taxas de desmatamento significativamente menores do que áreas vizinhas.",
+      "source": "Nature Scientific Reports (2023) / FAO / Rainforest Foundation",
+      "anchor": "Isso não é uma política climática. É um modo de vida."
+    },
+    "systems": {
+      "text": "A crise climática não nasce apenas da tecnologia.",
+      "followUp": "Ela nasce de sistemas econômicos baseados em extração contínua.",
+      "alternative": "Outros sistemas organizam identidade, economia e bem-estar sem destruir a base que os sustenta.",
+      "source": "Climate Justice & Indigenous Governance (Springer, 2024)"
+    },
+    "cleanEnergy": {
+      "text": "A transição energética já está em curso.",
+      "data": "Hoje, a energia solar é em média 41% mais barata que a alternativa fóssil mais barata.",
+      "source": "IRENA (2024)"
+    },
+    "efficiency": {
+      "text": "Fazer a mesma coisa usando menos energia é uma das formas mais rápidas de reduzir emissões.",
+      "data": "A eficiência pode reduzir até 20% das emissões globais.",
+      "source": "IEA / IPCC AR6"
+    },
+    "transport": {
+      "text": "Veículos elétricos emitem muito menos ao longo de todo o seu ciclo de vida.",
+      "data": "Em média, até 68% menos emissões do que veículos a combustão.",
+      "source": "ICCT"
+    },
+    "agriculture": {
+      "intro": "A forma como usamos a terra no Brasil pode ser parte do problema — ou da solução.",
+      "agroforestry": {
+        "title": "Agroflorestas",
+        "text": "Agroflorestas combinam árvores, alimentos e renda na mesma paisagem.",
+        "data": "Esses sistemas podem aumentar a produtividade total por hectare e sequestrar carbono ao mesmo tempo.",
+        "evidence": "Estudos indicam maior produção total por área comparada a monoculturas simples.",
+        "source": "MDPI Sustainability (2020) / ScienceDirect (2020)"
+      },
+      "ilpf": {
+        "title": "Integração Lavoura-Pecuária-Floresta (ILPF)",
+        "text": "Sistemas integrados recuperam pastagens degradadas e produzem mais sem abrir novas áreas.",
+        "data": "No Brasil, ILPF pode aumentar significativamente a taxa de lotação animal por hectare e reduzir o tempo de abate.",
+        "benefits": ["Aumento de produtividade pecuária", "Melhor conforto térmico animal", "Solo mais fértil"],
+        "source": "IPEA (TD 2296) / EMBRAPA / Plano ABC+"
+      },
+      "regenerative": {
+        "title": "Pastagens Regenerativas",
+        "text": "Manejo regenerativo melhora o solo, retém água e reduz emissões de metano.",
+        "followUp": "Produzir mais em áreas já abertas reduz a pressão por desmatamento.",
+        "source": "Reuters / FAO / Insper Agro"
+      },
+      "impact": "Com outra ocupação do território, o Brasil pode produzir mais alimentos, emitir menos carbono e manter florestas em pé."
+    },
+    "pattern": {
+      "text": "Nenhuma ferramenta resolve tudo sozinha.",
+      "followUp": "Mas juntas, elas mudam completamente o sistema."
+    },
+    "brazilCentral": {
+      "text": "Poucos países concentram tanto potencial de mudança em tão poucas frentes.",
+      "followUp": "Por isso o Brasil não é periférico. É central."
+    },
+    "transition": {
+      "text": "A seguir: o que está sendo prometido — e o que ainda falta fazer."
+    }
+  },
   "act2": {
     "title": "A Anatomia do Problema",
     "subtitle": "De onde isso tudo vem?",
