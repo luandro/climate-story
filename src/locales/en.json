@@ -98,7 +98,12 @@
     },
     "brazilCentral": {
       "text": "Few countries concentrate so much potential for change in so few fronts.",
-      "followUp": "That's why Brazil is not peripheral. It's central."
+      "followUp": "That's why Brazil is not peripheral. It's central.",
+      "indicators": {
+        "amazon": "60% of the Amazon",
+        "energy": "Renewable energy",
+        "agriculture": "Arable land"
+      }
     },
     "transition": {
       "text": "Next: what is being promised — and what still needs to be done."

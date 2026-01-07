@@ -98,7 +98,12 @@
     },
     "brazilCentral": {
       "text": "Poucos países concentram tanto potencial de mudança em tão poucas frentes.",
-      "followUp": "Por isso o Brasil não é periférico. É central."
+      "followUp": "Por isso o Brasil não é periférico. É central.",
+      "indicators": {
+        "amazon": "60% da Amazônia",
+        "energy": "Energia renovável",
+        "agriculture": "Solo agricultável"
+      }
     },
     "transition": {
       "text": "A seguir: o que está sendo prometido — e o que ainda falta fazer."

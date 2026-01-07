@@ -177,7 +177,6 @@ export function Act3BrazilCentral({
         }}
       >
         {[
-        {[
           { label: t.act3?.brazilCentral?.indicators?.amazon || '60% da Amazônia', icon: '🌳' },
           { label: t.act3?.brazilCentral?.indicators?.energy || 'Energia renovável', icon: '☀️' },
           { label: t.act3?.brazilCentral?.indicators?.agriculture || 'Solo agricultável', icon: '🌾' },
