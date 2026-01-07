@@ -177,9 +177,10 @@ export function Act3BrazilCentral({
         }}
       >
         {[
-          { label: '60% da Amazônia', icon: '🌳' },
-          { label: 'Energia renovável', icon: '☀️' },
-          { label: 'Solo agricultável', icon: '🌾' },
+        {[
+          { label: t.act3?.brazilCentral?.indicators?.amazon || '60% da Amazônia', icon: '🌳' },
+          { label: t.act3?.brazilCentral?.indicators?.energy || 'Energia renovável', icon: '☀️' },
+          { label: t.act3?.brazilCentral?.indicators?.agriculture || 'Solo agricultável', icon: '🌾' },
         ].map((item, i) => (
           <div
             key={i}
